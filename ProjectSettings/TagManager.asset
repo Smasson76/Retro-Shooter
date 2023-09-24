@@ -4,11 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Enemy
   - Bullet
   - MultiShotPowerup
   - OverchargePowerup
   - ExplosivePowerup
+=======
+  - '"Player 1"'
+>>>>>>> b374259 (First commit, made player move)
   layers:
   - Default
   - TransparentFX
