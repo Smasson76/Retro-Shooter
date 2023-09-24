@@ -36,6 +36,7 @@ public class SimpleMovement : MonoBehaviour
         if (Input.GetKey("space") == false)
         {
             spr.material.SetColor("_Color", oldCol);
+            Debug.Log("Silence");
         }
     }
 }
