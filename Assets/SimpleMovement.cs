@@ -9,6 +9,15 @@ public class SimpleMovement : MonoBehaviour
     private Color newCol;
     private Color oldCol;
 
+    public Bullet bulletPrefab;
+
+    void Fire()
+	{
+		Instantiate(this.bulletPrefab, this.transform.position, Quaternion.identity);
+	}
+
+    //public String powerType;
+
     private Rigidbody2D rb;
     private SpriteRenderer spr;
     // Start is called before the first frame update
@@ -31,6 +40,7 @@ public class SimpleMovement : MonoBehaviour
         if (Input.GetKey("space") == true)
         {
             spr.material.SetColor("_Color", newCol);
+            Fire();
             Debug.Log("PEW");
         }
         if (Input.GetKey("space") == false)
