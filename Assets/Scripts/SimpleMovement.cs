@@ -6,6 +6,8 @@ public class SimpleMovement : MonoBehaviour
 {
     public float speed;
     private float Move;
+    private float nextShootTime = 0.0f;
+    private float period = 0.1f;
     private Color newCol;
     private Color oldCol;
 
@@ -13,7 +15,10 @@ public class SimpleMovement : MonoBehaviour
 
     void Fire()
 	{
-		Instantiate(this.bulletPrefab, this.transform.position, Quaternion.identity);
+        if(Time.time > nextShootTime){
+            nextShootTime += period;
+            Instantiate(this.bulletPrefab, this.transform.position, Quaternion.identity);
+        }
 	}
 
     //public String powerType;

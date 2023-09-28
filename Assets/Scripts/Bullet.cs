@@ -10,9 +10,7 @@ public class Bullet : MonoBehaviour
     private float period = 0.1f;
     
     private void Update(){
-        if(Time.time > nextShootTime){
-            nextShootTime += period;
-            this.transform.position += this.direction * this.speed * Time.deltaTime;
-        }
+        this.transform.position += this.direction * this.speed * Time.deltaTime;
+        
     }
 }
