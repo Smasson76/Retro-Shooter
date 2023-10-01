@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 9ee8afefbdc1641a0a2b6bdf24f550ba
+  - enabled: 1
+    path: Assets/Scenes/SkylarsScene.unity
+    guid: 6f08e11fca137f54a88151d0a08fddff
   m_configObjects: {}
