@@ -6,8 +6,8 @@ public class SimpleMovement : MonoBehaviour
 {
     public float speed;
     private float Move;
-    private float nextShootTime = 0.0f;
-    private float period = 0.1f;
+    private float nextShootTime = 0.1f;
+    private float period = 0.5f;
     private Color newCol;
     private Color oldCol;
 
