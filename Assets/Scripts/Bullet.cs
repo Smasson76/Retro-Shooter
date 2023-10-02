@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
         } else if (other.gameObject.CompareTag("Player"))
         {
             // reduce player life
+            Debug.Log("PLAYER HIT");
         }
 
         Destroy(this.gameObject);

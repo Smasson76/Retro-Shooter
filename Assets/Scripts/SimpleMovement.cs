@@ -10,6 +10,8 @@ public class SimpleMovement : MonoBehaviour
     private float period = 0.5f;
     private Color newCol;
     private Color oldCol;
+    public Vector3 firing_point_offset = new Vector3(0, 0.5f, 0);
+    public float bullet_speed = 1f;
 
     public Bullet bulletPrefab;
 
@@ -17,7 +19,8 @@ public class SimpleMovement : MonoBehaviour
 	{
         if(Time.time > nextShootTime){
             nextShootTime += period;
-            Instantiate(this.bulletPrefab, this.transform.position, Quaternion.identity);
+            Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
+            bullet.send_off(Vector2.up, bullet_speed);
         }
 	}
 
@@ -25,6 +28,7 @@ public class SimpleMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spr;
+
     // Start is called before the first frame update
     void Start()
     {
