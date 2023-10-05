@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     void FixedUpdate()
     {
         rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
+        //this.transform.position += this.direction * this.speed * Time.deltaTime;
+
     }
 
     public void send_off(Vector2 direction, float speed_multiplier)

@@ -50,12 +50,12 @@ public class SimpleMovement : MonoBehaviour
         {
             spr.material.SetColor("_Color", newCol);
             Fire();
-            Debug.Log("PEW");
+            //Debug.Log("PEW");
         }
         if (Input.GetKey("space") == false)
         {
             spr.material.SetColor("_Color", oldCol);
-            Debug.Log("Silence");
+            //Debug.Log("Silence");
         }
     }
 }
