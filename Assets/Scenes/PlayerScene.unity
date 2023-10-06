@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1237292463189495250, guid: 5ca9bfdf6d699448c860a324e863696f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2331257681052133105, guid: 5ca9bfdf6d699448c860a324e863696f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -139,6 +143,10 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 798899180036489932, guid: 8f6de56aa45c04f79a7a5e931fe1c2d0, type: 3}
+    - target: {fileID: 7000596298334199765, guid: 5ca9bfdf6d699448c860a324e863696f, type: 3}
+      propertyPath: cooldownTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7000596298334199765, guid: 5ca9bfdf6d699448c860a324e863696f, type: 3}
       propertyPath: firing_point_offset.y
       value: 1

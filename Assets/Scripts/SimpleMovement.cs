@@ -6,21 +6,22 @@ public class SimpleMovement : MonoBehaviour
 {
     public float speed;
     private float Move;
-    private float nextShootTime = 0.1f;
-    private float period = 0.5f;
     private Color newCol;
     private Color oldCol;
     public Vector3 firing_point_offset = new Vector3(0, 0.5f, 0);
     public float bullet_speed = 1f;
+    private float lastShotTime = -1f;
+    public float cooldownTime = .5f;
 
     public Bullet bulletPrefab;
 
     void Fire()
 	{
-        if(Time.time > nextShootTime){
-            nextShootTime += period;
+        if((Time.time - lastShotTime) > cooldownTime){
             Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
             bullet.send_off(Vector2.up, bullet_speed);
+
+            lastShotTime = Time.time;
         }
 	}
 
@@ -50,12 +51,10 @@ public class SimpleMovement : MonoBehaviour
         {
             spr.material.SetColor("_Color", newCol);
             Fire();
-            //Debug.Log("PEW");
         }
         if (Input.GetKey("space") == false)
         {
             spr.material.SetColor("_Color", oldCol);
-            //Debug.Log("Silence");
         }
     }
 }
