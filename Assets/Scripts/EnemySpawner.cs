@@ -8,12 +8,15 @@ public class EnemySpawner : MonoBehaviour
     public Enemy enemy;
 
     public List<List<Enemy>> enemy_columns = new List<List<Enemy>>(); 
+    public int swarm_dim_x = 4;
+    public int swarm_dim_y = 5;
+    public int swarm_width = 5;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        place_swarm(4, 5);
+        place_swarm(swarm_dim_x, swarm_dim_y, swarm_width);
     }
 
     // Update is called once per frame
@@ -22,9 +25,12 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-    void place_swarm(int dim_x, int dim_y){
-        int screen_width = 10; //Screen.width;
-        float swarm_width = (float) ((screen_width / 3f) * 2);
+    void place_swarm(int dim_x, int dim_y, int width){
+
+        // int screen_width = width;
+        // float swarm_width = (float) ((screen_width / 3f) * 2);
+        
+        float swarm_width = width; 
         
         float swarm_half_width = (float) swarm_width / 2;
         int swarm_col_num =  dim_y;
