@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        place_swarm(16);
+        place_swarm(4, 5);
     }
 
     // Update is called once per frame
@@ -22,42 +22,34 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-    void place_swarm(int enemy_number){
-        // The enemy_number must have a whole number square-root
-        // At some point, we should do some error handling here to enforce this.
-
-
+    void place_swarm(int dim_x, int dim_y){
         int screen_width = 10; //Screen.width;
         float swarm_width = (float) ((screen_width / 3f) * 2);
         
         float swarm_half_width = (float) swarm_width / 2;
-        int swarm_row_num = (int) Mathf.Sqrt(enemy_number);
+        int swarm_col_num =  dim_y;
+        int swarm_row_num =  dim_x;
         float swarm_step = (float) (swarm_width / swarm_row_num);
 
-        int row_idx = 0;
         float base_x_placement = (float) this.transform.position.x - swarm_half_width;
         float base_y_placement = (float) this.transform.position.y;
 
         Vector3 enemy_placement = new Vector3(base_x_placement, base_y_placement, 0);
-        enemy_columns.Insert(0, new List<Enemy>());
 
-        for (int i = 0; i < enemy_number; i++){
-             if (((i % swarm_row_num) == 0) && (i != 0)){
-                 row_idx++; 
-                 enemy_columns.Insert(row_idx, new List<Enemy>());
-             }    
-             Debug.Log(String.Format("\nCOL: {0}, ROW: {1}", row_idx, i % swarm_row_num));
-             enemy_placement = new Vector3(
-                base_x_placement + (swarm_step *  row_idx),
-                base_y_placement + (swarm_step * (i % swarm_row_num)),
-                0
-             );
+        for (int col_idx = 0; col_idx < swarm_col_num; col_idx++){
+            enemy_columns.Insert(col_idx, new List<Enemy>());
 
-             Debug.Log(enemy_placement);
+            for (int row_idx = 0; row_idx < swarm_row_num; row_idx++){
+                enemy_placement = new Vector3(
+                   base_x_placement + (swarm_step *  col_idx),
+                   base_y_placement + (swarm_step * (row_idx % swarm_row_num)),
+                   0
+                );
 
-             Enemy enemy_i = Instantiate(enemy, enemy_placement, Quaternion.identity);
-
-             enemy_columns[row_idx].Insert(i % swarm_row_num, enemy_i);
+                Enemy enemy_i = Instantiate(enemy, enemy_placement, Quaternion.identity);
+                enemy_i.transform.SetParent(this.transform);
+                enemy_columns[col_idx].Insert(row_idx % swarm_row_num, enemy_i);
+            }
         }
 
         check_enemies_can_shoot(); 
