@@ -13,6 +13,11 @@ public class SimpleMovement : MonoBehaviour
     private float lastShotTime = -1f;
     public float cooldownTime = .5f;
 
+    private bool ocOn = true;
+    private float overchargeTime = 4;
+    private float ocStart;
+
+
     public Bullet bulletPrefab;
 
     void Fire()
@@ -24,8 +29,6 @@ public class SimpleMovement : MonoBehaviour
             lastShotTime = Time.time;
         }
 	}
-
-    //public String powerType;
 
     private Rigidbody2D rb;
     private SpriteRenderer spr;
@@ -44,12 +47,24 @@ public class SimpleMovement : MonoBehaviour
     void Update()
     {
         Move = Input.GetAxis("Horizontal");
+        if(ocOn == true){
+            overchargeTime -= Time.deltaTime;
+        }
 
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
 
         if (Input.GetKey("space") == true)
         {
             spr.material.SetColor("_Color", newCol);
+            if(ocOn == true){
+                //overchargeTime -= Time.deltaTime;
+                if(overchargeTime > 0.0f){
+                    cooldownTime = .0005f;
+                } else {
+                    cooldownTime = .5f;
+                    ocOn = false;
+                }
+            }
             Fire();
         }
         if (Input.GetKey("space") == false)
