@@ -12,7 +12,7 @@ public class SimpleMovement : MonoBehaviour
     public float cooldownTime = .5f;
 
     private bool ocOn = true;
-    private float overchargeTime = 4;
+    private float overchargeTime;
     private float ocStart;
 
 
@@ -42,6 +42,11 @@ public class SimpleMovement : MonoBehaviour
         Move = Input.GetAxis("Horizontal");
         if(ocOn == true){
             overchargeTime -= Time.deltaTime;
+        }
+
+        if (Input.GetKey("r") == true){
+            ocOn = true;
+            overchargeTime = 4;
         }
 
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
