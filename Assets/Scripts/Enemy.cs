@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public bool can_shoot = false;
     public Bullet bullet;
     public float bullet_speed = 1f;
     float timeLeft = 2.0f;
@@ -22,13 +23,24 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
+        if ((timeLeft < 0) && can_shoot)
         {
             timeLeft = 2.0f;
-            Bullet new_bullet = Instantiate(bullet, transform.position + firing_point_offset, Quaternion.identity);
-            new_bullet.send_off(Vector2.down, bullet_speed);
+            fire();
         }
     }
 
+    void fire(){
+        Bullet new_bullet = Instantiate(bullet, transform.position + firing_point_offset, Quaternion.identity);
+        new_bullet.send_off(Vector2.down, bullet_speed);
+        Debug.Log("CALLED FIRE");
+
+    }
+
+    public void set_can_shoot(bool val){
+        this.can_shoot = val;
+        Debug.Log("CALLED set_can_shoot");
+        Debug.Log(this);
+    }
     
 }
