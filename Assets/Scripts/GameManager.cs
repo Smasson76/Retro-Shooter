@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Text HighScoreText;
     public GameObject StartGameScreen;
     public GameObject GameOverScreen;
+    public GameObject GameMenu;
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
@@ -35,7 +36,9 @@ public class GameManager : MonoBehaviour
         }
 
         StartGameScreen.SetActive(true);
+        GameMenu.SetActive(false);
         GameInPlay = false;
+        ScoreText.text = "" + Score;
       }
 
     /*IEnumerator Start() 
@@ -72,6 +75,12 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    public void RewardPoint()
+    {
+        Score++;
+        ScoreText.text = "" + Score;
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -80,7 +89,10 @@ public class GameManager : MonoBehaviour
     public void StartOnePlayer()
     {
         StartGameScreen.SetActive(false);
+        GameMenu.SetActive(true);
         GameInPlay = true;
+
+        //Spawn enemy and player
         Instantiate(EnemySpawnerObject, new Vector2(-0.06f, 3), Quaternion.identity);
         Instantiate(PlayerObject, new Vector2(0, -2f), Quaternion.identity);
     }
