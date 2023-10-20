@@ -94,8 +94,8 @@ public class GameManager : MonoBehaviour
         GameInPlay = true;
 
         //Spawn enemy and player
-        Instantiate(EnemySpawnerObject, new Vector2(-0.06f, 3), Quaternion.identity);
-        Instantiate(PlayerObject, new Vector2(0, -2f), Quaternion.identity);
+        Instantiate(EnemySpawnerObject, new Vector2(-0.1f, 3), Quaternion.identity);
+        Instantiate(PlayerObject, new Vector2(0, -3f), Quaternion.identity);
     }
 
     public void StartTwoPlayer()
