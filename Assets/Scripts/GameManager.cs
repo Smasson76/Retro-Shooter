@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager Instance;
+    public static GameManager instance;
 
     [Header("-- UI OBJECTS --")]
     public Text ScoreText;
@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
 
     void Awake() 
     {
-        if (Instance == null) 
+        if (instance == null) 
         {
-            Instance = this;
+            instance = this;
         }
         else 
         {
@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     {
         Score++;
         ScoreText.text = "" + Score;
+        CameraShake.instance.shakeDuration = 0.04f;
     }
 
     public void RestartGame()

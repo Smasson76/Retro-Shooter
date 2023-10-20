@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            GameManager.Instance.RewardPoint();
+            GameManager.instance.RewardPoint();
             Destroy(other.gameObject);
         } else if (other.gameObject.CompareTag("Player"))
         {
