@@ -6,11 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-<<<<<<< HEAD
     enableMipMap: 0
-=======
-    enableMipMap: 1
->>>>>>> master
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -41,7 +37,6 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-<<<<<<< HEAD
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -49,20 +44,10 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-=======
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
-  nPOTScale: 1
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 0
->>>>>>> master
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
   spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -70,15 +55,6 @@ TextureImporter:
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-=======
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: 0
->>>>>>> master
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -132,25 +108,24 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
       name: ExplodingMonkey_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 5
+        y: 2
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56bc26db644a9bf4398d0ef80468fa80
-      internalID: -1156184120
+      spriteID: 4ed5205fe71159b41a3020669a2bf8cf
+      internalID: -2048939186
       vertices: []
       indices: 
       edges: []
@@ -159,19 +134,19 @@ TextureImporter:
       name: ExplodingMonkey_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 35
+        y: 2
+        width: 26
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48427c5538f37ac4895d11289cb2e073
-      internalID: 488688638
+      spriteID: a02dee9fca8151a44a850468aad5e893
+      internalID: 232877792
       vertices: []
       indices: 
       edges: []
@@ -182,17 +157,17 @@ TextureImporter:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
+        width: 27
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee31d88f25233274aaa7c812bca975fd
-      internalID: 1899200397
+      spriteID: 04920282cea1a0a42a8b81deae855883
+      internalID: -1084202388
       vertices: []
       indices: 
       edges: []
@@ -202,18 +177,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 0
+        y: 1
         width: 32
-        height: 32
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c73901ee2ae898d4ba9b6362621895dc
-      internalID: 1543031103
+      spriteID: 5f7cad82050953f46aa81bff7387bf2e
+      internalID: 1750336056
       vertices: []
       indices: 
       edges: []
@@ -222,19 +197,19 @@ TextureImporter:
       name: ExplodingMonkey_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
+        x: 131
+        y: 19
+        width: 7
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 233121abffc09814fad9a7b056030a08
-      internalID: 287483939
+      spriteID: 8fe18fa0eb8e3c64b93082dbd92af2df
+      internalID: 2032586476
       vertices: []
       indices: 
       edges: []
@@ -243,19 +218,19 @@ TextureImporter:
       name: ExplodingMonkey_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
+        x: 134
+        y: 22
+        width: 7
+        height: 9
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a49136933f9b91242b05c04e9cf846e4
-      internalID: -1474881462
+      spriteID: fd98a020f7752f142bf44fb64f5aa536
+      internalID: 1814409282
       vertices: []
       indices: 
       edges: []
@@ -264,19 +239,166 @@ TextureImporter:
       name: ExplodingMonkey_6
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
+        x: 140
+        y: 14
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6c0a8744cf0b5945a6866656bc7b92e
-      internalID: -1103094923
+      spriteID: a934d316b27a57d4ebfd16a4db2885db
+      internalID: -1279826462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplodingMonkey_7
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 22
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa55393d4bacba41b853ff8be570fc2
+      internalID: -1848544207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplodingMonkey_8
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 5
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81860b36cd9122d41bb038d95cb3a07e
+      internalID: 343282852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplodingMonkey_9
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 3
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c2cadb3b38431b44b3d60805fe513fc
+      internalID: 727190895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplodingMonkey_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 14
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3157ce04ec50fdd4a9acd78fdd16401c
+      internalID: 554901038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplodingMonkey_11
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 2
+        width: 24
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce7da0d1802678448b2c0fb59e73525
+      internalID: -1021635680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplodingMonkey_12
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 11
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957c5359e3cca6c40bf73786bc42c784
+      internalID: -734240568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplodingMonkey_13
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07bb158f71868df44bc8d6eb085d3ac4
+      internalID: -483886845
       vertices: []
       indices: 
       edges: []
@@ -284,32 +406,28 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8d504d525313e774d8798eddbfc2ce09
-=======
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: 
->>>>>>> master
+    spriteID: e0b50861777ef054dbf3708c175da3f2
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
     nameFileIdTable:
-      ExplodingMonkey_0: -1156184120
-      ExplodingMonkey_1: 488688638
-      ExplodingMonkey_2: 1899200397
-      ExplodingMonkey_3: 1543031103
-      ExplodingMonkey_4: 287483939
-      ExplodingMonkey_5: -1474881462
-      ExplodingMonkey_6: -1103094923
-=======
-    nameFileIdTable: {}
->>>>>>> master
+      ExplodingMonkey_0: -2048939186
+      ExplodingMonkey_1: 232877792
+      ExplodingMonkey_10: 554901038
+      ExplodingMonkey_11: -1021635680
+      ExplodingMonkey_12: -734240568
+      ExplodingMonkey_13: -483886845
+      ExplodingMonkey_2: -1084202388
+      ExplodingMonkey_3: 1750336056
+      ExplodingMonkey_4: 2032586476
+      ExplodingMonkey_5: 1814409282
+      ExplodingMonkey_6: -1279826462
+      ExplodingMonkey_7: -1848544207
+      ExplodingMonkey_8: 343282852
+      ExplodingMonkey_9: 727190895
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

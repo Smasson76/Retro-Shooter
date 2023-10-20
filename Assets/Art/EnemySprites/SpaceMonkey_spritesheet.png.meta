@@ -6,11 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-<<<<<<< HEAD
     enableMipMap: 0
-=======
-    enableMipMap: 1
->>>>>>> master
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -41,7 +37,6 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-<<<<<<< HEAD
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -49,20 +44,10 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-=======
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
-  nPOTScale: 1
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 0
->>>>>>> master
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
   spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -70,15 +55,6 @@ TextureImporter:
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-=======
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: 0
->>>>>>> master
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -132,7 +108,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
       name: SpaceMonkey_spritesheet_0
@@ -149,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1a19570bf899674c880da53766c17e8
-      internalID: -26507594
+      spriteID: f82affae0c96fe04a9a3e032eb79f7ef
+      internalID: 1671100711
       vertices: []
       indices: 
       edges: []
@@ -170,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 647ab7b770d3f5246959cfd52688599e
-      internalID: 1426767717
+      spriteID: e352950bf937f4b44bebfb7156d5a646
+      internalID: -2045229320
       vertices: []
       indices: 
       edges: []
@@ -191,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d9cde417a6d9cb49a311858f975baf5
-      internalID: 1812214217
+      spriteID: f0d3dfd4a1cd83f4ea32b01ca7fa8698
+      internalID: 527615317
       vertices: []
       indices: 
       edges: []
@@ -212,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0051f1f81083b024ea81441c8e0b0608
-      internalID: -7906129
+      spriteID: cb1de39b02530534e9a94deaa03bbf0b
+      internalID: 1169265328
       vertices: []
       indices: 
       edges: []
@@ -233,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58ddb5820a47c9f4888e276a2f329393
-      internalID: 177412179
+      spriteID: 06225e1289c9040488df67d7eae5bf60
+      internalID: -1809614082
       vertices: []
       indices: 
       edges: []
@@ -254,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57efe5296e7143745ba3404764744523
-      internalID: 571754048
+      spriteID: a2781ccde6737814ca8f7edab2a9ab05
+      internalID: -601963621
       vertices: []
       indices: 
       edges: []
@@ -275,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cdcae4c335755e4fa40671abe77e8ec
-      internalID: -1936024743
+      spriteID: d6b48b9209f01c048bfa82ba7e094c62
+      internalID: 231531454
       vertices: []
       indices: 
       edges: []
@@ -284,32 +259,21 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 083dfeb11e09a9c418b15af4861befde
-=======
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: 
->>>>>>> master
+    spriteID: a5bf86c1ac8c453438649c8a2a797683
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
     nameFileIdTable:
-      SpaceMonkey_spritesheet_0: -26507594
-      SpaceMonkey_spritesheet_1: 1426767717
-      SpaceMonkey_spritesheet_2: 1812214217
-      SpaceMonkey_spritesheet_3: -7906129
-      SpaceMonkey_spritesheet_4: 177412179
-      SpaceMonkey_spritesheet_5: 571754048
-      SpaceMonkey_spritesheet_6: -1936024743
-=======
-    nameFileIdTable: {}
->>>>>>> master
+      SpaceMonkey_spritesheet_0: 1671100711
+      SpaceMonkey_spritesheet_1: -2045229320
+      SpaceMonkey_spritesheet_2: 527615317
+      SpaceMonkey_spritesheet_3: 1169265328
+      SpaceMonkey_spritesheet_4: -1809614082
+      SpaceMonkey_spritesheet_5: -601963621
+      SpaceMonkey_spritesheet_6: 231531454
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
