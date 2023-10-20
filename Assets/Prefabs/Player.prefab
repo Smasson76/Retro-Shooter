@@ -174,4 +174,5 @@ MonoBehaviour:
   speed: 5
   firing_point_offset: {x: 0, y: 1, z: 0}
   bullet_speed: 1
-  bulletPrefab: {fileID: 0}
+  cooldownTime: 0.5
+  bulletPrefab: {fileID: 798899180036489932, guid: 8f6de56aa45c04f79a7a5e931fe1c2d0, type: 3}

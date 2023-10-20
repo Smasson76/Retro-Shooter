@@ -9,13 +9,19 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    [Header("-- UI OBJECTS --")]
     public Text ScoreText;
     public Text HighScoreText;
     public GameObject StartGameScreen;
     public GameObject GameOverScreen;
 
+    [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
     public bool GameInPlay;
+
+    [Header("-- GAME OBJECTS --")]
+    public GameObject PlayerObject;
+    public GameObject EnemySpawnerObject;
 
     void Awake() 
     {
@@ -32,7 +38,7 @@ public class GameManager : MonoBehaviour
         GameInPlay = false;
       }
 
-    IEnumerator Start() 
+    /*IEnumerator Start() 
     {
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
         HighScoreText.text = "" + highScore;
@@ -52,29 +58,36 @@ public class GameManager : MonoBehaviour
                 //Spawn enemy here
             }
         }
-    }
+    }*/
 
     void Update () 
     {
-        ScoreText.text = Score + "pts";
+        /*ScoreText.text = Score + "pts";
 		int highScore = PlayerPrefs.GetInt("HighScore", 0);
 		if (Score > highScore) 
         {
 			PlayerPrefs.SetInt("HighScore", Score);
 			PlayerPrefs.Save();
 			HighScoreText.text = "" + highScore;
-        }
-    }
-
-    public void StartGame() 
-    {
-        StartGameScreen.SetActive(false);
-        GameInPlay = true;
+        }*/
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void StartOnePlayer()
+    {
+        StartGameScreen.SetActive(false);
+        GameInPlay = true;
+        Instantiate(EnemySpawnerObject, new Vector2(-0.06f, 3), Quaternion.identity);
+        Instantiate(PlayerObject, new Vector2(0, -2f), Quaternion.identity);
+    }
+
+    public void StartTwoPlayer()
+    {
+        //Future scenario where we will allow for 2 players
     }
 
     public void ExitGame()
