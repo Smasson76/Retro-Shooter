@@ -21,8 +21,6 @@ public class Bullet : MonoBehaviour
 
     public void send_off(Vector2 direction, float speed_multiplier)
     {
-
-
         velocity = speed * direction * speed_multiplier;
     }
 

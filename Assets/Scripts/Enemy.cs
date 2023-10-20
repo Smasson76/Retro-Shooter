@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public Bullet bullet;
     public float bullet_speed = 1f;
     float timeLeft = 2.0f;
-    Vector3 firing_point_offset = new Vector3(0, -0.25f, 0);
+    public GameObject PointOfFireObject;
     
 
     // Start is called before the first frame update
@@ -31,10 +31,10 @@ public class Enemy : MonoBehaviour
     }
 
     void fire(){
-        Bullet new_bullet = Instantiate(bullet, transform.position + firing_point_offset, Quaternion.identity);
+        Bullet new_bullet = Instantiate(bullet, PointOfFireObject.transform.position, Quaternion.identity);
         new_bullet.send_off(Vector2.down, bullet_speed);
         Debug.Log("CALLED FIRE");
-
+        Destroy(new_bullet, 4f);
     }
 
     public void set_can_shoot(bool val){

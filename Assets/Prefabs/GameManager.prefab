@@ -51,5 +51,5 @@ MonoBehaviour:
   GameMenu: {fileID: 0}
   Score: 0
   GameInPlay: 0
-  PlayerObject: {fileID: 2331257681052133105, guid: 5ca9bfdf6d699448c860a324e863696f, type: 3}
+  PlayerObject: {fileID: 8737890828014371074, guid: 49ff053fb92a2c24e982f19e56f5a07a, type: 3}
   EnemySpawnerObject: {fileID: 8721913835373864959, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
