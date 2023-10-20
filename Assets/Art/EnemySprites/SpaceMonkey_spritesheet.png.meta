@@ -6,7 +6,11 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
+<<<<<<< HEAD
     enableMipMap: 0
+=======
+    enableMipMap: 1
+>>>>>>> master
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,6 +41,7 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
+<<<<<<< HEAD
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -44,10 +49,20 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
+=======
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+>>>>>>> master
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -55,6 +70,15 @@ TextureImporter:
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
+=======
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
+>>>>>>> master
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -108,6 +132,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
       name: SpaceMonkey_spritesheet_0
@@ -260,12 +285,20 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 083dfeb11e09a9c418b15af4861befde
+=======
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+>>>>>>> master
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
+<<<<<<< HEAD
     nameFileIdTable:
       SpaceMonkey_spritesheet_0: -26507594
       SpaceMonkey_spritesheet_1: 1426767717
@@ -274,6 +307,9 @@ TextureImporter:
       SpaceMonkey_spritesheet_4: 177412179
       SpaceMonkey_spritesheet_5: 571754048
       SpaceMonkey_spritesheet_6: -1936024743
+=======
+    nameFileIdTable: {}
+>>>>>>> master
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
