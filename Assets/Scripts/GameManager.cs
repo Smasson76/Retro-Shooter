@@ -15,14 +15,17 @@ public class GameManager : MonoBehaviour
     public GameObject StartGameScreen;
     public GameObject GameOverScreen;
     public GameObject GameMenu;
+    public GameObject[] livesUICounter;
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
-    public bool GameInPlay;
+    public int livesCount = 3;
 
     [Header("-- GAME OBJECTS --")]
     public GameObject PlayerObject;
+    public GameObject PlayerInstance;
     public GameObject EnemySpawnerObject;
+    public GameObject EnemySpawnerInstance;
 
     void Awake() 
     {
@@ -35,9 +38,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        StartGameScreen.SetActive(true);
-        GameMenu.SetActive(false);
-        GameInPlay = false;
+        MainMenu();
         ScoreText.text = "" + Score;
       }
 
@@ -75,6 +76,42 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    public void MainMenu()
+    {
+        StartGameScreen.SetActive(true);
+        GameMenu.SetActive(false);
+    }
+
+    public void PlayerHit()
+    {
+        if (livesCount > 0)
+        {
+            livesCount--;
+            UpdateLifeUI();
+        }
+    }
+
+    private void UpdateLifeUI()
+    {
+        for (int i = 0; i < livesUICounter.Length; i++)
+        {
+            if (i < livesCount)
+                livesUICounter[i].gameObject.SetActive(true);
+            else
+                livesUICounter[i].gameObject.SetActive(false);
+
+            if (livesCount <= 0)
+                PlayerDeath();
+        }
+    }
+
+    public void PlayerDeath()
+    {
+        Destroy(PlayerInstance);
+        Destroy(EnemySpawnerInstance);
+        MainMenu();
+    }
+
     public void RewardPoint()
     {
         Score++;
@@ -82,20 +119,17 @@ public class GameManager : MonoBehaviour
         CameraShake.instance.shakeDuration = 0.04f;
     }
 
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     public void StartOnePlayer()
     {
+        Score = 0;
+        livesCount = 3;
+        ScoreText.text = "" + Score;
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
-        GameInPlay = true;
 
         //Spawn enemy and player
-        Instantiate(EnemySpawnerObject, new Vector2(-0.1f, 3), Quaternion.identity);
-        Instantiate(PlayerObject, new Vector2(0, -3f), Quaternion.identity);
+        PlayerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
+        EnemySpawnerInstance = Instantiate(PlayerObject, new Vector2(0, -3f), Quaternion.identity);
     }
 
     public void StartTwoPlayer()

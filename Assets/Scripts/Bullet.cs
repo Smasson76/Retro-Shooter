@@ -31,8 +31,7 @@ public class Bullet : MonoBehaviour
             GameManager.instance.RewardPoint();
         } else if (other.gameObject.CompareTag("Player"))
         {
-            // reduce player life
-            Debug.Log("PLAYER HIT");
+            GameManager.instance.PlayerHit();
         }
 
         Destroy(this.gameObject);
