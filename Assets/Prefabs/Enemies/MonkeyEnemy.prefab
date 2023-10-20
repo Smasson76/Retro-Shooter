@@ -71,9 +71,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   can_shoot: 0
-  bullet: {fileID: 798899180036489932, guid: 8f6de56aa45c04f79a7a5e931fe1c2d0, type: 3}
+  bullet: {fileID: 4616834049647686514, guid: a6a80f28c0cbb8e4e8a6e37f4673037b, type: 3}
   bullet_speed: 1
   PointOfFireObject: {fileID: 3157762341674666786}
+  anim: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!61 &1848848324963100891
 BoxCollider2D:
   m_ObjectHideFlags: 0

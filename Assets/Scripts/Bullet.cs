@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
     public void send_off(Vector2 direction, float speed_multiplier)
     {
         velocity = speed * direction * speed_multiplier;
+        Destroy(this.gameObject, 3f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
+    public int HighScore;
     public int livesCount = 3;
 
     [Header("-- GAME OBJECTS --")]
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
 
         MainMenu();
         ScoreText.text = "" + Score;
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        HighScoreText.text = "" + highScore;
       }
 
     /*IEnumerator Start() 
@@ -66,14 +69,12 @@ public class GameManager : MonoBehaviour
 
     void Update () 
     {
-        /*ScoreText.text = Score + "pts";
-		int highScore = PlayerPrefs.GetInt("HighScore", 0);
-		if (Score > highScore) 
-        {
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+		if (Score > highScore) {
 			PlayerPrefs.SetInt("HighScore", Score);
 			PlayerPrefs.Save();
 			HighScoreText.text = "" + highScore;
-        }*/
+        }
     }
 
     public void MainMenu()
@@ -86,9 +87,14 @@ public class GameManager : MonoBehaviour
     {
         if (livesCount > 0)
         {
+            Destroy(PlayerInstance);
             livesCount--;
             UpdateLifeUI();
+            SpawnPlayer();
         }
+
+        if (livesCount <= 0)
+            PlayerDeath();
     }
 
     private void UpdateLifeUI()
@@ -99,9 +105,6 @@ public class GameManager : MonoBehaviour
                 livesUICounter[i].gameObject.SetActive(true);
             else
                 livesUICounter[i].gameObject.SetActive(false);
-
-            if (livesCount <= 0)
-                PlayerDeath();
         }
     }
 
@@ -126,10 +129,15 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "" + Score;
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
+        UpdateLifeUI();
 
-        //Spawn enemy and player
-        PlayerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
-        EnemySpawnerInstance = Instantiate(PlayerObject, new Vector2(0, -3f), Quaternion.identity);
+        SpawnPlayer();
+        EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
+    }
+
+    public void SpawnPlayer()
+    {
+        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -3f), Quaternion.identity);
     }
 
     public void StartTwoPlayer()

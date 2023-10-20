@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     void fire(){
         Bullet new_bullet = Instantiate(bullet, PointOfFireObject.transform.position, Quaternion.identity);
         new_bullet.send_off(Vector2.down, bullet_speed);
-        Destroy(new_bullet, 4f);
+        Destroy(new_bullet, 3f);
     }
 
     public void set_can_shoot(bool val){
