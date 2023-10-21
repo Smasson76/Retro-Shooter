@@ -13,6 +13,8 @@ public class SimpleMovement : MonoBehaviour
 
     private bool ocOn = false;
     private bool multishot = false;
+    private bool xpl = false;
+    private float xplTime;
     private float overchargeTime;
     private float multishotTime;
     private float ocStart;
@@ -28,21 +30,21 @@ public class SimpleMovement : MonoBehaviour
                     Bullet bullet1 = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
                     Bullet bullet2 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(-1f, 0.5f, 0), Quaternion.identity);
                     Bullet bullet3 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(1f, 0.5f, 0), Quaternion.identity);
-                    bullet1.send_off(Vector2.up, bullet_speed);
-                    bullet2.send_off(Vector2.up, bullet_speed);
-                    bullet3.send_off(Vector2.up, bullet_speed);
+                    bullet1.send_off(Vector2.up, bullet_speed, xpl);
+                    bullet2.send_off(Vector2.up, bullet_speed, xpl);
+                    bullet3.send_off(Vector2.up, bullet_speed, xpl);
 
                     lastShotTime = Time.time;
                 } else {
                     multishot = false;
                     Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
-                    bullet.send_off(Vector2.up, bullet_speed);
+                    bullet.send_off(Vector2.up, bullet_speed, xpl);
 
                     lastShotTime = Time.time;
                 }
             } else {
                 Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
-                bullet.send_off(Vector2.up, bullet_speed);
+                bullet.send_off(Vector2.up, bullet_speed, xpl);
 
                 lastShotTime = Time.time;
             }
@@ -67,6 +69,12 @@ public class SimpleMovement : MonoBehaviour
         if(multishot == true){
             multishotTime -= Time.deltaTime;
         }
+        if(xpl == true){
+            xplTime -= Time.deltaTime;
+            if(xplTime <= 0f){
+                xpl = false;
+            }
+        }
 
         if (Input.GetKey("r") == true){
             ocOn = true;
@@ -75,7 +83,13 @@ public class SimpleMovement : MonoBehaviour
         if (Input.GetKey("e") == true){
             multishot = true;
             multishotTime = 8;
-            Debug.Log("e pressed");
+            //Debug.Log("e pressed");
+            
+        }
+        if (Input.GetKey("f") == true){
+            xpl = true;
+            xplTime = 5;
+            //Debug.Log("f pressed");
             
         }
 
