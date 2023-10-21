@@ -83,7 +83,7 @@ public class SimpleMovement : MonoBehaviour
 
         if (Input.GetKey("space") == true)
         {
-            spr.material.SetColor("_Color", newCol);
+            //spr.material.SetColor("_Color", newCol);
             if(ocOn == true){
                 //overchargeTime -= Time.deltaTime;
                 if(overchargeTime > 0.0f){
