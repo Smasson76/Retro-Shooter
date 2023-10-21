@@ -18,7 +18,7 @@ public class SimpleMovement : MonoBehaviour
         if((Time.time - lastShotTime) > cooldownTime){
             Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
             bullet.send_off(Vector2.up, bullet_speed);
-
+            CameraShake.instance.shakeDuration = 0.04f;
             lastShotTime = Time.time;
         }
 	}
