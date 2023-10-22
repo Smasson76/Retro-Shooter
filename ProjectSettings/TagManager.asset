@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Enemy
   - Bullet
+=======
+  - '"Player 1"'
+>>>>>>> 5ec5ffd1264c34809f91f9576b16d10ab6260684
   layers:
   - Default
   - TransparentFX
