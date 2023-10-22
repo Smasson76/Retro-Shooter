@@ -132,6 +132,11 @@ public class GameManager : MonoBehaviour
         UpdateLifeUI();
 
         SpawnPlayer();
+        EnemySetup();
+    }
+
+    public void EnemySetup()
+    {
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
     }
 
