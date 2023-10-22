@@ -38,8 +38,10 @@ public class Bullet : MonoBehaviour
                 Enemy hit_Enemy = hit.GetComponent<Enemy>();
                 if(hit_Enemy != null){
                     Debug.Log("xpl");
+                    ParticleSystem exp = GetComponent<ParticleSystem>();
+                    exp.Play();
                     GameManager.instance.RewardPoint();
-                    Destroy(this.gameObject);
+                    Destroy(this.gameObject, exp.main.duration);
                     Destroy(hit_Enemy.gameObject);
                 }
             }
