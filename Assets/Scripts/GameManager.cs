@@ -7,32 +7,45 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager Instance;
+    public static GameManager instance;
 
+    [Header("-- UI OBJECTS --")]
     public Text ScoreText;
     public Text HighScoreText;
     public GameObject StartGameScreen;
     public GameObject GameOverScreen;
+    public GameObject GameMenu;
+    public GameObject[] livesUICounter;
 
+    [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
-    public bool GameInPlay;
+    public int HighScore;
+    public int livesCount = 3;
+
+    [Header("-- GAME OBJECTS --")]
+    public GameObject PlayerObject;
+    public GameObject PlayerInstance;
+    public GameObject EnemySpawnerObject;
+    public GameObject EnemySpawnerInstance;
 
     void Awake() 
     {
-        if (Instance == null) 
+        if (instance == null) 
         {
-            Instance = this;
+            instance = this;
         }
         else 
         {
             Destroy(this.gameObject);
         }
 
-        StartGameScreen.SetActive(true);
-        GameInPlay = false;
+        MainMenu();
+        ScoreText.text = "" + Score;
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        HighScoreText.text = "" + highScore;
       }
 
-    IEnumerator Start() 
+    /*IEnumerator Start() 
     {
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
         HighScoreText.text = "" + highScore;
@@ -52,29 +65,84 @@ public class GameManager : MonoBehaviour
                 //Spawn enemy here
             }
         }
-    }
+    }*/
 
     void Update () 
     {
-        ScoreText.text = Score + "pts";
-		int highScore = PlayerPrefs.GetInt("HighScore", 0);
-		if (Score > highScore) 
-        {
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+		if (Score > highScore) {
 			PlayerPrefs.SetInt("HighScore", Score);
 			PlayerPrefs.Save();
 			HighScoreText.text = "" + highScore;
         }
     }
 
-    public void StartGame() 
+    public void MainMenu()
     {
-        StartGameScreen.SetActive(false);
-        GameInPlay = true;
+        StartGameScreen.SetActive(true);
+        GameMenu.SetActive(false);
     }
 
-    public void RestartGame()
+    public void PlayerHit()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (livesCount > 0)
+        {
+            Destroy(PlayerInstance);
+            livesCount--;
+            UpdateLifeUI();
+            SpawnPlayer();
+        }
+
+        if (livesCount <= 0)
+            PlayerDeath();
+    }
+
+    private void UpdateLifeUI()
+    {
+        for (int i = 0; i < livesUICounter.Length; i++)
+        {
+            if (i < livesCount)
+                livesUICounter[i].gameObject.SetActive(true);
+            else
+                livesUICounter[i].gameObject.SetActive(false);
+        }
+    }
+
+    public void PlayerDeath()
+    {
+        Destroy(PlayerInstance);
+        Destroy(EnemySpawnerInstance);
+        MainMenu();
+    }
+
+    public void RewardPoint()
+    {
+        Score++;
+        ScoreText.text = "" + Score;
+        CameraShake.instance.shakeDuration = 0.04f;
+    }
+
+    public void StartOnePlayer()
+    {
+        Score = 0;
+        livesCount = 3;
+        ScoreText.text = "" + Score;
+        StartGameScreen.SetActive(false);
+        GameMenu.SetActive(true);
+        UpdateLifeUI();
+
+        SpawnPlayer();
+        EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
+    }
+
+    public void SpawnPlayer()
+    {
+        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -3f), Quaternion.identity);
+    }
+
+    public void StartTwoPlayer()
+    {
+        //Future scenario where we will allow for 2 players
     }
 
     public void ExitGame()
