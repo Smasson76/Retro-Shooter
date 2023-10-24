@@ -13,6 +13,13 @@ public class Enemy : MonoBehaviour
     public GameObject PointOfFireObject;
     public Animator anim;
     public BoxCollider2D collider;
+
+    private Score scoreScript; // Reference to the Score script
+
+    void Start()
+    {
+        scoreScript = GameObject.FindObjectOfType<Score>();
+    }
     
     void Awake()
     {
@@ -52,5 +59,8 @@ public class Enemy : MonoBehaviour
         collider.enabled = false;
         anim.SetTrigger("Death");
         Destroy(this.gameObject, 0.8f); 
+
+        // Increase the score when the enemy dies
+        scoreScript.IncreaseScore(100); 
     }
 }

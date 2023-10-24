@@ -46,4 +46,10 @@ public class Score : MonoBehaviour
             // Game over logic (e.g., load a game over scene or restart the level)
         }
     }
+
+    public void IncreaseScore(int points)
+    {
+        score += points;
+        UpdateUI();
+    }
 }
