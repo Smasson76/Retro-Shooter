@@ -3,7 +3,9 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Ll]ogs/
 Assets/AssetStoreTools*
+UserSettings/
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -23,7 +25,6 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
-*.DS_Store
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -36,6 +37,3 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-# Logs (Nelson Added)
-Logs/
-UserSettings/
