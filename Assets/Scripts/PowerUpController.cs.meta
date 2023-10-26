@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/PowerUpController.cs.meta
 guid: 5ade96d5b5c68e34c9864227b50f53bd
+=======
+guid: 75214373a2c3715448485a1722adb291
+>>>>>>> bd1ac4a (added koala song -> volume slider and mute button need love):Assets/scripts/MuteVol.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
