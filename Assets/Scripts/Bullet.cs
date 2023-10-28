@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     public float speed = 1f;
     private Rigidbody2D rb2D;
     private Vector2 velocity = Vector2.up;
+    private bool explodes = false;
+    private float xplRange = 1;
 
     void Start()
     {
@@ -19,22 +21,41 @@ public class Bullet : MonoBehaviour
 
     }
 
-    public void send_off(Vector2 direction, float speed_multiplier)
+    public void send_off(Vector2 direction, float speed_multiplier, bool xpl)
     {
+        explodes = xpl;
         velocity = speed * direction * speed_multiplier;
         Destroy(this.gameObject, 3f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            GameManager.instance.RewardPoint();
-        } else if (other.gameObject.CompareTag("Player"))
-        {
-            GameManager.instance.PlayerHit();
-        }
+        if(explodes == true){
+            //does explode
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
+            foreach (Collider2D hit in hitColliders)
+            {
+                Enemy hit_Enemy = hit.GetComponent<Enemy>();
+                if(hit_Enemy != null){
+                    Debug.Log("xpl");
+                    ParticleSystem exp = GetComponent<ParticleSystem>();
+                    exp.Play();
+                    GameManager.instance.RewardPoint();
+                    Destroy(this.gameObject, exp.main.duration);
+                    Destroy(hit_Enemy.gameObject);
+                }
+            }
+        } else {
+            //does not explode
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                GameManager.instance.RewardPoint();
+            } else if (other.gameObject.CompareTag("Player"))
+            {
+                GameManager.instance.PlayerHit();
+            }
 
-        Destroy(this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }
