@@ -1,0 +1,7 @@
+Added following loop to EnemySpawner
+
+void Update(){
+	if(transform.childCount == 0){
+		place_swarm(swarm_dim_x,swarm_dim_y,swarm_width);
+		}
+}
