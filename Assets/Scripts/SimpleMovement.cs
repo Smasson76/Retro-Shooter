@@ -75,11 +75,17 @@ public class SimpleMovement : MonoBehaviour
         }
         if(GameManager.instance.ocOn == true) {
             overchargeTime -= Time.deltaTime;
+            if (overchargeTime <= 0f)
+            {
+                GameManager.instance.ocOn = false;
+                GameManager.instance.OverchargePowerUpImage.SetActive(false);
+            }
         }
         if(GameManager.instance.xpl == true){
             xplTime -= Time.deltaTime;
             if(xplTime <= 0f){
                 GameManager.instance.xpl = false;
+                GameManager.instance.ExplosivePowerUpImage.SetActive(false);
             }
         }
 
