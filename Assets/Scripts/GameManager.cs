@@ -16,17 +16,26 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject GameMenu;
     public GameObject[] livesUICounter;
+    public GameObject MultiShotPowerUpImage;
+    public GameObject OverchargePowerUpImage;
+    public GameObject ExplosivePowerUpImage;
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
     public int HighScore;
     public int livesCount = 3;
+    public int enemyCount = 0;
 
     [Header("-- GAME OBJECTS --")]
     public GameObject PlayerObject;
     public GameObject PlayerInstance;
     public GameObject EnemySpawnerObject;
     public GameObject EnemySpawnerInstance;
+
+    [Header("-- PLAYER PROPERTIES --")]
+    public bool ocOn;
+    public bool multishot;
+    public bool xpl;
 
     void Awake() 
     {
@@ -43,29 +52,13 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "" + Score;
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
         HighScoreText.text = "" + highScore;
-      }
-
-    /*IEnumerator Start() 
-    {
-        int highScore = PlayerPrefs.GetInt("HighScore", 0);
-        HighScoreText.text = "" + highScore;
-        while (enabled) 
-        { 
-            yield return new WaitForSeconds(4);
-            for (int i = 0; i < 10; i++) 
-            {
-                int nextEnemyPoint = Random.Range(0, 4);
-                Vector3[] points = new Vector3[] 
-                {
-                    new Vector3(25, 0, 25),
-                    new Vector3(25, 0, -25),
-                    new Vector3(-25, 0, 25),
-                    new Vector3(-25, 0, -25)
-                };
-                //Spawn enemy here
-            }
-        }
-    }*/
+        MultiShotPowerUpImage.SetActive(false);
+        OverchargePowerUpImage.SetActive(false);
+        ExplosivePowerUpImage.SetActive(false);
+        ocOn = false;
+        multishot = false;
+        xpl = false;
+    }
 
     void Update () 
     {
@@ -115,6 +108,27 @@ public class GameManager : MonoBehaviour
         MainMenu();
     }
 
+    public void PowerUpHit(int powerUpIndex)
+    {
+        SimpleMovement simpleMovementScript = PlayerObject.GetComponent<SimpleMovement>();
+        switch (powerUpIndex) 
+        {
+            case 1:
+                simpleMovementScript.multishotTime = 4;
+                MultiShotPowerUpImage.SetActive(true);
+                multishot = true;
+                break;
+            case 2:
+                OverchargePowerUpImage.SetActive(true);
+                break;
+            case 3:
+                ExplosivePowerUpImage.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
+
     public void RewardPoint()
     {
         Score++;
@@ -132,6 +146,11 @@ public class GameManager : MonoBehaviour
         UpdateLifeUI();
 
         SpawnPlayer();
+        SpawnEnemy();
+    }
+
+    public void SpawnEnemy()
+    {
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
     }
 

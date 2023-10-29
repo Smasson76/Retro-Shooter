@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -267,8 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0a17157548c9d44873c848b911da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   toggleMusic: 1
   toggleFX: 0
+=======
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
 --- !u!114 &741185940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,7 +651,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec36b9bc428155469d91e8a8d92245b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   slider: {fileID: 948517625}
+=======
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
 --- !u!1 &968682969
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +914,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1921effb6d79a424da294e4017c3406b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   id: 
+=======
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
 --- !u!54 &1156883730
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1298,8 +1311,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cf7bd14e7ea944db672c06430a5e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   _musicSrc: {fileID: 1999951595}
   _FXsrc: {fileID: 1499780867}
+=======
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
 --- !u!4 &1539622770
 Transform:
   m_ObjectHideFlags: 0
@@ -1317,6 +1333,7 @@ Transform:
   - {fileID: 1499780868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1652477887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,6 +1451,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+=======
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
 --- !u!1 &1668959450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,4 +1789,7 @@ SceneRoots:
   - {fileID: 1539622770}
   - {fileID: 803793881}
   - {fileID: 1405366067}
+<<<<<<< HEAD
   - {fileID: 1652477890}
+=======
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282

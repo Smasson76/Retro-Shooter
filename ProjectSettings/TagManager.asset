@@ -7,9 +7,15 @@ TagManager:
 <<<<<<< HEAD
   - Enemy
   - Bullet
+<<<<<<< HEAD
 =======
   - '"Player 1"'
 >>>>>>> 5ec5ffd1264c34809f91f9576b16d10ab6260684
+=======
+  - MultiShotPowerup
+  - OverchargePowerup
+  - ExplosivePowerup
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
   layers:
   - Default
   - TransparentFX
