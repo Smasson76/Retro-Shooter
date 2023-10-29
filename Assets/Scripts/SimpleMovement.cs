@@ -61,7 +61,6 @@ public class SimpleMovement : MonoBehaviour
             multishotTime -= Time.deltaTime;
             if (multishotTime <= 0f)
             {
-                Debug.Log("SETTING IT FALSE");
                 GameManager.instance.multishot = false;
                 GameManager.instance.MultiShotPowerUpImage.SetActive(false);
             }
