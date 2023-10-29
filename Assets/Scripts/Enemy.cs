@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public GameObject PointOfFireObject;
     public Animator anim;
     public BoxCollider2D collider;
+    public Rigidbody2D powerUpPrefab;
+    public float chance = 5f;
     
     void Awake()
     {
@@ -44,7 +46,14 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Bullet"))
+        {
+            float randomValue = Random.value;
+            if (randomValue < chance) {
+                Rigidbody2D powerUpPrefabClone;
+                powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
+            }
             Death();
+        }
     }
     
     void Death()

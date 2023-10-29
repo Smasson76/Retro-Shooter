@@ -53,6 +53,18 @@ public class Bullet : MonoBehaviour
             } else if (other.gameObject.CompareTag("Player"))
             {
                 GameManager.instance.PlayerHit();
+            } else if (other.gameObject.CompareTag("MultiShotPowerup"))
+            {
+                GameManager.instance.PowerUpHit(1);
+                Destroy(other.gameObject);
+            } else if (other.gameObject.CompareTag("OverchargePowerup"))
+            {
+                GameManager.instance.PowerUpHit(2);
+                Destroy(other.gameObject);
+            } else if (other.gameObject.CompareTag("ExplosivePowerup"))
+            {
+                GameManager.instance.PowerUpHit(3);
+                Destroy(other.gameObject);
             }
 
             Destroy(this.gameObject);

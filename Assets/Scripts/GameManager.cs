@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject GameMenu;
     public GameObject[] livesUICounter;
+    public GameObject MultiShotPowerUpImage;
+    public GameObject OverchargePowerUpImage;
+    public GameObject ExplosivePowerUpImage;
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
@@ -27,6 +30,11 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInstance;
     public GameObject EnemySpawnerObject;
     public GameObject EnemySpawnerInstance;
+
+    [Header("-- PLAYER PROPERTIES --")]
+    public bool ocOn;
+    public bool multishot;
+    public bool xpl;
 
     void Awake() 
     {
@@ -43,7 +51,13 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "" + Score;
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
         HighScoreText.text = "" + highScore;
-      }
+        MultiShotPowerUpImage.SetActive(false);
+        OverchargePowerUpImage.SetActive(false);
+        ExplosivePowerUpImage.SetActive(false);
+        ocOn = false;
+        multishot = false;
+        xpl = false;
+    }
 
     /*IEnumerator Start() 
     {
@@ -113,6 +127,27 @@ public class GameManager : MonoBehaviour
         Destroy(PlayerInstance);
         Destroy(EnemySpawnerInstance);
         MainMenu();
+    }
+
+    public void PowerUpHit(int powerUpIndex)
+    {
+        SimpleMovement simpleMovementScript = PlayerObject.GetComponent<SimpleMovement>();
+        switch (powerUpIndex) 
+        {
+            case 1:
+                simpleMovementScript.multishotTime = 4;
+                MultiShotPowerUpImage.SetActive(true);
+                multishot = true;
+                break;
+            case 2:
+                OverchargePowerUpImage.SetActive(true);
+                break;
+            case 3:
+                ExplosivePowerUpImage.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     public void RewardPoint()
