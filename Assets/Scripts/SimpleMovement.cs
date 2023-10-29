@@ -11,37 +11,84 @@ public class SimpleMovement : MonoBehaviour
     private float lastShotTime = -1f;
     public float cooldownTime = .5f;
 
+    public float xplTime;
+    public float overchargeTime;
+    public float multishotTime;
+    public float ocStart;
+
     public Bullet bulletPrefab;
 
     void Fire()
 	{
         if((Time.time - lastShotTime) > cooldownTime){
-            Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
-            bullet.send_off(Vector2.up, bullet_speed);
+            if(GameManager.instance.multishot == true){
+                if(multishotTime > 0f){
+                    Bullet bullet1 = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
+                    Bullet bullet2 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(-1f, 0.5f, 0), Quaternion.identity);
+                    Bullet bullet3 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(1f, 0.5f, 0), Quaternion.identity);
+                    bullet1.send_off(Vector2.up, bullet_speed, GameManager.instance.xpl);
+                    bullet2.send_off(Vector2.up, bullet_speed, GameManager.instance.xpl);
+                    bullet3.send_off(Vector2.up, bullet_speed, GameManager.instance.xpl);
 
-            lastShotTime = Time.time;
+                    lastShotTime = Time.time;
+                } else {
+                    GameManager.instance.multishot = false;
+                    Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
+                    bullet.send_off(Vector2.up, bullet_speed, GameManager.instance.xpl);
+
+                    lastShotTime = Time.time;
+                }
+            } else {
+                Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
+                bullet.send_off(Vector2.up, bullet_speed, GameManager.instance.xpl);
+
+                lastShotTime = Time.time;
+            }
         }
 	}
 
-    //public String powerType;
-
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move = Input.GetAxis("Horizontal");
+        if(GameManager.instance.multishot == true){
+            multishotTime -= Time.deltaTime;
+            if (multishotTime <= 0f)
+            {
+                GameManager.instance.multishot = false;
+                GameManager.instance.MultiShotPowerUpImage.SetActive(false);
+            }
+        }
+        if(GameManager.instance.ocOn == true) {
+            overchargeTime -= Time.deltaTime;
+        }
+        if(GameManager.instance.xpl == true){
+            xplTime -= Time.deltaTime;
+            if(xplTime <= 0f){
+                GameManager.instance.xpl = false;
+            }
+        }
 
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
 
         if (Input.GetKey("space") == true)
         {
+            //spr.material.SetColor("_Color", newCol);
+            if(GameManager.instance.ocOn == true){
+                //overchargeTime -= Time.deltaTime;
+                if(overchargeTime > 0.0f){
+                    cooldownTime = .0005f;
+                } else {
+                    cooldownTime = .5f;
+                    GameManager.instance.ocOn = false;
+                }
+            }
             Fire();
         }
     }

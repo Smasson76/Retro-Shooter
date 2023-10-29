@@ -12,17 +12,19 @@ public class EnemySpawner : MonoBehaviour
     public int swarm_dim_y = 5;
     public int swarm_width = 5;
 
-
     // Start is called before the first frame update
     void Start()
     {
         place_swarm(swarm_dim_x, swarm_dim_y, swarm_width);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.instance.enemyCount <= 0)
+        {
+            GameManager.instance.SpawnEnemy();
+            Destroy(this.gameObject, 2f);
+        }
     }
 
     void place_swarm(int dim_x, int dim_y, int width){
@@ -55,6 +57,7 @@ public class EnemySpawner : MonoBehaviour
                 Enemy enemy_i = Instantiate(enemy, enemy_placement, Quaternion.identity);
                 enemy_i.transform.SetParent(this.transform);
                 enemy_columns[col_idx].Insert(row_idx % swarm_row_num, enemy_i);
+                GameManager.instance.enemyCount++;
             }
         }
 
