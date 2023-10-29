@@ -49,6 +49,7 @@ public class Bullet : MonoBehaviour
             //does not explode
             if (other.gameObject.CompareTag("Enemy"))
             {
+                GameManager.instance.enemyCount -= 1;
                 GameManager.instance.RewardPoint();
             } else if (other.gameObject.CompareTag("Player"))
             {

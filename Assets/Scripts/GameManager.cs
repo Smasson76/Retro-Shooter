@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int Score = 0;
     public int HighScore;
     public int livesCount = 3;
+    public int enemyCount = 0;
 
     [Header("-- GAME OBJECTS --")]
     public GameObject PlayerObject;
@@ -58,28 +59,6 @@ public class GameManager : MonoBehaviour
         multishot = false;
         xpl = false;
     }
-
-    /*IEnumerator Start() 
-    {
-        int highScore = PlayerPrefs.GetInt("HighScore", 0);
-        HighScoreText.text = "" + highScore;
-        while (enabled) 
-        { 
-            yield return new WaitForSeconds(4);
-            for (int i = 0; i < 10; i++) 
-            {
-                int nextEnemyPoint = Random.Range(0, 4);
-                Vector3[] points = new Vector3[] 
-                {
-                    new Vector3(25, 0, 25),
-                    new Vector3(25, 0, -25),
-                    new Vector3(-25, 0, 25),
-                    new Vector3(-25, 0, -25)
-                };
-                //Spawn enemy here
-            }
-        }
-    }*/
 
     void Update () 
     {
@@ -167,6 +146,11 @@ public class GameManager : MonoBehaviour
         UpdateLifeUI();
 
         SpawnPlayer();
+        SpawnEnemy();
+    }
+
+    public void SpawnEnemy()
+    {
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
     }
 
