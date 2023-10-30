@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     private Vector2 velocity = Vector2.up;
     private bool explodes = false;
     private float xplRange = 1;
+    AudioClip pewpew;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class Bullet : MonoBehaviour
     {
         explodes = xpl;
         velocity = speed * direction * speed_multiplier;
+        musicManager.Instance.playSound("shoot");
         Destroy(this.gameObject, 3f);
     }
 
@@ -57,6 +59,7 @@ public class Bullet : MonoBehaviour
             } else if (other.gameObject.CompareTag("MultiShotPowerup"))
             {
                 GameManager.instance.PowerUpHit(1);
+                musicManager.Instance.playSound("trip_laser");
                 Destroy(other.gameObject);
             } else if (other.gameObject.CompareTag("OverchargePowerup"))
             {
