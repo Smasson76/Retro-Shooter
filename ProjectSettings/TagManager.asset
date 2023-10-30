@@ -7,12 +7,21 @@ TagManager:
 <<<<<<< HEAD
   - Enemy
   - Bullet
+<<<<<<< HEAD
+=======
+  - '"Player 1"'
+>>>>>>> 5ec5ffd1264c34809f91f9576b16d10ab6260684
+=======
   - MultiShotPowerup
   - OverchargePowerup
   - ExplosivePowerup
+<<<<<<< HEAD
 =======
   - '"Player 1"'
 >>>>>>> b374259 (First commit, made player move)
+=======
+>>>>>>> 805b1d2210c01f6c053d0d71912352bb050ea282
+>>>>>>> 0e98988e6320fce9a3595eaaedcee1e209018d6e
   layers:
   - Default
   - TransparentFX

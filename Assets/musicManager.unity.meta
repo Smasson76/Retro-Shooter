@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/musicManager.unity.meta
 guid: abcc30e7dadb1a8408245c28684bf79c
+========
+guid: d4ed8339756fbdc4ea06b7a1d6e84aaf
+folderAsset: yes
+>>>>>>>> 0e98988e6320fce9a3595eaaedcee1e209018d6e:Assets/Materials.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
