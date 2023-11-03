@@ -11,6 +11,10 @@ public class SimpleMovement : MonoBehaviour
     private float lastShotTime = -1f;
     public float cooldownTime = .5f;
 
+    public float shieldCoolDownTime = 10f;
+    public float shieldUseTime = -11f;
+    public bool shield = false;
+
     public Bullet bulletPrefab;
 
     void Fire()
@@ -39,6 +43,19 @@ public class SimpleMovement : MonoBehaviour
         Move = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
+
+        if (((Time.time - shieldUseTime) > shieldCoolDownTime) && shield)
+        {
+            print("sets shield to false");
+            shield = false;
+        }
+
+        if (Input.GetKey(KeyCode.S) == true && ((Time.time - shieldUseTime) > shieldCoolDownTime))
+        {
+            print("Something is happening here");
+            shield = true;
+            shieldUseTime = Time.time;
+        }
 
         if (Input.GetKey("space") == true)
         {

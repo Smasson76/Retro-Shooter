@@ -85,12 +85,21 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit()
     {
+        SimpleMovement simpleMovement = PlayerInstance.GetComponent<SimpleMovement>();
         if (livesCount > 0)
         {
-            Destroy(PlayerInstance);
-            livesCount--;
-            UpdateLifeUI();
-            SpawnPlayer();
+            print(simpleMovement.shield);
+            if(simpleMovement.shield == true)
+            {
+                simpleMovement.shield = false;
+            }
+            else
+            {
+                Destroy(PlayerInstance);
+                livesCount--;
+                UpdateLifeUI();
+                SpawnPlayer();
+            }
         }
 
         if (livesCount <= 0)
