@@ -13,7 +13,14 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
-    public float chance = 5f;
+    public Rigidbody2D powerUpPrefab2;
+    public Rigidbody2D powerUpPrefab3;
+    public Rigidbody2D powerUpPrefab4;
+    public float chance = 1.5f;
+    public float chance2 = 3f;
+    public float chance3 = 5f;
+    public float chance4 = 7f;
+
 	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
 
     public AudioClip enemy_death;
@@ -25,6 +32,15 @@ public class Enemy : MonoBehaviour
 		float next_firing_time = Random.Range(firing_window.x, firing_window.y);
 		return next_firing_time;
 	}
+
+    public Rigidbody2D powerUpPrefab2;
+    public Rigidbody2D powerUpPrefab3;
+    public Rigidbody2D powerUpPrefab4;
+    public float chance = 1.5f;
+    public float chance2 = 3f;
+    public float chance3 = 5f;
+    public float chance4 = 7f;
+
     
     void Awake()
     {
@@ -81,6 +97,12 @@ public class Enemy : MonoBehaviour
             if (randomValue < chance) {
                 Rigidbody2D powerUpPrefabClone;
                 powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
+            } else if (randomValue < chance2) {
+                Rigidbody2D powerUpPrefabClone;
+                powerUpPrefabClone = Instantiate(powerUpPrefab2, transform.position, transform.rotation) as Rigidbody2D;
+            } else if (randomValue < chance3) {
+                Rigidbody2D powerUpPrefabClone;
+                powerUpPrefabClone = Instantiate(powerUpPrefab3, transform.position, transform.rotation) as Rigidbody2D;
             }
             Die();
         }
