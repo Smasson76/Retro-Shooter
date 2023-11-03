@@ -129,12 +129,14 @@ public class GameManager : MonoBehaviour
                 multishot = true;
                 break;
             case 2:
-                simpleMovementScript.overchargeTime = 4;
+                simpleMovementScript.overchargeTime = 3;
                 OverchargePowerUpImage.SetActive(true);
+                ocOn=true;
                 break;
             case 3:
                 simpleMovementScript.xplTime = 4;
                 ExplosivePowerUpImage.SetActive(true);
+                xpl = true;
                 break;
             default:
                 break;

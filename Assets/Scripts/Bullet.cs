@@ -38,18 +38,8 @@ public class Bullet : MonoBehaviour
     {
         if(explodes == true){
             //does explode
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
-            foreach (Collider2D hit in hitColliders)
-            {
-                Enemy hit_Enemy = hit.GetComponent<Enemy>();
-                if(hit_Enemy != null){
-                    ParticleSystem exp = GetComponent<ParticleSystem>();
-                    exp.Play();
-                    GameManager.instance.RewardPoint();
-                    Destroy(this.gameObject, exp.main.duration);
-                    Destroy(hit_Enemy.gameObject);
-                }
-            }
+            //missileCircle();
+            missileCircle();
         } else {
             //does not explode
             if (other.gameObject.CompareTag("Enemy"))
@@ -100,5 +90,35 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-   
+
+    private void missileCircle(){
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
+        foreach (Collider2D hit in hitColliders)
+        {
+            Enemy hit_Enemy = hit.GetComponent<Enemy>();
+            if(hit_Enemy != null){
+                Debug.Log("xpl");
+                ParticleSystem exp = GetComponent<ParticleSystem>();
+                exp.Play();
+                GameManager.instance.RewardPoint();
+                Destroy(this.gameObject, exp.main.duration);
+                Destroy(hit_Enemy.gameObject);
+            }
+        }
+    }
+    private void missileBox(){
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 6), 0);
+        foreach (Collider2D hit in hitColliders)
+        {
+            Enemy hit_Enemy = hit.GetComponent<Enemy>();
+            if(hit_Enemy != null){
+                Debug.Log("xpl");
+                ParticleSystem exp = GetComponent<ParticleSystem>();
+                exp.Play();
+                GameManager.instance.RewardPoint();
+                Destroy(this.gameObject, exp.main.duration);
+                Destroy(hit_Enemy.gameObject);
+            }
+        }
+    }
 }

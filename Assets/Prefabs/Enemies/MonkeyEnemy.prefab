@@ -76,8 +76,14 @@ MonoBehaviour:
   PointOfFireObject: {fileID: 3157762341674666786}
   anim: {fileID: 1338953155876014733}
   collider: {fileID: 0}
-  powerUpPrefab: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
+  powerUpPrefab: {fileID: -5665676056533798616, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
+  powerUpPrefab2: {fileID: -3374542399750337538, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
+  powerUpPrefab3: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
+  powerUpPrefab4: {fileID: 0}
   chance: 0.1
+  chance2: 8
+  chance3: 10
+  chance4: 12
   firing_window: {x: 1.5, y: 2.5}
   bloodBurstEffect: {fileID: 910408324081832607, guid: 8892c1482cbbd4e71863b97b7feb246d, type: 3}
   enemy_death: {fileID: 0}

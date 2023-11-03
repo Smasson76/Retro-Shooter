@@ -100,7 +100,7 @@ public class SimpleMovement : MonoBehaviour
             if(GameManager.instance.ocOn == true){
                 //overchargeTime -= Time.deltaTime;
                 if(overchargeTime > 0.0f){
-                    cooldownTime = .0005f;
+                    cooldownTime = .005f;
                 } else {
                     cooldownTime = .5f;
                     GameManager.instance.ocOn = false;
