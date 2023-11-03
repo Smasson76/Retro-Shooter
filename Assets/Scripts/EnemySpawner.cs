@@ -61,27 +61,5 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        check_enemies_can_shoot(); 
-
-    }
-
-    void check_enemies_can_shoot(){
-        float lowest_y_val = 100f;
-
-        // This might have an issue when Enemies die. Does the list actually get shortened?
-        // Or does that index have a null value now?
-        // If the list actually gets shortened, the best way to do this is to just grab the enemy
-        // at the end of each column/list
-        for (int i = 0; i < enemy_columns.Count; i++){
-            int lowest_j = 0;
-            for (int j = 0; j < enemy_columns[i].Count; j++){
-                float current_enemy_y_pos = enemy_columns[i][j].transform.position.y;
-                if ( current_enemy_y_pos < lowest_y_val){
-                    lowest_y_val = current_enemy_y_pos;
-                    lowest_j = j;
-                }
-            }
-            enemy_columns[i][lowest_j].set_can_shoot(true);
-        }
     }
 }
