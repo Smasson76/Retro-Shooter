@@ -146,14 +146,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 937658662520926168, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: m_Volume
+      value: 0.192
+      objectReference: {fileID: 0}
     - target: {fileID: 3345873575692853205, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: m_Name
       value: musicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3529478576230625165, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: m_Volume
+      value: 0.103
+      objectReference: {fileID: 0}
     - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: sfxSounds.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a77f2c1cfd4f449e985d91eae0538b6d, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 123ca91a05af243dc84642ef9351a7a9, type: 3}
     - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: sfxSounds.Array.data[3].clip
       value: 
@@ -170,6 +186,18 @@ PrefabInstance:
       propertyPath: sfxSounds.Array.data[4].name
       value: pickup_powerup
       objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 123ca91a05af243dc84642ef9351a7a9, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[5].name
+      value: entity_hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: musicSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5762b44da1bb7684790288a7741e55a9, type: 3}
     - target: {fileID: 8721855562770740401, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

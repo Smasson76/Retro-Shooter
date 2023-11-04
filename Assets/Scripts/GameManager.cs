@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     {
         if (livesCount > 0)
         {
+			musicManager.Instance.playSound("entity_hit");
             Destroy(PlayerInstance);
             livesCount--;
             UpdateLifeUI();
