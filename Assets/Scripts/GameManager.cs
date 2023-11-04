@@ -111,6 +111,9 @@ public class GameManager : MonoBehaviour
         musicManager.Instance.playSound("player_hit");
         Destroy(PlayerInstance);
         Destroy(EnemySpawnerInstance);
+        multishot = false;
+        ocOn = false;
+        xpl = false;
         MainMenu();
     }
 

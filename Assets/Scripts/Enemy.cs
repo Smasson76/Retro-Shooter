@@ -46,14 +46,14 @@ public class Enemy : MonoBehaviour
 		    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
 		    if (hit.collider != null) {
 			    if (hit.collider.CompareTag("Enemy")){
-				    Debug.Log("This is an enemy, I can't shoot");
+				    //Debug.Log("This is an enemy, I can't shoot");
 				    can_shoot = false;	
 			    } else {
-				    Debug.Log("!!!" + hit.collider.tag);
+				    //Debug.Log("!!!" + hit.collider.tag);
 				    can_shoot = true;
 			    }
 		    } else if (hit.collider == null) {
-			      Debug.Log("Didnt get a hit");
+			      //Debug.Log("Didnt get a hit");
 			      can_shoot = true;
 		    }
 			
@@ -79,11 +79,12 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    void Die()
+    public void Die()
     {
         collider.enabled = false;
         anim.SetTrigger("Death");
         GameManager.instance.enemyCount -= 1;
+        GameManager.instance.RewardPoint();
         musicManager.Instance.playSound("enemy_die");
         Destroy(this.gameObject, 0.8f); 
     }
