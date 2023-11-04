@@ -99,17 +99,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            float randomValue = Random.value;
-            if (randomValue < chance) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
-            } else if (randomValue < chance2) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab2, transform.position, transform.rotation) as Rigidbody2D;
-            } else if (randomValue < chance3) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab3, transform.position, transform.rotation) as Rigidbody2D;
-            }
             Death();
         }
     }
