@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath()
     {
-        musicManager.Instance.playSound("player_hit");
+        musicManager.Instance.playSound("player_death");
         Destroy(PlayerInstance);
         Destroy(EnemySpawnerInstance);
         MainMenu();
@@ -140,7 +140,10 @@ public class GameManager : MonoBehaviour
 
     public void StartOnePlayer()
     {
-        musicManager.Instance.playMusic("GameTheme");
+		if (musicManager.Instance.getCurrentTrack() != "GameTheme"){
+			musicManager.Instance.playMusic("GameTheme");
+		}else{
+		}
         Score = 0;
         livesCount = 3;
         ScoreText.text = "" + Score;
