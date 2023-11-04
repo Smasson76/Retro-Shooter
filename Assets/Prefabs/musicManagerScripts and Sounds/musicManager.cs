@@ -22,16 +22,30 @@ public class musicManager : MonoBehaviour
     playMusic("StartMenu");
    }
    public void playMusic(string name){
-    Sound s = Array.Find(musicSounds , x => x.name == name);
-    if(s==null){
-        Debug.Log("Sound not found!");
-    }
-    else
-    {
-        _musicSrc.clip = s.clip;
-        _musicSrc.Play();
-    }
+   	 Sound s = Array.Find(musicSounds , x => x.name == name);
+   	 if(s==null){
+   	     Debug.Log("Sound not found!");
+   	 }
+   	 else
+   	 {
+   	     _musicSrc.clip = s.clip;
+   	     _musicSrc.Play();
+   	 }
+	}
+
+	public string getCurrentTrack(){
+		string current_track_name = _musicSrc.clip.name;
+		for (int i = 0; i < musicSounds.Length; i++){
+			Sound current_sound = musicSounds[i];	
+		    if (current_sound.clip.name == current_track_name){
+		    	Debug.Log("Track found! " + current_track_name);
+				return current_sound.name;
+		    }
+		}	
+		Debug.Log("No hit found for " + current_track_name);
+	    return _musicSrc.name;
    }
+
    public void playSound(string name)
    {
         Sound s = Array.Find(sfxSounds,x=>x.name == name);
