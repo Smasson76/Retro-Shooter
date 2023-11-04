@@ -57,6 +57,7 @@ public class Bullet : MonoBehaviour
                 GameManager.instance.PowerUpHit(2);
                 Destroy(other.gameObject);
                 Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+                Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             } else if (other.gameObject.CompareTag("ExplosivePowerup"))
             {
                 GameManager.instance.PowerUpHit(3);

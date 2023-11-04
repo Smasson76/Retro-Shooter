@@ -23,6 +23,15 @@ public class Enemy : MonoBehaviour
 		float next_firing_time = Random.Range(firing_window.x, firing_window.y);
 		return next_firing_time;
 	}
+    public Rigidbody2D powerUpPrefab;
+    public Rigidbody2D powerUpPrefab2;
+    public Rigidbody2D powerUpPrefab3;
+    //public Rigidbody2D powerUpPrefab4;
+    public float chance = 3f;
+    public float chance2 = 5f;
+    public float chance3 = 8f;
+    //public float chance4 = 10f;
+    
     void Awake()
     {
         anim = GetComponent<Animator>();
