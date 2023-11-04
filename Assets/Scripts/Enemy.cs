@@ -15,10 +15,16 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D powerUpPrefab;
     public float chance = 5f;
 
+    public AudioClip enemy_death;
+    Vector2 origin_position;
+    private float theta=0f;
+    
+
     void Awake()
     {
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
+        origin_position = transform.position;
     }
 
     // Update is called once per frame
@@ -31,20 +37,23 @@ public class Enemy : MonoBehaviour
             fire();
         }
 
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
-		if (hit.collider != null) {
-			if (hit.collider.CompareTag("Enemy")){
-				Debug.Log("This is an enemy, I can't shoot");
-				can_shoot = false;	
-			} else {
-				Debug.Log("!!!" + hit.collider.tag);
-				can_shoot = true;
-			}
-		} else if (hit.collider == null) {
-			Debug.Log("Didnt get a hit");
-			can_shoot = true;
-		}
+        moveCircles(origin_position.x,origin_position.y,0.25f);
+
+		    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+		    if (hit.collider != null) {
+			    if (hit.collider.CompareTag("Enemy")){
+				    Debug.Log("This is an enemy, I can't shoot");
+				    can_shoot = false;	
+			    } else {
+				    Debug.Log("!!!" + hit.collider.tag);
+				    can_shoot = true;
+			    }
+		    } else if (hit.collider == null) {
+			      Debug.Log("Didnt get a hit");
+			      can_shoot = true;
+		    }
 			
+
     }
 
     void fire(){
@@ -74,6 +83,16 @@ public class Enemy : MonoBehaviour
     {
         collider.enabled = false;
         anim.SetTrigger("Death");
+        musicManager.Instance.playSound("enemy_die");
         Destroy(this.gameObject, 0.8f); 
+    }
+    void moveCircles(float x, float y, float radius){
+        //radius will be the perp dist to center of circular path (how big is circle)
+        //x and y will be used to set the vertex position
+        Vector2 _vertex = new Vector2(x,y);
+        float omega = 1f; //angular velocity
+        theta += omega * Time.deltaTime;
+        var cirpos = radius * (new Vector2(Mathf.Cos(theta),Mathf.Sin(theta)));
+        this.transform.position = cirpos + _vertex;
     }
 }
