@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (GameManager.instance.enemyCount <= 0)
         {
+            GameManager.instance.enemyCount = 0;
             GameManager.instance.SpawnEnemy();
             Destroy(this.gameObject, 2f);
         }

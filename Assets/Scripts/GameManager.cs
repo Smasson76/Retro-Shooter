@@ -120,6 +120,10 @@ public class GameManager : MonoBehaviour
         PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         Destroy(PlayerInstance);
         Application.LoadLevel(Application.loadedLevel);
+        multishot = false;
+        ocOn = false;
+        xpl = false;
+        MainMenu();
     }
 
     public void PowerUpHit(int powerUpIndex)

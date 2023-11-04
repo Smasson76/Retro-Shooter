@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
             if (other.gameObject.CompareTag("Enemy"))
             {
                 //GameManager.instance.enemyCount -= 1;
-                GameManager.instance.RewardPoint();
+                //GameManager.instance.RewardPoint();
                 Debug.Log("Enemy Count:" + GameManager.instance.enemyCount);
             } else if (other.gameObject.CompareTag("Player"))
             {
@@ -90,6 +90,9 @@ public class Bullet : MonoBehaviour
 
     private void missileCircle(){
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
+        ParticleSystem exp = GetComponent<ParticleSystem>();
+        exp.Play();
+        Destroy(this.gameObject, exp.main.duration);
         Debug.Log("exploded objects: "+hitColliders.Length);
         int temphit = 0;
         foreach (Collider2D hit in hitColliders)
@@ -100,12 +103,7 @@ public class Bullet : MonoBehaviour
                 //Debug.Log("xpl");
                 temphit++;
                 Debug.Log("exploded enemys: "+temphit);
-                ParticleSystem exp = GetComponent<ParticleSystem>();
-                exp.Play();
-                GameManager.instance.enemyCount -= 1;
-                GameManager.instance.RewardPoint();
-                Destroy(this.gameObject, exp.main.duration);
-                Destroy(hit_Enemy.gameObject);
+                hit_Enemy.Die();
             }
         }
     }
