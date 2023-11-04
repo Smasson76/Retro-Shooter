@@ -25,12 +25,17 @@ public class GameManager : MonoBehaviour
     public int HighScore;
     public int livesCount = 3;
     public int enemyCount = 0;
+    public int powerUpCount = 0;
+    
 
     [Header("-- GAME OBJECTS --")]
     public GameObject PlayerObject;
     public GameObject PlayerInstance;
     public GameObject EnemySpawnerObject;
     public GameObject EnemySpawnerInstance;
+    public Rigidbody2D powerUpPrefab;
+    public Rigidbody2D powerUpPrefab2;
+    public Rigidbody2D powerUpPrefab3;
 
     [Header("-- PLAYER PROPERTIES --")]
     public bool ocOn;
@@ -145,6 +150,20 @@ public class GameManager : MonoBehaviour
 
     public void RewardPoint()
     {
+        float randomValue = Random.Range(1f,20f);
+        if (randomValue < 3f) {
+            Rigidbody2D powerUpPrefabClone;
+            powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
+            GameManager.instance.powerUpCount += 1;
+        } else if (randomValue < 5f) {
+            Rigidbody2D powerUpPrefabClone2;
+            powerUpPrefabClone2 = Instantiate(powerUpPrefab2, transform.position, transform.rotation) as Rigidbody2D;
+            GameManager.instance.powerUpCount += 1;
+        } else if (randomValue < 8f) {
+            Rigidbody2D powerUpPrefabClone3;
+            powerUpPrefabClone3 = Instantiate(powerUpPrefab3, transform.position, transform.rotation) as Rigidbody2D;
+            GameManager.instance.powerUpCount += 1;
+        }
         Score++;
         ScoreText.text = "" + Score;
         CameraShake.instance.shakeDuration = 0.04f;

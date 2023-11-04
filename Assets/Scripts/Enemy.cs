@@ -37,16 +37,6 @@ public class Enemy : MonoBehaviour
 		float next_firing_time = Random.Range(firing_window.x, firing_window.y)+safety;
 		return next_firing_time;
 	}
-
-    public Rigidbody2D powerUpPrefab2;
-    public Rigidbody2D powerUpPrefab3;
-    public Rigidbody2D powerUpPrefab4;
-    public float chance = 1.5f;
-    public float chance2 = 3f;
-    public float chance3 = 5f;
-    public float chance4 = 7f;
-
-    
     void Awake()
     {
         firing_window = new Vector2(transform.localScale.x + safety,transform.localScale.y + safety);
@@ -106,17 +96,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            float randomValue = Random.value;
-            if (randomValue < chance) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
-            } else if (randomValue < chance2) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab2, transform.position, transform.rotation) as Rigidbody2D;
-            } else if (randomValue < chance3) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab3, transform.position, transform.rotation) as Rigidbody2D;
-            }
+            
             Die();
         }
     }
@@ -126,6 +106,8 @@ public class Enemy : MonoBehaviour
         collider.enabled = false;
         anim.SetTrigger("Death");
         musicManager.Instance.playSound("entity_hit");
+        GameManager.instance.enemyCount -= 1;
+        musicManager.Instance.playSound("enemy_die");
         Destroy(this.gameObject, 0.8f); 
 		BloodBurstParticleEffect bloodBurst = Instantiate(bloodBurstEffect, transform.position, Quaternion.identity);
     }

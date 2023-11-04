@@ -73,6 +73,7 @@ public class EnemySpawner : MonoBehaviour
                 enemy_i.transform.SetParent(this.transform);
                 enemy_columns[col_idx].Insert(row_idx % swarm_row_num, enemy_i);
                 GameManager.instance.enemyCount++;
+                //Debug.Log("row: " + row_idx + "col: " + col_idx + "Enemy Count: "+GameManager.instance.enemyCount);
             }
         }
 
