@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public List<List<Enemy>> enemy_columns = new List<List<Enemy>>(); 
     public int swarm_dim_x = 4;
     public int swarm_dim_y = 5;
-    public int swarm_width = 5;
+    public int swarm_width = (int)Mathf.Floor(0.75f*Screen.width);
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +61,7 @@ public class EnemySpawner : MonoBehaviour
                 else{
                     enemy = selectType("Monkey");
                 }
+                //Debug.Log("Enemy type : " + enemy);
                 Enemy enemy_i = Instantiate(enemy, enemy_placement, Quaternion.identity);
                 enemy_i.transform.SetParent(this.transform);
                 enemy_columns[col_idx].Insert(row_idx % swarm_row_num, enemy_i);
@@ -77,6 +78,7 @@ public class EnemySpawner : MonoBehaviour
     else
     {
         enemy = s.enemy_variant;
+        Debug.Log("Type of enemy : "+ s.enemy_variant);
     }
     return enemy;
    }

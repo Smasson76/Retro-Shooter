@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3647039369052008997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8563344926901980859}
+  - component: {fileID: 7346013249516767232}
+  m_Layer: 0
+  m_Name: Foes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8563344926901980859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647039369052008997}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5577443146715170669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7346013249516767232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647039369052008997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce242b9c09dabe048bcb6a064c79e699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 
+  enemy_variant: {fileID: 0}
 --- !u!1 &8721913835373864959
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +75,8 @@ Transform:
   m_LocalPosition: {x: -1, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8563344926901980859}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6950938014840343397
@@ -46,10 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 7509691075169040389, guid: 9a112cf487e95fe45b2b331239f6169f, type: 3}
   foeList:
-  - type: Monkey
-    enemy_variant: {fileID: 142373758580698844, guid: 9a112cf487e95fe45b2b331239f6169f, type: 3}
-  - type: Tank
-    enemy_variant: {fileID: 4530289362110337303, guid: e5481a1067cd04442abd438afcd2247f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   swarm_dim_x: 4
   swarm_dim_y: 5
   swarm_width: 5
