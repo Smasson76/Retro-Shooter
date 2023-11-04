@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Enemy enemy;
+    public Foes[] foeList;
 
     public List<List<Enemy>> enemy_columns = new List<List<Enemy>>(); 
     public int swarm_dim_x = 4;
@@ -53,7 +54,13 @@ public class EnemySpawner : MonoBehaviour
                    base_y_placement + (swarm_step * (row_idx % swarm_row_num)),
                    0
                 );
-
+                float key = UnityEngine.Random.Range(0,1);
+                if(key < 0.3){
+                    enemy = selectType("Tank");
+                }
+                else{
+                    enemy = selectType("Monkey");
+                }
                 Enemy enemy_i = Instantiate(enemy, enemy_placement, Quaternion.identity);
                 enemy_i.transform.SetParent(this.transform);
                 enemy_columns[col_idx].Insert(row_idx % swarm_row_num, enemy_i);
@@ -84,4 +91,15 @@ public class EnemySpawner : MonoBehaviour
             enemy_columns[i][lowest_j].set_can_shoot(true);
         }
     }
+     public Enemy selectType(string name){
+    Foes s = Array.Find(foeList , x => x.type == name);
+    if(s==null){
+        Debug.Log("Type not found!");
+    }
+    else
+    {
+        enemy = s.enemy_variant;
+    }
+    return enemy;
+   }
 }

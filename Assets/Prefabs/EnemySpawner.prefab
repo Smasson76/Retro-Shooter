@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7509691075169040389, guid: 9a112cf487e95fe45b2b331239f6169f, type: 3}
+  foeList:
+  - type: Monkey
+    enemy_variant: {fileID: 142373758580698844, guid: 9a112cf487e95fe45b2b331239f6169f, type: 3}
+  - type: Tank
+    enemy_variant: {fileID: 4530289362110337303, guid: e5481a1067cd04442abd438afcd2247f, type: 3}
   swarm_dim_x: 4
   swarm_dim_y: 5
   swarm_width: 5
