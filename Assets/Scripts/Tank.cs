@@ -10,6 +10,8 @@ public class Tank : Enemy
     private float scale_scalar;
     public Tank(float x, float y, float radius){
         //GameObject.tag = "Enemy";
+        this.gameObject.name = "Tank";
+        this.gameObject.tag = "Tank";
         scale_scalar = radius;
         transform.position = new Vector2(x,y);
         transform.localScale = new Vector3(scale_scalar,scale_scalar,scale_scalar);

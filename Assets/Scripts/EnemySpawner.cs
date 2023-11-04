@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public List<List<Enemy>> enemy_columns = new List<List<Enemy>>(); 
     public int swarm_dim_x = 4;
     public int swarm_dim_y = 5;
-    public int swarm_width = (int)Mathf.Floor(0.75f*Screen.width);
+    public int swarm_width = (int)Mathf.Floor(0.95f*Screen.width);
 
     // Start is called before the first frame update
     void Start()
@@ -49,18 +49,20 @@ public class EnemySpawner : MonoBehaviour
             enemy_columns.Insert(col_idx, new List<Enemy>());
 
             for (int row_idx = 0; row_idx < swarm_row_num; row_idx++){
-                enemy_placement = new Vector3(
-                   base_x_placement + (swarm_step *  col_idx),
-                   base_y_placement + (swarm_step * (row_idx % swarm_row_num)),
-                   0
-                );
-                float key = UnityEngine.Random.Range(0,1);
-                if(key < 0.3f){
+                float key =(float) UnityEngine.Random.Range(1,10)/10;
+                Debug.Log("Random key : " + key);
+                if(key < 0.2f){
                     enemy = selectType("Tank");
                 }
                 else{
                     enemy = selectType("Monkey");
                 }
+                //swarm_step += enemy.transform.localScale.x;
+                enemy_placement = new Vector3(
+                   base_x_placement + (swarm_step *  col_idx + enemy.transform.localScale.x),
+                   base_y_placement + (swarm_step * (row_idx % swarm_row_num + enemy.transform.localScale.y)),
+                   0
+                );
                 //Debug.Log("Enemy type : " + enemy);
                 Enemy enemy_i = Instantiate(enemy, enemy_placement, Quaternion.identity);
                 enemy_i.transform.SetParent(this.transform);

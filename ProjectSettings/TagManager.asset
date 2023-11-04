@@ -9,6 +9,7 @@ TagManager:
   - MultiShotPowerup
   - OverchargePowerup
   - ExplosivePowerup
+  - Tank
   layers:
   - Default
   - TransparentFX

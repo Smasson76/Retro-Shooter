@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
         this.can_shoot = val;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    void Die()
+    public void Die()
     {
         collider.enabled = false;
         anim.SetTrigger("Death");

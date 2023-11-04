@@ -186,6 +186,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ba903af694e42ae478402932d14cb0fd, type: 3}
   - name: player_hit
     clip: {fileID: 8300000, guid: 0d8b646afff162544b935dc8a38dffc2, type: 3}
+  - name: trip_laser
+    clip: {fileID: 8300000, guid: 890f7fc6481af10458a6ef8317efa2df, type: 3}
   _musicSrc: {fileID: 937658662520926168}
   _FXsrc: {fileID: 3529478576230625165}
 --- !u!1 &6295796066117695907
