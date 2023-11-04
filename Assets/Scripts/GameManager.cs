@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath()
     {
+        musicManager.Instance.playSound("player_hit");
         Destroy(PlayerInstance);
         Destroy(EnemySpawnerInstance);
         MainMenu();
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour
     public void PowerUpHit(int powerUpIndex)
     {
         SimpleMovement simpleMovementScript = PlayerObject.GetComponent<SimpleMovement>();
+        musicManager.Instance.playSound("pickup_powerup");
         switch (powerUpIndex) 
         {
             case 1:
@@ -138,6 +140,7 @@ public class GameManager : MonoBehaviour
 
     public void StartOnePlayer()
     {
+        musicManager.Instance.playMusic("GameTheme");
         Score = 0;
         livesCount = 3;
         ScoreText.text = "" + Score;
