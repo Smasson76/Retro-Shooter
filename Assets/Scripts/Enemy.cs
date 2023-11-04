@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public class Enemy : MonoBehaviour
 {
     public bool can_shoot = false;
@@ -15,9 +14,13 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
     public float chance = 5f;
+<<<<<<< HEAD
     Vector2 origin_position;
     float theta = 0f;
     
+=======
+
+>>>>>>> master
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -34,7 +37,25 @@ public class Enemy : MonoBehaviour
             timeLeft = 2.0f;
             fire();
         }
+<<<<<<< HEAD
         moveCircles(origin_position.x,origin_position.y,0.25f);
+=======
+
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+		if (hit.collider != null) {
+			if (hit.collider.CompareTag("Enemy")){
+				Debug.Log("This is an enemy, I can't shoot");
+				can_shoot = false;	
+			} else {
+				Debug.Log("!!!" + hit.collider.tag);
+				can_shoot = true;
+			}
+		} else if (hit.collider == null) {
+			Debug.Log("Didnt get a hit");
+			can_shoot = true;
+		}
+			
+>>>>>>> master
     }
 
     void fire(){
@@ -56,11 +77,11 @@ public class Enemy : MonoBehaviour
                 Rigidbody2D powerUpPrefabClone;
                 powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
             }
-            Death();
+            Die();
         }
     }
     
-    void Death()
+    void Die()
     {
         collider.enabled = false;
         anim.SetTrigger("Death");
