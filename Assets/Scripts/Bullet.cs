@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
         if(explodes == true){
             //does explode
             //missileCircle();
-            missileCircle();
+            missileCircle(other);
         } else {
             //does not explode
             if (other.gameObject.CompareTag("Enemy"))
@@ -88,7 +88,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void missileCircle(){
+    private void missileCircle(Collider2D other){
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
@@ -99,7 +99,7 @@ public class Bullet : MonoBehaviour
         {
             Enemy hit_Enemy = hit.GetComponent<Enemy>();
             
-            if(hit_Enemy != null){
+            if(hit_Enemy != null && hit_Enemy != other){
                 //Debug.Log("xpl");
                 temphit++;
                 Debug.Log("exploded enemys: "+temphit);

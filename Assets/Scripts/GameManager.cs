@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
         multishot = false;
         ocOn = false;
         xpl = false;
+        enemyCount = 0;
         MainMenu();
     }
 
@@ -133,19 +134,25 @@ public class GameManager : MonoBehaviour
         switch (powerUpIndex) 
         {
             case 1:
-                simpleMovementScript.multishotTime = 4;
-                MultiShotPowerUpImage.SetActive(true);
-                multishot = true;
+                if(ocOn != true && xpl != true){
+                    simpleMovementScript.multishotTime = 4;
+                    MultiShotPowerUpImage.SetActive(true);
+                    multishot = true;
+                }
                 break;
             case 2:
-                simpleMovementScript.overchargeTime = 3;
-                OverchargePowerUpImage.SetActive(true);
-                ocOn=true;
+                if(multishot != true && xpl != true){
+                    simpleMovementScript.overchargeTime = 3;
+                    OverchargePowerUpImage.SetActive(true);
+                    ocOn=true;
+                }
                 break;
             case 3:
-                simpleMovementScript.xplTime = 4;
-                ExplosivePowerUpImage.SetActive(true);
-                xpl = true;
+                if(multishot != true && ocOn != true){
+                    simpleMovementScript.xplTime = 4;
+                    ExplosivePowerUpImage.SetActive(true);
+                    xpl = true;
+                }
                 break;
             default:
                 break;
