@@ -9,6 +9,7 @@ public class Tank : Enemy
     private float movement_radius = 0.5f;
     private float scale_scalar;
     public Tank(float x, float y, float radius){
+        //GameObject.tag = "Enemy";
         scale_scalar = radius;
         transform.position = new Vector2(x,y);
         transform.localScale = new Vector3(scale_scalar,scale_scalar,scale_scalar);

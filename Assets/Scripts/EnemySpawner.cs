@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
                    0
                 );
                 float key = UnityEngine.Random.Range(0,1);
-                if(key < 0.3){
+                if(key < 0.3f){
                     enemy = selectType("Tank");
                 }
                 else{

@@ -35,6 +35,7 @@ public class Bullet : MonoBehaviour
         if(explodes == true){
             //does explode
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
+            Debug.Log("Hit! " + other.gameObject.tag);
             foreach (Collider2D hit in hitColliders)
             {
                 Enemy hit_Enemy = hit.GetComponent<Enemy>();

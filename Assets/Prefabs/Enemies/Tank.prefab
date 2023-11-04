@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4539098826052705773}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1097.7542, y: 456.51407, z: -10.367973}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc411d83f94994489ec537f5ad52415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  can_shoot: 0
-  bullet: {fileID: 798899180036489932, guid: 8f6de56aa45c04f79a7a5e931fe1c2d0, type: 3}
+  can_shoot: 1
+  bullet: {fileID: 4616834049647686514, guid: a6a80f28c0cbb8e4e8a6e37f4673037b, type: 3}
   bullet_speed: 1
-  PointOfFireObject: {fileID: 0}
+  PointOfFireObject: {fileID: 4530289362110337303}
   anim: {fileID: 0}
   collider: {fileID: 6816803923461233079}
   powerUpPrefab: {fileID: 2977988382234193216}
@@ -98,7 +98,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!50 &2977988382234193216
 Rigidbody2D:

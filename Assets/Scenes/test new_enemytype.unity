@@ -643,6 +643,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 4916712635051777995, guid: fdd142ad8b8d44d36b71b7c4de478ee2, type: 3}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
       propertyPath: foeList.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -662,6 +666,14 @@ PrefabInstance:
       propertyPath: foeList.Array.data[1].type
       value: Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: foeList.Array.data[0].enemy_variant
+      value: 
+      objectReference: {fileID: 7509691075169040389, guid: 9a112cf487e95fe45b2b331239f6169f, type: 3}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: foeList.Array.data[1].enemy_variant
+      value: 
+      objectReference: {fileID: 2117723882037090804, guid: e5481a1067cd04442abd438afcd2247f, type: 3}
     - target: {fileID: 8721913835373864959, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
