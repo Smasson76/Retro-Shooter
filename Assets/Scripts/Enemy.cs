@@ -16,11 +16,11 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D powerUpPrefab;
     public Rigidbody2D powerUpPrefab2;
     public Rigidbody2D powerUpPrefab3;
-    public Rigidbody2D powerUpPrefab4;
-    public float chance = 1.5f;
-    public float chance2 = 3f;
-    public float chance3 = 5f;
-    public float chance4 = 7f;
+    //public Rigidbody2D powerUpPrefab4;
+    public float chance = 3f;
+    public float chance2 = 5f;
+    public float chance3 = 8f;
+    //public float chance4 = 10f;
     
     void Awake()
     {
@@ -53,17 +53,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            float randomValue = Random.value;
-            if (randomValue < chance) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
-            } else if (randomValue < chance2) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab2, transform.position, transform.rotation) as Rigidbody2D;
-            } else if (randomValue < chance3) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab3, transform.position, transform.rotation) as Rigidbody2D;
-            }
             Death();
         }
     }
@@ -72,6 +61,7 @@ public class Enemy : MonoBehaviour
     {
         collider.enabled = false;
         anim.SetTrigger("Death");
+        GameManager.instance.enemyCount -= 1;
         Destroy(this.gameObject, 0.8f); 
     }
 }

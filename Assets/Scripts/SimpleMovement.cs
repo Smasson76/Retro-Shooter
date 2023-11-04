@@ -67,10 +67,12 @@ public class SimpleMovement : MonoBehaviour
         }
         if(GameManager.instance.ocOn == true) {
             overchargeTime -= Time.deltaTime;
+            cooldownTime = .1f;
             if (overchargeTime <= 0f)
             {
                 GameManager.instance.ocOn = false;
                 GameManager.instance.OverchargePowerUpImage.SetActive(false);
+                cooldownTime = .5f;
             }
         }
         if(GameManager.instance.xpl == true){
@@ -86,15 +88,15 @@ public class SimpleMovement : MonoBehaviour
         if (Input.GetKey("space") == true)
         {
             //spr.material.SetColor("_Color", newCol);
-            if(GameManager.instance.ocOn == true){
+            //if(GameManager.instance.ocOn == true){
                 //overchargeTime -= Time.deltaTime;
-                if(overchargeTime > 0.0f){
-                    cooldownTime = .005f;
-                } else {
-                    cooldownTime = .5f;
-                    GameManager.instance.ocOn = false;
-                }
-            }
+                //if(overchargeTime > 0.0f){
+                    //cooldownTime = .1f;
+                //} else {
+                    //cooldownTime = .5f;
+                    //GameManager.instance.ocOn = false;
+                //}
+            //}
             Fire();
         }
     }
