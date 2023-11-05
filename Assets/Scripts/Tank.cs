@@ -9,7 +9,6 @@ public class Tank : Enemy
     private float movement_radius = 0.5f;
     private float scale_scalar;
     public Tank(float x, float y, float radius){
-        //GameObject.tag = "Enemy";
         this.gameObject.name = "Tank";
         this.gameObject.tag = "Tank";
         scale_scalar = radius;
@@ -18,11 +17,11 @@ public class Tank : Enemy
     }
 
    void Start(){
-        float vel_mag = 1f;
-        Vector2 velocity = new Vector2(0,-1);
-        transform.position = new Vector2(vel_mag * velocity.x*Time.deltaTime,vel_mag * velocity.y*Time.deltaTime);
+        float vel_mag = 0.0025f;
+        Vector2 velocity = new Vector2(0,-0.25f);
+        transform.position =  new Vector2(transform.position.x+vel_mag * velocity.x,transform.position.y+vel_mag * velocity.y);
     }
-   /* void Update(){
+    void Update(){
         moveCircles(transform.position.x,transform.position.y,movement_radius);
-    }*/
+    }
 }

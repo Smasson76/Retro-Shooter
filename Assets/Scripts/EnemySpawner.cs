@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public List<List<Enemy>> enemy_columns = new List<List<Enemy>>(); 
     public int swarm_dim_x = 4;
     public int swarm_dim_y = 5;
-    public int swarm_width = (int)Mathf.Floor(Screen.width);
+    public int swarm_width = (int)Mathf.Floor(0.95f*Screen.width);
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Enemies : " + GameManager.instance.enemyCount);
         if (GameManager.instance.enemyCount <= 0)
         {
             GameManager.instance.SpawnEnemy();

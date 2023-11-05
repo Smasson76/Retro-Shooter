@@ -56,6 +56,9 @@ MonoBehaviour:
   collider: {fileID: 6816803923461233079}
   powerUpPrefab: {fileID: 2977988382234193216}
   chance: 0.4
+  firing_window: {x: 0, y: 0}
+  safety_buffer: 0
+  enemy_death: {fileID: 0}
 --- !u!61 &6816803923461233079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126,7 +129,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &4539098826052705773
 SpriteRenderer:

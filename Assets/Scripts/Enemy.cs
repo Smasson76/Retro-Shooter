@@ -14,26 +14,22 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
     public float chance = 5f;
-<<<<<<< HEAD
-=======
-	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
-
+	public Vector2 firing_window; 
+    public float safety_buffer;
     public AudioClip enemy_death;
->>>>>>> master
     Vector2 origin_position;
     float theta = 0f;
     
-<<<<<<< HEAD
-=======
 
 	float calculate_next_fire_time(){
-		float next_firing_time = Random.Range(firing_window.x, firing_window.y);
+		float next_firing_time = Random.Range(firing_window.x, firing_window.y)+safety_buffer;
 		return next_firing_time;
 	}
     
->>>>>>> master
     void Awake()
     {
+        safety_buffer  = (float) UnityEngine.Random.Range(1,5)/10;
+        firing_window = new Vector2(transform.localScale.x-safety_buffer,2*transform.localScale.y+safety_buffer);
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         origin_position = transform.position;
@@ -50,6 +46,19 @@ public class Enemy : MonoBehaviour
             timeLeft = calculate_next_fire_time();
         }
         moveCircles(origin_position.x,origin_position.y,0.25f);
+         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+		    if (hit.collider != null) {
+			    if (hit.collider.CompareTag("Enemy")||hit.collider.CompareTag("Tank")){
+				    //Debug.Log("This is an enemy, I can't shoot");
+				    can_shoot = false;	
+			    } else {
+				    //Debug.Log(this.gameObject.tag + "!!!" + hit.collider.tag);
+				    can_shoot = true;
+			    }
+		    } else if (hit.collider == null) {
+			      //Debug.Log("Didnt get a hit");
+			      can_shoot = true;
+		    }
     }
 
     void fire(){
@@ -64,14 +73,25 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("Player"))
         {
             float randomValue = Random.value;
             if (randomValue < chance) {
                 Rigidbody2D powerUpPrefabClone;
                 powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
             }
+            if(other.gameObject.CompareTag("Player")){
+                GameManager.instance.PlayerHit();
+            }
             Die();
+        }
+        if(other.gameObject.CompareTag("ScreenDeath")){
+            //obj left screen, kill it and decrease enemy counter
+            int prev = GameManager.instance.enemyCount;
+            GameManager.instance.enemyCount--;
+            Debug.Log("Boom!!" + this.gameObject + " is destroyed! and enemycount decreased from " + prev + " -> " + GameManager.instance.enemyCount);
+            Die();
+            //Destroy(other.gameObject,3f);
         }
     }
     
