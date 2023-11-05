@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
     {
         collider.enabled = false;
         anim.SetTrigger("Death");
-        musicManager.Instance.playSound("enemy_die");
+        musicManager.Instance.playSound("entity_hit");
         Destroy(this.gameObject, 0.8f); 
     }
     void moveCircles(float x, float y, float radius){
