@@ -158,12 +158,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 1.5f), Quaternion.identity);
+        EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 2f), Quaternion.identity);
     }
 
     public void SpawnPlayer()
     {
-        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -3f), Quaternion.identity);
+        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -5f), Quaternion.identity);
     }
 
     public void StartTwoPlayer()

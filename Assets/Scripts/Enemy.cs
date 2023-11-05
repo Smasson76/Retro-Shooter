@@ -13,9 +13,20 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
+<<<<<<< HEAD
     public float chance = 5f;
+<<<<<<< HEAD
 	public Vector2 firing_window; 
     public float safety_buffer;
+=======
+<<<<<<< HEAD
+=======
+=======
+    public float chance = 2.5f;
+>>>>>>> 2ffcbcd87efe0b10f0291158aa542bf6eb6067b6
+	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
+
+>>>>>>> master
     public AudioClip enemy_death;
     Vector2 origin_position;
     float theta = 0f;
@@ -46,6 +57,7 @@ public class Enemy : MonoBehaviour
             timeLeft = calculate_next_fire_time();
         }
         moveCircles(origin_position.x,origin_position.y,0.25f);
+<<<<<<< HEAD
          RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
 		    if (hit.collider != null) {
 			    if (hit.collider.CompareTag("Enemy")||hit.collider.CompareTag("Tank")){
@@ -59,6 +71,22 @@ public class Enemy : MonoBehaviour
 			      //Debug.Log("Didnt get a hit");
 			      can_shoot = true;
 		    }
+=======
+<<<<<<< HEAD
+=======
+
+		    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+		    if (hit.collider != null) {
+			    if (hit.collider.CompareTag("Enemy")){
+				    can_shoot = false;	
+			    } else {
+				    can_shoot = true;
+			    }
+		    } else if (hit.collider == null) {
+			      can_shoot = true;
+		    }
+>>>>>>> 2ffcbcd87efe0b10f0291158aa542bf6eb6067b6
+>>>>>>> master
     }
 
     void fire(){
@@ -76,9 +104,12 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("Player"))
         {
             float randomValue = Random.value;
-            if (randomValue < chance) {
-                Rigidbody2D powerUpPrefabClone;
-                powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
+            if (GameManager.instance.multishot == false)
+            {
+                if (randomValue < chance) {
+                    Rigidbody2D powerUpPrefabClone;
+                    powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
+                }
             }
             if(other.gameObject.CompareTag("Player")){
                 GameManager.instance.PlayerHit();
