@@ -14,24 +14,18 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
     public float chance = 5f;
-<<<<<<< HEAD
-=======
 	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
 
     public AudioClip enemy_death;
->>>>>>> master
     Vector2 origin_position;
     float theta = 0f;
     
-<<<<<<< HEAD
-=======
 
 	float calculate_next_fire_time(){
 		float next_firing_time = Random.Range(firing_window.x, firing_window.y);
 		return next_firing_time;
 	}
     
->>>>>>> master
     void Awake()
     {
         anim = GetComponent<Animator>();
