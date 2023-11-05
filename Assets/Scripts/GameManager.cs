@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -4.5f), Quaternion.identity);
+        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -5f), Quaternion.identity);
     }
 
     public void StartTwoPlayer()
