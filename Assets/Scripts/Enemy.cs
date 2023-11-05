@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
 <<<<<<< HEAD
     public float chance = 5f;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public Vector2 firing_window; 
     public float safety_buffer;
 =======
@@ -27,6 +28,10 @@ public class Enemy : MonoBehaviour
 	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
 
 >>>>>>> master
+=======
+	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
+
+>>>>>>> f1c38934a1faf401d2c55b09b76f3c601970a420
     public AudioClip enemy_death;
     Vector2 origin_position;
     float theta = 0f;
