@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
-    public float chance = 5f;
+    public float chance = 2.5f;
 	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
 
     public AudioClip enemy_death;
