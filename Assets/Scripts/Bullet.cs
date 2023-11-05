@@ -39,7 +39,6 @@ public class Bullet : MonoBehaviour
             {
                 Enemy hit_Enemy = hit.GetComponent<Enemy>();
                 if(hit_Enemy != null){
-                    Debug.Log("xpl");
                     ParticleSystem exp = GetComponent<ParticleSystem>();
                     exp.Play();
                     GameManager.instance.RewardPoint();
@@ -56,7 +55,9 @@ public class Bullet : MonoBehaviour
             } else if (other.gameObject.CompareTag("Player"))
             {
                 GameManager.instance.PlayerHit();
-            } else if (other.gameObject.CompareTag("MultiShotPowerup"))
+            }
+            
+            if (other.gameObject.CompareTag("MultiShotPowerup"))
             {
                 GameManager.instance.PowerUpHit(1);
                 musicManager.Instance.playSound("trip_laser");
