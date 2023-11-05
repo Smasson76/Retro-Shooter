@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+>>>>>>> master
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -146,10 +150,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 937658662520926168, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: m_Volume
+      value: 0.192
+      objectReference: {fileID: 0}
     - target: {fileID: 3345873575692853205, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: m_Name
       value: musicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3529478576230625165, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: m_Volume
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: af44d7ece05884944a931ece5577dcf4, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 123ca91a05af243dc84642ef9351a7a9, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 91129b6e62aa745ca85e70128e03f3bc, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[3].name
+      value: player_death
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 79256eb1227c7419d9386c0c77457520, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[4].name
+      value: pickup_powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 123ca91a05af243dc84642ef9351a7a9, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[5].name
+      value: entity_hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: musicSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5762b44da1bb7684790288a7741e55a9, type: 3}
     - target: {fileID: 8721855562770740401, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -696,6 +748,10 @@ PrefabInstance:
     - target: {fileID: 5380240501731315683, guid: 618aa754faf4da04ab0f37fe07ff4e21, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162644865308687320, guid: 618aa754faf4da04ab0f37fe07ff4e21, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 120.43555
       objectReference: {fileID: 0}
     - target: {fileID: 7372637148931415668, guid: 618aa754faf4da04ab0f37fe07ff4e21, type: 3}
       propertyPath: m_Name

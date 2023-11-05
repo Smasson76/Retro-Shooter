@@ -14,14 +14,30 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
     public float chance = 5f;
+<<<<<<< HEAD
+=======
+	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
+
+    public AudioClip enemy_death;
+>>>>>>> master
     Vector2 origin_position;
     float theta = 0f;
     
+<<<<<<< HEAD
+=======
+
+	float calculate_next_fire_time(){
+		float next_firing_time = Random.Range(firing_window.x, firing_window.y);
+		return next_firing_time;
+	}
+    
+>>>>>>> master
     void Awake()
     {
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         origin_position = transform.position;
+		timeLeft = calculate_next_fire_time();
     }
 
     // Update is called once per frame
@@ -30,8 +46,8 @@ public class Enemy : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if ((timeLeft < 0) && can_shoot)
         {
-            timeLeft = 2.0f;
             fire();
+            timeLeft = calculate_next_fire_time();
         }
         moveCircles(origin_position.x,origin_position.y,0.25f);
     }
@@ -63,7 +79,7 @@ public class Enemy : MonoBehaviour
     {
         collider.enabled = false;
         anim.SetTrigger("Death");
-        musicManager.Instance.playSound("enemy_die");
+        musicManager.Instance.playSound("entity_hit");
         Destroy(this.gameObject, 0.8f); 
     }
     public void moveCircles(float x,float y,float radius){
