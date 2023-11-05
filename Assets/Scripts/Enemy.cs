@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public AudioClip enemy_death;
     Vector2 origin_position;
     private float theta=0f;
+    public bool isDead = false;
     
 
 	float calculate_next_fire_time(){
@@ -90,12 +91,16 @@ public class Enemy : MonoBehaviour
     
     public void Die()
     {
-        collider.enabled = false;
-        anim.SetTrigger("Death");
-        GameManager.instance.enemyCount -= 1;
-        GameManager.instance.RewardPoint();
-        musicManager.Instance.playSound("enemy_die");
-        Destroy(this.gameObject, 0.8f); 
+        if(isDead == false){
+            collider.enabled = false;
+            anim.SetTrigger("Death");
+            GameManager.instance.enemyCount -= 1;
+            GameManager.instance.RewardPoint();
+            musicManager.Instance.playSound("enemy_die");
+            Debug.Log("Dies");
+            Destroy(this.gameObject, 0.8f);
+            isDead = true; 
+        }
     }
     void moveCircles(float x, float y, float radius){
         //radius will be the perp dist to center of circular path (how big is circle)
