@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     private bool explodes = false;
     private float xplRange = 1;
     AudioClip pewpew;
+    private float hitTime=0;
 
     void Start()
     {
@@ -50,11 +51,24 @@ public class Bullet : MonoBehaviour
             //does not explode
             if (other.gameObject.CompareTag("Enemy"))
             {
-                GameManager.instance.enemyCount--;
-                GameManager.instance.RewardPoint();
-            } else if (other.gameObject.CompareTag("Player"))
+                    GameManager.instance.enemyCount--;
+                    GameManager.instance.RewardPoint();
+            }
+            else if (other.gameObject.CompareTag("Player"))
             {
-                GameManager.instance.PlayerHit();
+                if(other.GetComponent<SimpleMovement>().getIframes()){
+                Debug.Log("Iframes active on " + other.gameObject.tag);
+                if(Time.time - hitTime >= 4f){
+                        other.GetComponent<SimpleMovement>().setIframes();
+                    }
+                }
+                else{
+                    Debug.Log("Player hit!");
+                    hitTime = Time.time;
+                    Debug.Log("TimeStamp = " + hitTime);
+                    //other.GetComponent<SimpleMovement>().setIframes();
+                    GameManager.instance.PlayerHit();
+                }
             }
             
             if (other.gameObject.CompareTag("MultiShotPowerup"))

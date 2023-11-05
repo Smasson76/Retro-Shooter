@@ -14,20 +14,24 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
     public float chance = 2.5f;
-	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
+	public Vector2 firing_window;
 
     public AudioClip enemy_death;
     Vector2 origin_position;
-    private float theta=0f;
+    public float theta=0f;
+    private float safety = 0.25f;
+    public Vector2 translational_velocity = new Vector2(0f,0f);
+
     
 
 	float calculate_next_fire_time(){
-		float next_firing_time = Random.Range(firing_window.x, firing_window.y);
+		float next_firing_time = Random.Range(firing_window.x, firing_window.y)+safety;
 		return next_firing_time;
 	}
     
     void Awake()
     {
+        firing_window = new Vector2(transform.localScale.x + safety,transform.localScale.y + safety);
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         origin_position = transform.position;
@@ -91,10 +95,10 @@ public class Enemy : MonoBehaviour
         musicManager.Instance.playSound("entity_hit");
         Destroy(this.gameObject, 0.8f); 
     }
-    void moveCircles(float x, float y, float radius){
+    public virtual void moveCircles(float x, float y, float radius){
         //radius will be the perp dist to center of circular path (how big is circle)
         //x and y will be used to set the vertex position
-        Vector2 _vertex = new Vector2(x,y);
+        Vector2 _vertex = new Vector2(x+(translational_velocity.x*Time.deltaTime),y+(translational_velocity.y*Time.deltaTime));
         float omega = 1f; //angular velocity
         theta += omega * Time.deltaTime;
         var cirpos = radius * (new Vector2(Mathf.Cos(theta),Mathf.Sin(theta)));

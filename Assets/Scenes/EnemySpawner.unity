@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -356,6 +356,26 @@ PrefabInstance:
     - target: {fileID: 5577443146715170669, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: foeList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: foeList.Array.data[0].type
+      value: Monkey
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: foeList.Array.data[1].type
+      value: Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: foeList.Array.data[0].Enemy_Variant
+      value: 
+      objectReference: {fileID: 7509691075169040389, guid: 9a112cf487e95fe45b2b331239f6169f, type: 3}
+    - target: {fileID: 6950938014840343397, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+      propertyPath: foeList.Array.data[1].Enemy_Variant
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8721913835373864959, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
       propertyPath: m_Name

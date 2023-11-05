@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleMovement : MonoBehaviour
 {
+    public bool Iframes= false;
     public float speed;
     private float Move;
     public Vector3 firing_point_offset = new Vector3(0, 0.5f, 0);
@@ -79,6 +80,7 @@ public class SimpleMovement : MonoBehaviour
 
         if (Input.GetKey("space") == true)
         {
+            if(!Iframes){
             //spr.material.SetColor("_Color", newCol);
             if(GameManager.instance.ocOn == true){
                 //overchargeTime -= Time.deltaTime;
@@ -90,6 +92,16 @@ public class SimpleMovement : MonoBehaviour
                 }
             }
             Fire();
+            }
+            else{
+                Debug.Log("Cannot shoot while invulnerable!");
+            }
         }
+    }
+    public bool getIframes(){
+        return Iframes;
+    }
+    public void setIframes(){
+        Iframes = !Iframes;
     }
 }

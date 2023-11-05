@@ -6,11 +6,12 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Enemy enemy;
-
     public List<List<Enemy>> enemy_columns = new List<List<Enemy>>(); 
     public int swarm_dim_x = 4;
     public int swarm_dim_y = 5;
-    public int swarm_width = 5;
+    public int swarm_width = Screen.width;
+    public Foes[] foeList;
+    private int myTanks=0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,10 @@ public class EnemySpawner : MonoBehaviour
             GameManager.instance.SpawnEnemy();
             Destroy(this.gameObject, 2f);
         }
+        /*if(!is_enemies()){
+            GameManager.instance.SpawnEnemy();
+            Destroy(this.gameObject,2f);
+        }*/
     }
 
     void place_swarm(int dim_x, int dim_y, int width){
@@ -46,11 +51,19 @@ public class EnemySpawner : MonoBehaviour
 
         for (int col_idx = 0; col_idx < swarm_col_num; col_idx++){
             enemy_columns.Insert(col_idx, new List<Enemy>());
-
             for (int row_idx = 0; row_idx < swarm_row_num; row_idx++){
+                float key = (float) UnityEngine.Random.Range(1,10)/10;
+                //Debug.Log("Random key is : " + key);
+                if(key < 0.2f){
+                    enemy = selectType("Tank");
+                    myTanks++;
+                }
+                else{
+                    enemy = selectType("Monkey");
+                }
                 enemy_placement = new Vector3(
-                   base_x_placement + (swarm_step *  col_idx),
-                   base_y_placement + (swarm_step * (row_idx % swarm_row_num)),
+                   base_x_placement + (swarm_step *  col_idx + enemy.transform.localScale.x),
+                   base_y_placement + (swarm_step * (row_idx % swarm_row_num)+enemy.transform.localScale.y),
                    0
                 );
 
@@ -62,4 +75,27 @@ public class EnemySpawner : MonoBehaviour
         }
 
     }
+    public Enemy selectType(string name){
+        Foes s = Array.Find(foeList, x => x.type == name);
+        if(s == null){
+            Debug.Log("Type not found!");
+        }
+        else{
+            enemy = s.Enemy_Variant;
+        }
+        return enemy;
+    }
+    /*public bool is_enemies(){
+        int counter=0;
+        foreach(List<Enemy>sub in GameManager.instance.EnemySpawnerInstance.GetComponent<EnemySpawner>().enemy_columns){
+            foreach(Enemy enemy in sub){
+                counter++;
+            }
+        }
+        Debug.Log("There are " + counter + " enemies");
+        if(counter > myTanks){
+            return true;
+        }
+        else return false;
+    }*/
 }
