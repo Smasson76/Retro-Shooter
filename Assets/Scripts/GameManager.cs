@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Cursor.visible = true;
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
     }
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour
 
         SpawnPlayer();
         SpawnEnemy();
+        Cursor.visible = false;
     }
 
     public void SpawnEnemy()
