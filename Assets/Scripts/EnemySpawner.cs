@@ -12,11 +12,13 @@ public class EnemySpawner : MonoBehaviour
     public int swarm_width = Screen.width;
     public Foes[] foeList;
     private int myTanks=0;
+    public float SpawnTime;
 
     // Start is called before the first frame update
     void Start()
     {
         place_swarm(swarm_dim_x, swarm_dim_y, swarm_width);
+        setSpawnTStamp();
     }
 
     void Update()
@@ -84,6 +86,13 @@ public class EnemySpawner : MonoBehaviour
             enemy = s.Enemy_Variant;
         }
         return enemy;
+    }
+    public void setSpawnTStamp(){
+        foreach(List<Enemy>sub in enemy_columns){
+            foreach(Enemy enemy in sub){
+                enemy.setSpawnTime(Time.time);
+            }
+        }
     }
     /*public bool is_enemies(){
         int counter=0;

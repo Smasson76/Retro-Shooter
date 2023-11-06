@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public float theta=0f;
     private float safety = 0.25f;
     public Vector2 translational_velocity = new Vector2(0f,0f);
+    public float TimeSpawned;
 
     
 
@@ -37,7 +38,12 @@ public class Enemy : MonoBehaviour
         origin_position = transform.position;
 		timeLeft = calculate_next_fire_time();
     }
-
+    public void setSpawnTime(float arg){
+        TimeSpawned = arg;
+    }
+    public float getSpawnTime(){
+        return TimeSpawned;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -61,7 +67,7 @@ public class Enemy : MonoBehaviour
 			      can_shoot = true;
 		    }
     }
-
+    
     void fire(){
         Bullet new_bullet = Instantiate(bullet, PointOfFireObject.transform.position, Quaternion.identity);
         new_bullet.send_off(Vector2.down, bullet_speed, false);
