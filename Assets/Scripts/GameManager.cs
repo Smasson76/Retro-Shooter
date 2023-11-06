@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
             livesCount--;
             UpdateLifeUI();
             SpawnPlayer();
+            PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
         }
 
         if (livesCount <= 0)
@@ -153,7 +154,6 @@ public class GameManager : MonoBehaviour
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
         UpdateLifeUI();
-
         SpawnPlayer();
         SpawnEnemy();
         Cursor.visible = false;
@@ -161,7 +161,9 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        Debug.Log("Calling Spawn Enemy with " + enemyCount + " remaining!");
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 2f), Quaternion.identity);
+        //EnemySpawnerInstance.GetComponent<EnemySpawner>().setIframes();
     }
 
     public void SpawnPlayer()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleMovement : MonoBehaviour
 {
+    public bool Iframes= false;
     public float speed;
     private float Move;
     public Vector3 firing_point_offset = new Vector3(0, 0.5f, 0);
@@ -17,6 +18,9 @@ public class SimpleMovement : MonoBehaviour
     public float ocStart;
 
     public Bullet bulletPrefab;
+    public Color mycol;
+    public Color original;
+    public float IframeCD = 2.5f;
 
     void Fire()
 	{
@@ -52,6 +56,9 @@ public class SimpleMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        original = gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
+        mycol = Color.red;
+        Debug.Log("My original color is " + original + " on " + gameObject.GetComponentInChildren<SpriteRenderer>().name);
     }
 
     void Update()
@@ -79,6 +86,7 @@ public class SimpleMovement : MonoBehaviour
 
         if (Input.GetKey("space") == true)
         {
+            if(!Iframes){
             //spr.material.SetColor("_Color", newCol);
             if(GameManager.instance.ocOn == true){
                 //overchargeTime -= Time.deltaTime;
@@ -90,6 +98,45 @@ public class SimpleMovement : MonoBehaviour
                 }
             }
             Fire();
+            }
+            else{
+                StartCoroutine("flashChar");
+                //gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
+                Debug.Log("Cannot shoot while invulnerable! \nColor is " + gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color"));
+            }
         }
+        if(Iframes){
+            StartCoroutine("Iframes_timer");
+        }
+    }
+    public bool getIframes(){
+        return Iframes;
+    }
+    public void setIframes(){
+        Iframes = !Iframes;
+    }
+    IEnumerator flashChar(){
+        while(Iframes){
+            if(gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color") == original){
+            this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
+            //Debug.Log("turn red!");
+            //yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1f);
+            }
+            if(gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color") == mycol){
+            this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",original);
+            //Debug.Log("turn back");
+            yield return new WaitForSeconds(1f);
+            }
+            
+        }
+    }
+     IEnumerator Iframes_timer(){
+        yield return new WaitForSeconds(IframeCD);
+        if(Iframes){
+        setIframes();
+        }
+        Debug.Log("Iframes : " + getIframes());
+        //yield return null;
     }
 }

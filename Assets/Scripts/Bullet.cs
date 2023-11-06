@@ -10,16 +10,20 @@ public class Bullet : MonoBehaviour
     private bool explodes = false;
     private float xplRange = 1;
     AudioClip pewpew;
-
+    private float hitTime=0;
+    //private float IframeCD = 4f;
+    //private IEnumerator coroutine;
+    
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        //coroutine = Iframe_timer(gameObject.GetComponent<SimpleMovement>().getIframes());
     }
 
     void FixedUpdate()
     {
         rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
-
+        //StartCoroutine(coroutine);
     }
 
     public void send_off(Vector2 direction, float speed_multiplier, bool xpl)
@@ -50,11 +54,26 @@ public class Bullet : MonoBehaviour
             //does not explode
             if (other.gameObject.CompareTag("Enemy"))
             {
-                GameManager.instance.enemyCount--;
-                GameManager.instance.RewardPoint();
-            } else if (other.gameObject.CompareTag("Player"))
+                    GameManager.instance.enemyCount--;
+                    GameManager.instance.RewardPoint();
+            }
+            else if (other.gameObject.CompareTag("Player"))
             {
-                GameManager.instance.PlayerHit();
+                if(other.GetComponent<SimpleMovement>().getIframes()){
+                Debug.Log("Iframes active on " + other.gameObject.tag);
+                /*if(Time.time - hitTime >= 4f){
+                        other.GetComponent<SimpleMovement>().setIframes();
+                    }*/
+                }
+                else{
+                    Debug.Log("Player hit!");
+                    hitTime = Time.time;
+                    other.GetComponent<SimpleMovement>().setIframes();
+                    //StartCoroutine("Iframe_timer");
+                    Debug.Log("TimeStamp = " + hitTime);
+                    //other.GetComponent<SimpleMovement>().setIframes();
+                    GameManager.instance.PlayerHit();
+                }
             }
             
             if (other.gameObject.CompareTag("MultiShotPowerup"))
@@ -75,4 +94,5 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+   
 }
