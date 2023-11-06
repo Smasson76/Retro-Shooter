@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Application.LoadLevel(Application.loadedLevel);
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
     }
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath()
     {
+        enemyCount = 0;
         musicManager.Instance.playSound("player_death");
         Destroy(PlayerInstance);
         Destroy(EnemySpawnerInstance);
