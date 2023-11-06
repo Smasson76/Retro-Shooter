@@ -14,7 +14,8 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D collider;
     public Rigidbody2D powerUpPrefab;
     public float chance = 2.5f;
-	public Vector2 firing_window;
+	public Vector2 firing_window = new Vector2(1.5f, 2.5f);
+	public BloodBurstParticleEffect bloodBurstEffect;
 
     public AudioClip enemy_death;
     Vector2 origin_position;
@@ -94,6 +95,7 @@ public class Enemy : MonoBehaviour
         anim.SetTrigger("Death");
         musicManager.Instance.playSound("entity_hit");
         Destroy(this.gameObject, 0.8f); 
+		BloodBurstParticleEffect bloodBurst = Instantiate(bloodBurstEffect, transform.position, Quaternion.identity);
     }
     public virtual void moveCircles(float x, float y, float radius){
         //radius will be the perp dist to center of circular path (how big is circle)
