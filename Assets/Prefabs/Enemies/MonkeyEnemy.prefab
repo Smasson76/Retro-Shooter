@@ -78,6 +78,9 @@ MonoBehaviour:
   collider: {fileID: 0}
   powerUpPrefab: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
   chance: 0.1
+  firing_window: {x: 1.5, y: 2.5}
+  bloodBurstEffect: {fileID: 910408324081832607, guid: 8892c1482cbbd4e71863b97b7feb246d, type: 3}
+  enemy_death: {fileID: 0}
 --- !u!61 &1848848324963100891
 BoxCollider2D:
   m_ObjectHideFlags: 0
