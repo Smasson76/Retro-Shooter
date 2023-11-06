@@ -10,6 +10,8 @@ public class Tank : Enemy
     private int Count=0;
     //private Vector2 velocity = new Vector2(0,-1);
     private Vector2 original_position;
+    private float curr_time;
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -19,12 +21,67 @@ public class Tank : Enemy
         this.gameObject.tag = "Enemy";
         transform.localScale = new Vector3(size_scale,size_scale,size_scale);
         original_position = new Vector2(transform.position.x,transform.position.y);
-        translational_velocity = new Vector2(0f,-2f);
+        translational_velocity = new Vector2(0f,-1f);
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        //curr_time = Time.time;
         //theta = 2f;
     }
     void Update(){
-        translational_velocity = new Vector2(translational_velocity.x * (0.1f*Time.deltaTime),translational_velocity.y *(0.1f*Time.deltaTime));
-        //transform.position = new Vector2(transform.position.x + velocity.x,transform.position.y + velocity.y);
-        moveCircles(original_position.x,original_position.y,movement_radius);
+        translational_velocity = new Vector2(translational_velocity.x * (Time.deltaTime),translational_velocity.y *(Time.deltaTime));
+        
+        //transform.position = new Vector2(transform.position.x + translational_velocity.x,transform.position.y + translational_velocity.y);
+        rb.velocity = new Vector2(0f,0f);
+        
+        StartCoroutine("DiveBomb");
+    }
+    private void OnTriggerEnter2D(Collider2D obj)
+    {
+        if(obj.gameObject.CompareTag("Bullet")){
+            if(obj.transform.parent.gameObject.CompareTag("Player")){
+                 Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
+                GameManager.instance.enemyCount--;
+                GameManager.instance.RewardPoint();
+                Destroy(this.gameObject);
+            }
+            else{
+                //do nothing
+            }
+        }
+        if(obj.gameObject.CompareTag("Player")){
+             if(obj.GetComponent<SimpleMovement>().getIframes()){
+                Debug.Log("Iframes active on " + obj.gameObject.tag);
+                /*if(Time.time - hitTime >= 4f){
+                        other.GetComponent<SimpleMovement>().setIframes();
+                    }*/
+                }
+                else{
+                    Debug.Log("Player hit!");
+                    //hitTime = Time.time;
+                    obj.GetComponent<SimpleMovement>().setIframes();
+                    //StartCoroutine("Iframe_timer");
+                    //Debug.Log("TimeStamp = " + hitTime);
+                    //other.GetComponent<SimpleMovement>().setIframes();
+                    GameManager.instance.PlayerHit();
+                    GameManager.instance.enemyCount--;
+                    GameManager.instance.RewardPoint();
+                }
+        }
+        if(obj.gameObject.CompareTag("ScreenDeath")){
+            Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
+            GameManager.instance.enemyCount--;
+            GameManager.instance.RewardPoint();
+            Destroy(this.gameObject);
+        }
+    }
+    IEnumerator DiveBomb(){
+        curr_time = gameObject.GetComponent<Enemy>().getSpawnTime();
+        if(Time.time - curr_time < 3f){
+            moveCircles(original_position.x,original_position.y,movement_radius);
+        }
+        else{
+            rb.velocity = new Vector2(0,-2*Time.deltaTime);
+            transform.position = new Vector2(transform.position.x+rb.velocity.x,transform.position.y+rb.velocity.y);
+        }
+        yield return null;
     }
 }

@@ -21,6 +21,7 @@ public class SimpleMovement : MonoBehaviour
     public Color mycol;
     public Color original;
     public float IframeCD = 2.5f;
+    public string name;
 
     void Fire()
 	{
@@ -44,6 +45,7 @@ public class SimpleMovement : MonoBehaviour
                 }
             } else {
                 Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
+                bullet.transform.SetParent(this.transform);
                 bullet.send_off(Vector2.up, bullet_speed, GameManager.instance.xpl);
 
                 lastShotTime = Time.time;
@@ -59,6 +61,7 @@ public class SimpleMovement : MonoBehaviour
         original = gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;
         Debug.Log("My original color is " + original + " on " + gameObject.GetComponentInChildren<SpriteRenderer>().name);
+        this.name = "Player";
     }
 
     void Update()
@@ -102,7 +105,7 @@ public class SimpleMovement : MonoBehaviour
             else{
                 StartCoroutine("flashChar");
                 //gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
-                Debug.Log("Cannot shoot while invulnerable! \nColor is " + gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color"));
+                //Debug.Log("Cannot shoot while invulnerable! \nColor is " + gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color"));
             }
         }
         if(Iframes){
