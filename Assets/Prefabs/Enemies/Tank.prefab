@@ -203,7 +203,12 @@ MonoBehaviour:
   powerUpPrefab: {fileID: 1793437569651302989}
   chance: 0.4
   firing_window: {x: 0, y: 0}
+  bloodBurstEffect: {fileID: 910408324081832607, guid: 8892c1482cbbd4e71863b97b7feb246d, type: 3}
   enemy_death: {fileID: 0}
+  theta: 0
+  translational_velocity: {x: 0, y: 0}
+  size_scale: 1.25
+  movement_radius: 0.25
 --- !u!1 &6200854276260411674
 GameObject:
   m_ObjectHideFlags: 0
