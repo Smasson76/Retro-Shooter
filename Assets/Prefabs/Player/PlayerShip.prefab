@@ -203,15 +203,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc02df91753536549b0bd7d989a819bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Iframes: 0
   speed: 5
   firing_point_offset: {x: 0, y: 1, z: 0}
   bullet_speed: 1
   cooldownTime: 0.5
-  ocOn: 0
-  multishot: 0
-  xpl: 0
   xplTime: 0
   overchargeTime: 4
   multishotTime: 6
   ocStart: 0
   bulletPrefab: {fileID: 4616834049647686514, guid: a6a80f28c0cbb8e4e8a6e37f4673037b, type: 3}
+  mycol: {r: 0.9339623, g: 0.066082224, b: 0.066082224, a: 0}
+  original: {r: 0, g: 0, b: 0, a: 0}

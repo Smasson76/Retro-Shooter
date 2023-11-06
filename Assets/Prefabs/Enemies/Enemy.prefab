@@ -175,11 +175,13 @@ MonoBehaviour:
   can_shoot: 0
   bullet: {fileID: 0}
   bullet_speed: 1
-  PointOfFireObject: {fileID: 0}
+  PointOfFireObject: {fileID: 1893459741071962492}
   anim: {fileID: 0}
   collider: {fileID: 0}
   powerUpPrefab: {fileID: 0}
   chance: 5
+  firing_window: {x: 0, y: 0}
+  enemy_death: {fileID: 0}
 --- !u!20 &7065656171204282306
 Camera:
   m_ObjectHideFlags: 0
