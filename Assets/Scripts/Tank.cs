@@ -13,6 +13,7 @@ public class Tank : Enemy
     private float curr_time;
     private Rigidbody2D rb;
     private float cooldown = 2f;
+    private bool trigger_flag;
     void Start()
     {
         //maybe give a velocity to move toward player with
@@ -34,17 +35,27 @@ public class Tank : Enemy
         rb.velocity = new Vector2(0f,0f);
         //gameObject.GetComponent<Enemy>().fire();
         cooldown -= Time.deltaTime;
-        if ((cooldown < 0) && can_shoot)
+        if ((cooldown < 0) && trigger_flag)
         {
             base.fire();
             cooldown = base.calculate_next_fire_time();
         }
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+		    if (hit.collider != null) {
+			    if (hit.collider.CompareTag("Enemy")){
+				    trigger_flag = false;	
+			    } else {
+				    trigger_flag = true;
+			    }
+		    } else if (hit.collider == null) {
+			      trigger_flag = true;
+		    }
         StartCoroutine("DiveBomb");
     }
     private void OnTriggerEnter2D(Collider2D obj)
     {
         if(obj.gameObject.CompareTag("Bullet")){
-            if(obj.transform.parent.CompareTag("Player")){
+            if(obj.gameObject.transform.parent.CompareTag("Player")){
                  Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
                 GameManager.instance.enemyCount--;
                 GameManager.instance.RewardPoint();
@@ -84,21 +95,15 @@ public class Tank : Enemy
         return base.calculate_next_fire_time();
     }
     public override void fire(){
-
+        base.fire();
     }
     IEnumerator DiveBomb(){
         curr_time = gameObject.GetComponent<Enemy>().getSpawnTime();
-        bool flag;
         if(Time.time - curr_time < 3f){
             moveCircles(original_position.x,original_position.y,movement_radius);
-            flag = true;
-            if(!gameObject.GetComponent<Enemy>().get_can_shoot()){
-                gameObject.GetComponent<Enemy>().set_can_shoot(flag);
-            }
         }
         else{
-            flag = false;
-            gameObject.GetComponent<Enemy>().set_can_shoot(flag);
+            trigger_flag = false;
             rb.velocity = new Vector2(0,-2*Time.deltaTime);
             transform.position = new Vector2(transform.position.x+rb.velocity.x,transform.position.y+rb.velocity.y);
         }
