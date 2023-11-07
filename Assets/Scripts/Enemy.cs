@@ -79,6 +79,12 @@ public class Enemy : MonoBehaviour
     public void set_can_shoot(bool val){
         this.can_shoot = val;
     }
+    public bool get_can_shoot(){
+        if(can_shoot){
+            return true;
+        }
+        else{return false;}
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

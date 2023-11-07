@@ -88,12 +88,16 @@ public class Tank : Enemy
     }
     IEnumerator DiveBomb(){
         curr_time = gameObject.GetComponent<Enemy>().getSpawnTime();
+        bool flag;
         if(Time.time - curr_time < 3f){
             moveCircles(original_position.x,original_position.y,movement_radius);
-            
+            flag = true;
+            if(!gameObject.GetComponent<Enemy>().get_can_shoot()){
+                gameObject.GetComponent<Enemy>().set_can_shoot(flag);
+            }
         }
         else{
-            bool flag = false;
+            flag = false;
             gameObject.GetComponent<Enemy>().set_can_shoot(flag);
             rb.velocity = new Vector2(0,-2*Time.deltaTime);
             transform.position = new Vector2(transform.position.x+rb.velocity.x,transform.position.y+rb.velocity.y);
