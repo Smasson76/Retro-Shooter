@@ -54,8 +54,14 @@ public class Bullet : MonoBehaviour
             //does not explode
             if (other.gameObject.CompareTag("Enemy"))
             {
+                /*if(other.gameObject.transform.parent.CompareTag("Enemy")){
+                    //do nothing
+                    Debug.Log(this + " hit by " + other.gameObject.tag + " -> " + other.gameObject.transform.parent.parent.name);
+                }
+                else{*/
                     GameManager.instance.enemyCount--;
                     GameManager.instance.RewardPoint();
+                //}
             }
             else if (other.gameObject.CompareTag("Player"))
             {
