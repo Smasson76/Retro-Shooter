@@ -111,6 +111,9 @@ public class GameManager : MonoBehaviour
         musicManager.Instance.playSound("player_hit");
         Destroy(PlayerInstance);
         Destroy(EnemySpawnerInstance);
+        MultiShotPowerUpImage.SetActive(false);
+        OverchargePowerUpImage.SetActive(false);
+        ExplosivePowerUpImage.SetActive(false);
         multishot = false;
         ocOn = false;
         xpl = false;
@@ -125,25 +128,53 @@ public class GameManager : MonoBehaviour
         switch (powerUpIndex) 
         {
             case 1:
-                if(ocOn != true && xpl != true){
-                    simpleMovementScript.multishotTime = 4;
-                    MultiShotPowerUpImage.SetActive(true);
-                    multishot = true;
+                if(ocOn == true){
+                    ocOn = false;
+                    OverchargePowerUpImage.SetActive(false);
+                    simpleMovementScript.overchargeTime = 0;
                 }
+                if(xpl == true){
+                    xpl = false;
+                    ExplosivePowerUpImage.SetActive(false);
+                    simpleMovementScript.xplTime = 0;
+                }
+                simpleMovementScript.multishotTime += 10;
+                MultiShotPowerUpImage.SetActive(true);
+                multishot = true;
+                
                 break;
             case 2:
-                if(multishot != true && xpl != true){
-                    simpleMovementScript.overchargeTime = 3;
-                    OverchargePowerUpImage.SetActive(true);
-                    ocOn=true;
+                if(multishot == true){
+                    multishot = false;
+                    MultiShotPowerUpImage.SetActive(false);
+                    simpleMovementScript.multishotTime = 0;
                 }
+                if(xpl == true){
+                    xpl = false;
+                    ExplosivePowerUpImage.SetActive(false);
+                    simpleMovementScript.xplTime = 0;
+                }
+                simpleMovementScript.overchargeTime += 8;
+                OverchargePowerUpImage.SetActive(true);
+                ocOn=true;
+                
                 break;
             case 3:
-                if(multishot != true && ocOn != true){
-                    simpleMovementScript.xplTime = 4;
-                    ExplosivePowerUpImage.SetActive(true);
-                    xpl = true;
+                if(ocOn == true){
+                    ocOn = false;
+                    OverchargePowerUpImage.SetActive(false);
+                    simpleMovementScript.overchargeTime = 0;
                 }
+                if(multishot == true){
+                    multishot = false;
+                    MultiShotPowerUpImage.SetActive(false);
+                    simpleMovementScript.multishotTime = 0;
+                }
+                
+                simpleMovementScript.xplTime += 10;
+                ExplosivePowerUpImage.SetActive(true);
+                xpl = true;
+                
                 break;
             default:
                 break;

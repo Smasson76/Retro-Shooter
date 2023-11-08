@@ -32,40 +32,46 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(explodes == true){
-            //does explode
-            //missileCircle();
-            missileCircle(other);
-        } else {
-            //does not explode
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                //GameManager.instance.enemyCount -= 1;
-                //GameManager.instance.RewardPoint();
-                Debug.Log("Enemy Count:" + GameManager.instance.enemyCount);
-            } else if (other.gameObject.CompareTag("Player"))
-            {
-                GameManager.instance.PlayerHit();
-            } else if (other.gameObject.CompareTag("MultiShotPowerup"))
-            {
-                GameManager.instance.PowerUpHit(1);
-                musicManager.Instance.playSound("trip_laser");
-                Destroy(other.gameObject);
-                Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
-            } else if (other.gameObject.CompareTag("OverchargePowerup"))
-            {
-                GameManager.instance.PowerUpHit(2);
-                Destroy(other.gameObject);
-                Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
-            } else if (other.gameObject.CompareTag("ExplosivePowerup"))
-            {
-                GameManager.instance.PowerUpHit(3);
-                Destroy(other.gameObject);
-                Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+        
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            if(explodes == true){
+                //does explode
+                //missileCircle();
+                missileCircle(other);
             }
-
-            Destroy(this.gameObject);
+            //GameManager.instance.enemyCount -= 1;
+            //GameManager.instance.RewardPoint();
+            //Debug.Log("Enemy Count:" + GameManager.instance.enemyCount);
+        } else if (other.gameObject.CompareTag("Player"))
+        {
+            GameManager.instance.PlayerHit();
+        } else if (other.gameObject.CompareTag("MultiShotPowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(1);
+            musicManager.Instance.playSound("trip_laser");
+            Destroy(other.gameObject);
+            Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            
+        } else if (other.gameObject.CompareTag("OverchargePowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(2);
+            Destroy(other.gameObject);
+            Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            
+        } else if (other.gameObject.CompareTag("ExplosivePowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(3);
+            Destroy(other.gameObject);
+            Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            
         }
+
+        Destroy(this.gameObject);
+        
     }
 
     private void missileCircle(Collider2D other){
@@ -87,18 +93,22 @@ public class Bullet : MonoBehaviour
             }
         }
     }
-    private void missileBox(){
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 6), 0);
+    private void missileBox(Collider2D other){
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 12), 0);
+        ParticleSystem exp = GetComponent<ParticleSystem>();
+        exp.Play();
+        Destroy(this.gameObject, exp.main.duration);
+        Debug.Log("exploded objects: "+hitColliders.Length);
+        int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
             Enemy hit_Enemy = hit.GetComponent<Enemy>();
-            if(hit_Enemy != null){
+            
+            if(hit_Enemy != null && hit_Enemy != other){
                 //Debug.Log("xpl");
-                ParticleSystem exp = GetComponent<ParticleSystem>();
-                exp.Play();
-                GameManager.instance.RewardPoint();
-                Destroy(this.gameObject, exp.main.duration);
-                Destroy(hit_Enemy.gameObject);
+                temphit++;
+                Debug.Log("exploded enemys: "+temphit);
+                hit_Enemy.Die();
             }
         }
     }
