@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     
 
-	float calculate_next_fire_time(){
+	public virtual float calculate_next_fire_time(){
 		float next_firing_time = Random.Range(firing_window.x, firing_window.y)+safety;
 		return next_firing_time;
 	}
@@ -92,14 +92,21 @@ public class Enemy : MonoBehaviour
             //StartCoroutine("powerUpDriftandFade");
     }
     
-    void fire(){
+    public virtual void fire(){
         Bullet new_bullet = Instantiate(bullet, PointOfFireObject.transform.position, Quaternion.identity);
+        //new_bullet.transform.SetParent(this.transform,true);
         new_bullet.send_off(Vector2.down, bullet_speed, false);
         Destroy(new_bullet, 3f);
     }
 
     public void set_can_shoot(bool val){
         this.can_shoot = val;
+    }
+    public bool get_can_shoot(){
+        if(can_shoot){
+            return true;
+        }
+        else{return false;}
     }
 
     private void OnTriggerEnter2D(Collider2D other)

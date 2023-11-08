@@ -12,7 +12,8 @@ public class Tank : Enemy
     private Vector2 original_position;
     private float curr_time;
     private Rigidbody2D rb;
-
+    private float cooldown = 2f;
+    private bool trigger_flag;
     void Start()
     {
         //maybe give a velocity to move toward player with
@@ -23,6 +24,7 @@ public class Tank : Enemy
         original_position = new Vector2(transform.position.x,transform.position.y);
         translational_velocity = new Vector2(0f,-1f);
         rb = gameObject.GetComponent<Rigidbody2D>();
+        cooldown = base.calculate_next_fire_time();
         //curr_time = Time.time;
         //theta = 2f;
     }
@@ -31,20 +33,38 @@ public class Tank : Enemy
         
         //transform.position = new Vector2(transform.position.x + translational_velocity.x,transform.position.y + translational_velocity.y);
         rb.velocity = new Vector2(0f,0f);
-        
+        //gameObject.GetComponent<Enemy>().fire();
+        cooldown -= Time.deltaTime;
+        if ((cooldown < 0) && trigger_flag)
+        {
+            base.fire();
+            cooldown = base.calculate_next_fire_time();
+        }
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+		    if (hit.collider != null) {
+			    if (hit.collider.CompareTag("Enemy")){
+				    trigger_flag = false;	
+			    } else {
+				    trigger_flag = true;
+			    }
+		    } else if (hit.collider == null) {
+			      trigger_flag = true;
+		    }
         StartCoroutine("DiveBomb");
     }
     private void OnTriggerEnter2D(Collider2D obj)
     {
         if(obj.gameObject.CompareTag("Bullet")){
+<<<<<<< HEAD
             if(obj.transform.parent.CompareTag("Player")){
                  Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
+=======
+            if (obj.gameObject.transform.parent is null) return;
+            if(obj.gameObject.transform.parent.CompareTag("Player")){
+>>>>>>> master
                 GameManager.instance.enemyCount--;
                 GameManager.instance.RewardPoint();
                 Destroy(this.gameObject);
-            }
-            else{
-                //do nothing
             }
         }
         if(obj.gameObject.CompareTag("Player")){
@@ -73,12 +93,19 @@ public class Tank : Enemy
             Destroy(this.gameObject);
         }
     }
+    public override float calculate_next_fire_time(){
+        return base.calculate_next_fire_time();
+    }
+    public override void fire(){
+        base.fire();
+    }
     IEnumerator DiveBomb(){
         curr_time = gameObject.GetComponent<Enemy>().getSpawnTime();
         if(Time.time - curr_time < 3f){
             moveCircles(original_position.x,original_position.y,movement_radius);
         }
         else{
+            trigger_flag = false;
             rb.velocity = new Vector2(0,-2*Time.deltaTime);
             transform.position = new Vector2(transform.position.x+rb.velocity.x,transform.position.y+rb.velocity.y);
         }

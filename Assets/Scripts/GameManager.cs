@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
+        GameOverScreen.SetActive(false);
     }
 
     public void PlayerHit()
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (livesCount <= 0)
-            PlayerDeath();
+            StartCoroutine(PlayerDeath());
     }
 
     private void UpdateLifeUI()
@@ -104,12 +105,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayerDeath()
+    IEnumerator PlayerDeath()
     {
+        GameOverScreen.SetActive(true);
         enemyCount = 0;
         musicManager.Instance.playSound("player_death");
-        Destroy(PlayerInstance);
         Destroy(EnemySpawnerInstance);
+        yield return new WaitForSeconds(4.5f);
+        PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        Destroy(PlayerInstance);
         Application.LoadLevel(Application.loadedLevel);
     }
 
