@@ -60,6 +60,7 @@ public class SimpleMovement : MonoBehaviour
         original = gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;
         Debug.Log("My original color is " + original + " on " + gameObject.GetComponentInChildren<SpriteRenderer>().name);
+        StartCoroutine("flashChar");
     }
 
     void Update()
@@ -84,9 +85,6 @@ public class SimpleMovement : MonoBehaviour
         }
 
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
-        if(Iframes){
-            StartCoroutine("flashChar");
-        }
         if (Input.GetKey("space") == true)
         {
             if(!Iframes){
@@ -103,8 +101,6 @@ public class SimpleMovement : MonoBehaviour
             Fire();
             }
             else{
-                //StartCoroutine("flashChar");
-                //gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
                 Debug.Log("Cannot shoot while invulnerable! \nColor is " + gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color"));
             }
         }
@@ -120,18 +116,11 @@ public class SimpleMovement : MonoBehaviour
     }
     IEnumerator flashChar(){
         while(Iframes){
-            if(gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color") == original){
             this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
-            //Debug.Log("turn red!");
-            //yield return new WaitForSeconds(1);
-            yield return new WaitForSeconds(1f);
-            }
-            if(gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color") == mycol){
+            yield return new WaitForSeconds(0.25f);
+
             this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",original);
-            //Debug.Log("turn back");
-            yield return new WaitForSeconds(1f);
-            }
-            
+            yield return new WaitForSeconds(0.25f);
         }
     }
      IEnumerator Iframes_timer(){
@@ -140,6 +129,5 @@ public class SimpleMovement : MonoBehaviour
         setIframes();
         }
         Debug.Log("Iframes : " + getIframes());
-        //yield return null;
     }
 }
