@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
             GameManager.instance.enemyCount -= 1;
             GameManager.instance.RewardPoint();
             musicManager.Instance.playSound("enemy_die");
-            Debug.Log("Dies");
+            
             Destroy(this.gameObject, 0.8f);
             isDead = true; 
             BloodBurstParticleEffect bloodBurst = Instantiate(bloodBurstEffect, transform.position, Quaternion.identity);

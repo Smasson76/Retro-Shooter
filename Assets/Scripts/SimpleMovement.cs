@@ -37,6 +37,7 @@ public class SimpleMovement : MonoBehaviour
                     lastShotTime = Time.time;
                 } else {
                     GameManager.instance.multishot = false;
+                    multishotTime = 0;
                     Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
                     bullet.send_off(Vector2.up, bullet_speed, GameManager.instance.xpl);
 
@@ -71,6 +72,7 @@ public class SimpleMovement : MonoBehaviour
             {
                 GameManager.instance.multishot = false;
                 GameManager.instance.MultiShotPowerUpImage.SetActive(false);
+                multishotTime = 0;
             }
         }
         if(GameManager.instance.ocOn == true) {
@@ -81,6 +83,7 @@ public class SimpleMovement : MonoBehaviour
                 GameManager.instance.ocOn = false;
                 GameManager.instance.OverchargePowerUpImage.SetActive(false);
                 cooldownTime = .5f;
+                overchargeTime = 0;
             }
         }
         if(GameManager.instance.xpl == true){
@@ -88,6 +91,7 @@ public class SimpleMovement : MonoBehaviour
             if(xplTime <= 0f){
                 GameManager.instance.xpl = false;
                 GameManager.instance.ExplosivePowerUpImage.SetActive(false);
+                xplTime = 0;
             }
         }
 
