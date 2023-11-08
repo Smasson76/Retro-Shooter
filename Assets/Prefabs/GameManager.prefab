@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5940426146639097070}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,8 +53,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  MultiShotPowerUpImage: {fileID: 0}
+  OverchargePowerUpImage: {fileID: 0}
+  ExplosivePowerUpImage: {fileID: 0}
   Score: 0
+  HighScore: 0
   livesCount: 3
-  GameInPlay: 0
+  enemyCount: 0
   PlayerObject: {fileID: 8737890828014371074, guid: 49ff053fb92a2c24e982f19e56f5a07a, type: 3}
+  PlayerInstance: {fileID: 0}
   EnemySpawnerObject: {fileID: 8721913835373864959, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
+  EnemySpawnerInstance: {fileID: 0}
+  ocOn: 0
+  multishot: 0
+  xpl: 0
