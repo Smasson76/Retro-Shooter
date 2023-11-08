@@ -74,18 +74,18 @@ public class Enemy : MonoBehaviour
             float timer = Time.time;
             GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
             if(obj){
-                Debug.Log("Powerup found! " + obj.tag + " at time " + Time.time);
+                Debug.Log("Powerup found! " + obj.tag);
                 timeStamp -= Time.deltaTime;
                 Debug.Log("del = " + timeStamp);
                 if(timeStamp >= 0f){
                     Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
                     rb.velocity = new Vector2(0f,-1f);
-                    rb.MovePosition(rb.position + rb.velocity * Time.fixedDeltaTime);
+                    rb.MovePosition(obj.transform.position + rb.velocity * Time.fixedDeltaTime);
                     /*rb.velocity = new Vector2(0f,-1f*Time.deltaTime);
                     obj.transform.position = new Vector2(obj.transform.position.x + rb.velocity.x,obj.transform.position.y + rb.velocity.y);*/
                 }
                 else{
-                    Debug.Log("object (" + obj.tag + ") destroyed at " + Time.time);
+                    Debug.Log("object (" + obj.tag + ") destroyed");
                     Destroy(obj);
                 }
             }
