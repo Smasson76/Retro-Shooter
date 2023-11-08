@@ -60,7 +60,7 @@ public class SimpleMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         original = gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;
-        Debug.Log("My original color is " + original + " on " + gameObject.GetComponentInChildren<SpriteRenderer>().name);
+        //Debug.Log("My original color is " + original + " on " + gameObject.GetComponentInChildren<SpriteRenderer>().name);
     }
 
     void Update()
@@ -112,12 +112,12 @@ public class SimpleMovement : MonoBehaviour
                     //GameManager.instance.ocOn = false;
                 //}
             //}
-            Fire();
+                Fire();
             }
             else{
                 //StartCoroutine("flashChar");
                 //gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
-                Debug.Log("Cannot shoot while invulnerable! \nColor is " + gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color"));
+                //Debug.Log("Cannot shoot while invulnerable! \nColor is " + gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color"));
             }
         }
         if(Iframes){
@@ -133,13 +133,13 @@ public class SimpleMovement : MonoBehaviour
     IEnumerator flashChar(){
         while(Iframes){
             if(gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color") == original){
-            this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
+                this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
             //Debug.Log("turn red!");
             //yield return new WaitForSeconds(1);
             yield return new WaitForSeconds(1f);
             }
             if(gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color") == mycol){
-            this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",original);
+                this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",original);
             //Debug.Log("turn back");
             yield return new WaitForSeconds(1f);
             }
@@ -149,9 +149,9 @@ public class SimpleMovement : MonoBehaviour
      IEnumerator Iframes_timer(){
         yield return new WaitForSeconds(IframeCD);
         if(Iframes){
-        setIframes();
+            setIframes();
         }
-        Debug.Log("Iframes : " + getIframes());
+        //Debug.Log("Iframes : " + getIframes());
         //yield return null;
     }
 }
