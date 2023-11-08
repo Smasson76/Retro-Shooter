@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     public float TimeSpawned;
     private float timeStamp=5f;
     bool flag;
+    private List<Rigidbody2D> powerUpPrefabClones = new List<Rigidbody2D>();
+    private int cloneCount =0;
     //public IEnumerator coroutine;
 
     
@@ -71,25 +73,21 @@ public class Enemy : MonoBehaviour
 		    } else if (hit.collider == null) {
 			      can_shoot = true;
 		    }
-            float timer = Time.time;
             GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
             if(obj){
                 Debug.Log("Powerup found! " + obj.tag);
                 timeStamp -= Time.deltaTime;
+                Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+                rb.velocity = new Vector2(0f,-10f);
+                rb.position = obj.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
+                rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
+                //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
                 Debug.Log("del = " + timeStamp);
-                if(timeStamp >= 0f){
-                    Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-                    rb.velocity = new Vector2(0f,-1f);
-                    rb.MovePosition(obj.transform.position + rb.velocity * Time.fixedDeltaTime);
-                    /*rb.velocity = new Vector2(0f,-1f*Time.deltaTime);
-                    obj.transform.position = new Vector2(obj.transform.position.x + rb.velocity.x,obj.transform.position.y + rb.velocity.y);*/
-                }
-                else{
-                    Debug.Log("object (" + obj.tag + ") destroyed");
-                    Destroy(obj);
+                if(timeStamp < 0f){
+                Debug.Log("Powerup destroyed!");
+                Destroy(obj);
                 }
             }
-            //StartCoroutine("powerUpDriftandFade");
     }
     
     public virtual void fire(){
@@ -118,13 +116,11 @@ public class Enemy : MonoBehaviour
             {
                 if (randomValue < chance) {
                     Rigidbody2D powerUpPrefabClone;
-                    powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
-                    //timeStamp = Time.time;
-                    //powerUpPrefabClone.velocity = new Vector2(0,-1f*Time.deltaTime);
-                    //powerUpPrefabClone.transform.position = new Vector2(powerUpPrefabClone.transform.position.x + powerUpPrefabClone.velocity.x,powerUpPrefabClone.transform.position.y+powerUpPrefabClone.velocity.y);
-                    //StartCoroutine("powerUpDriftandFade");
-                    //StartCoroutine("powerUpDriftandFade");
-
+                    powerUpPrefabClone = Instantiate(powerUpPrefab, this.origin_position, transform.rotation) as Rigidbody2D;
+                    powerUpPrefabClone.name = "Power up " + powerUpPrefabClone.tag + cloneCount;
+                    powerUpPrefabClone.velocity = new Vector2(0f,-1f);
+                    powerUpPrefabClone.position = powerUpPrefabClone.transform.forward;
+                    powerUpPrefabClone.MovePosition(this.origin_position + powerUpPrefabClone.velocity*10);
                 }
             }
             Die();
@@ -169,6 +165,6 @@ public class Enemy : MonoBehaviour
         float del = Time.time - timeStamp;
         Debug.Log("Change in time is : " + del);
         rb.velocity = new Vector2(0f,-1f*del);//*Time.deltaTime);
-        rb.position = new Vector2(rb.position.x + rb.velocity.x, rb.position.y + rb.velocity.y);
+        rb.position = new Vector2(rb.position.x + rb.velocity.x, rb.position.y + rb.velocity.y); 
     }
 }
