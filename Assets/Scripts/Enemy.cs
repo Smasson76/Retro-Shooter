@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
     private float safety = 0.25f;
     public Vector2 translational_velocity = new Vector2(0f,0f);
     public float TimeSpawned;
+    private float timeStamp;
+    bool flag;
+    //public IEnumerator coroutine;
 
     
 
@@ -38,6 +41,7 @@ public class Enemy : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         origin_position = transform.position;
 		timeLeft = calculate_next_fire_time();
+        
     }
     public void setSpawnTime(float arg){
         TimeSpawned = arg;
@@ -67,6 +71,24 @@ public class Enemy : MonoBehaviour
 		    } else if (hit.collider == null) {
 			      can_shoot = true;
 		    }
+            float timer = Time.time;
+            GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
+            if(obj){
+                Debug.Log("Powerup found! " + obj.tag + " at time " + Time.time);
+                float del = Time.time - timer;
+                Debug.Log("del = " + del);
+                if(del <= 5f){
+                    Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+                    rb.velocity = new Vector2(0f,-1f*Time.deltaTime);
+                    rb.position = new Vector2(rb.position.x + rb.velocity.x,rb.position.y + rb.velocity.y);
+                }
+                else{
+                    timer = 0f;
+                    Debug.Log("object (" + obj.tag + ") destroyed at " + Time.time);
+                    Destroy(obj);
+                }
+            }
+            //StartCoroutine("powerUpDriftandFade");
     }
     
     void fire(){
@@ -89,6 +111,12 @@ public class Enemy : MonoBehaviour
                 if (randomValue < chance) {
                     Rigidbody2D powerUpPrefabClone;
                     powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
+                    timeStamp = Time.time;
+                    //powerUpPrefabClone.velocity = new Vector2(0,-1f*Time.deltaTime);
+                    //powerUpPrefabClone.transform.position = new Vector2(powerUpPrefabClone.transform.position.x + powerUpPrefabClone.velocity.x,powerUpPrefabClone.transform.position.y+powerUpPrefabClone.velocity.y);
+                    //StartCoroutine("powerUpDriftandFade");
+                    //StartCoroutine("powerUpDriftandFade");
+
                 }
             }
             Die();
@@ -111,5 +139,28 @@ public class Enemy : MonoBehaviour
         theta += omega * Time.deltaTime;
         var cirpos = radius * (new Vector2(Mathf.Cos(theta),Mathf.Sin(theta)));
         this.transform.position = cirpos + _vertex;
+    }
+    IEnumerator powerUpDriftandFade(){
+        if(GameObject.FindWithTag("MultiShotPowerup")){
+        GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
+        Debug.Log("Powerup found! " + obj.tag);
+        Debug.Log("Time.time - timeStamp");
+            if(Time.time - timeStamp < 5f){
+            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            /*rb.velocity = new Vector2(0,-1f);
+            obj.transform.position = new Vector2(obj.transform.position.x+rb.velocity.x,obj.transform.position.y+rb.velocity.y);*/
+            drift(rb);
+            yield return new WaitForSeconds(5f);
+            }
+            Destroy(obj);
+            Debug.Log("Object : " + obj.tag + " destroyed at Timestamp: " + Time.time +"!");
+        }
+    }
+    public void drift(Rigidbody2D rb)
+    {
+        float del = Time.time - timeStamp;
+        Debug.Log("Change in time is : " + del);
+        rb.velocity = new Vector2(0f,-1f*del);//*Time.deltaTime);
+        rb.position = new Vector2(rb.position.x + rb.velocity.x, rb.position.y + rb.velocity.y);
     }
 }

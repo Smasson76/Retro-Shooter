@@ -37,7 +37,7 @@ public class Tank : Enemy
     private void OnTriggerEnter2D(Collider2D obj)
     {
         if(obj.gameObject.CompareTag("Bullet")){
-            if(obj.transform.parent.gameObject.CompareTag("Player")){
+            if(obj.transform.parent.CompareTag("Player")){
                  Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
                 GameManager.instance.enemyCount--;
                 GameManager.instance.RewardPoint();
