@@ -84,6 +84,9 @@ MonoBehaviour:
   multishotTime: 6
   ocStart: 0
   bulletPrefab: {fileID: 4616834049647686514, guid: a6a80f28c0cbb8e4e8a6e37f4673037b, type: 3}
+  mycol: {r: 0, g: 0, b: 0, a: 0}
+  original: {r: 0, g: 0, b: 0, a: 0}
+  IframeCD: 2.5
 --- !u!60 &3342343582215236500
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit()
     {
-        if (livesCount > 0)
+        if (livesCount > 1)
         {
 			musicManager.Instance.playSound("entity_hit");
             Destroy(PlayerInstance);
@@ -98,10 +98,12 @@ public class GameManager : MonoBehaviour
             UpdateLifeUI();
             SpawnPlayer();
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
-        }
-
-        if (livesCount <= 0)
+        } else if (livesCount <= 1){
+            PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
+			PlayerInstance.GetComponentInChildren<Animator>().Play("Destruction");
+			PlayerInstance.GetComponent<SimpleMovement>().disableShip();
             StartCoroutine(PlayerDeath());
+		}
     }
 
     private void UpdateLifeUI()
@@ -121,9 +123,15 @@ public class GameManager : MonoBehaviour
         enemyCount = 0;
         musicManager.Instance.playSound("player_death");
         Destroy(EnemySpawnerInstance);
-        yield return new WaitForSeconds(4.5f);
         PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+		while (!PlayerInstance.GetComponent<SimpleMovement>().hasFinishedExploding()) {
+	        yield return null;
+    	}
+
         Destroy(PlayerInstance);
+
+        yield return new WaitForSeconds(1.5f);
         Application.LoadLevel(Application.loadedLevel);
     }
 
@@ -160,8 +168,8 @@ public class GameManager : MonoBehaviour
     {
 		if (musicManager.Instance.getCurrentTrack() != "GameTheme"){
 			musicManager.Instance.playMusic("GameTheme");
-		}else{
 		}
+
         Score = 0;
         livesCount = 3;
         ScoreText.text = "" + Score;
@@ -175,9 +183,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Debug.Log("Calling Spawn Enemy with " + enemyCount + " remaining!");
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 2f), Quaternion.identity);
-        //EnemySpawnerInstance.GetComponent<EnemySpawner>().setIframes();
     }
 
     public void SpawnPlayer()
