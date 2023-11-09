@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject MultiShotPowerUpImage;
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
+    public GameObject ShieldPowerUpImage;
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     public bool ocOn;
     public bool multishot;
     public bool xpl;
+    public bool shield;
 
     void Awake() 
     {
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         ocOn = false;
         multishot = false;
         xpl = false;
+        shield = false;
     }
 
     void Update () 
@@ -79,7 +82,12 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit()
     {
-        if (livesCount > 0)
+        if (shield)
+        {
+            shield = false;
+            ShieldPowerUpImage.SetActive(false);
+        }
+        else if (livesCount > 0)
         {
 			musicManager.Instance.playSound("entity_hit");
             Destroy(PlayerInstance);
@@ -129,6 +137,10 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 ExplosivePowerUpImage.SetActive(true);
+                break;
+            case 4:
+                shield = true;
+                ShieldPowerUpImage.SetActive(true);
                 break;
             default:
                 break;
