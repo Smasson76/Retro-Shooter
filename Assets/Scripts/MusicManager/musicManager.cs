@@ -5,9 +5,12 @@ using System;
 
 public class musicManager : MonoBehaviour{
     public static musicManager Instance;
+    public int contemp_sfx_count = 4;
+    private int sfx_idx = 0;
 
     public Sound[] musicSounds , sfxSounds;
     [SerializeField] public AudioSource _musicSrc,_FXsrc;
+    private List<AudioSource> _FXsrc_list = new List<AudioSource>();
 
     void Awake(){
         if(Instance == null){
@@ -19,6 +22,12 @@ public class musicManager : MonoBehaviour{
     }
 
     private void Start(){
+        for (int i = 0; i < contemp_sfx_count; i++){
+            AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
+            // set initial volume
+            newAudioSource.volume = .1f;
+            _FXsrc_list.Add(newAudioSource);
+        }
         playMusic("StartMenu");
     }
 
@@ -51,8 +60,10 @@ public class musicManager : MonoBehaviour{
             Debug.Log("Sound not found!");
         }
         else{
-            _FXsrc.clip = s.clip;
-            _FXsrc.Play();
+            AudioSource src = _FXsrc_list[sfx_idx%contemp_sfx_count];
+            src.clip = s.clip;
+            src.Play();
+            sfx_idx++;
         }
     }
 
