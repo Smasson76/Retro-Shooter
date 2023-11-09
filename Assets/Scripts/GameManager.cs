@@ -33,9 +33,9 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInstance;
     public GameObject EnemySpawnerObject;
     public GameObject EnemySpawnerInstance;
-    public Rigidbody2D powerUpPrefab;
-    public Rigidbody2D powerUpPrefab2;
-    public Rigidbody2D powerUpPrefab3;
+    public Rigidbody2D OverChargePrefab;
+    public Rigidbody2D ExplosivePrefab;
+    public Rigidbody2D MultishotPrefab;
 
     [Header("-- PLAYER PROPERTIES --")]
     public bool ocOn;
@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour
                 if(ocOn == true){
                     ocOn = false;
                     OverchargePowerUpImage.SetActive(false);
+                    simpleMovementScript.cooldownTime = .5f;
                     simpleMovementScript.overchargeTime = 0;
                 }
                 if(xpl == true){
@@ -172,6 +173,7 @@ public class GameManager : MonoBehaviour
                 if(ocOn == true){
                     ocOn = false;
                     OverchargePowerUpImage.SetActive(false);
+                    simpleMovementScript.cooldownTime = .5f;
                     simpleMovementScript.overchargeTime = 0;
                 }
                 if(multishot == true){
@@ -193,17 +195,17 @@ public class GameManager : MonoBehaviour
     public void RewardPoint()
     {
         float randomValue = Random.Range(1f,20f);
-        if (randomValue < 3f) {
+        if (randomValue < 3f && ocOn != true) {
             Rigidbody2D powerUpPrefabClone;
-            powerUpPrefabClone = Instantiate(powerUpPrefab, transform.position, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone = Instantiate(OverChargePrefab, transform.position, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
-        } else if (randomValue < 5f) {
+        } else if (randomValue < 5f && xpl != true) {
             Rigidbody2D powerUpPrefabClone2;
-            powerUpPrefabClone2 = Instantiate(powerUpPrefab2, transform.position, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone2 = Instantiate(ExplosivePrefab, transform.position, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
-        } else if (randomValue < 8f) {
+        } else if (randomValue < 8f && multishot != true) {
             Rigidbody2D powerUpPrefabClone3;
-            powerUpPrefabClone3 = Instantiate(powerUpPrefab3, transform.position, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone3 = Instantiate(MultishotPrefab, transform.position, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         }
         Score++;

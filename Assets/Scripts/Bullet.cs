@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb2D;
     private Vector2 velocity = Vector2.up;
     private bool explodes = false;
-    private float xplRange = 1;
+    private float xplRange = 2.5f;
     AudioClip pewpew;
     private float hitTime=0;
     //private float IframeCD = 4f;
@@ -34,44 +34,46 @@ public class Bullet : MonoBehaviour
         Destroy(this.gameObject, 3f);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerEnter2D(Collider2D other){
         
-        if (other.gameObject.CompareTag("Enemy"))
-        {
+        if (other.gameObject.CompareTag("Enemy")){
             if(explodes == true){
                 //does explode
                 //missileCircle();
                 missileCircle(other);
+            } else {
+                Destroy(this.gameObject);
             }
             //GameManager.instance.enemyCount -= 1;
             //GameManager.instance.RewardPoint();
             //Debug.Log("Enemy Count:" + GameManager.instance.enemyCount);
-        } else if (other.gameObject.CompareTag("Player"))
-        {
+            
+        } else if (other.gameObject.CompareTag("Player")){
             if(other.GetComponent<SimpleMovement>().getIframes()){
                 //Debug.Log("Iframes active on " + other.gameObject.tag);
                 /*if(Time.time - hitTime >= 4f){
                         other.GetComponent<SimpleMovement>().setIframes();
                     }*/
-                }
-                else{
-                    Debug.Log("Player hit!");
-                    hitTime = Time.time;
-                    other.GetComponent<SimpleMovement>().setIframes();
-                    //StartCoroutine("Iframe_timer");
-                    //Debug.Log("TimeStamp = " + hitTime);
-                    //other.GetComponent<SimpleMovement>().setIframes();
-                    GameManager.instance.PlayerHit();
-                }
             }
-        } else if (other.gameObject.CompareTag("MultiShotPowerup"))
+            else{
+                //Debug.Log("Player hit!");
+                hitTime = Time.time;
+                other.GetComponent<SimpleMovement>().setIframes();
+                //StartCoroutine("Iframe_timer");
+                //Debug.Log("TimeStamp = " + hitTime);
+                //other.GetComponent<SimpleMovement>().setIframes();
+                GameManager.instance.PlayerHit();
+                Destroy(this.gameObject);
+            }
+        }
+        else if (other.gameObject.CompareTag("MultiShotPowerup"))
         {
             
             GameManager.instance.PowerUpHit(1);
             musicManager.Instance.playSound("trip_laser");
             Destroy(other.gameObject);
             Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            Destroy(this.gameObject);
             
         } else if (other.gameObject.CompareTag("OverchargePowerup"))
         {
@@ -79,6 +81,7 @@ public class Bullet : MonoBehaviour
             GameManager.instance.PowerUpHit(2);
             Destroy(other.gameObject);
             Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            Destroy(this.gameObject);
             
         } else if (other.gameObject.CompareTag("ExplosivePowerup"))
         {
@@ -86,10 +89,12 @@ public class Bullet : MonoBehaviour
             GameManager.instance.PowerUpHit(3);
             Destroy(other.gameObject);
             Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            Destroy(this.gameObject);
             
         }
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+
         
     }
 
@@ -132,6 +137,5 @@ public class Bullet : MonoBehaviour
         }
         
     }
+} 
 
-    
-    

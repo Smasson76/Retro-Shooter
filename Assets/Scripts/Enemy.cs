@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     public AudioClip enemy_death;
     Vector2 origin_position;
     public float theta=0f;
-    private float safety = 0.80f;
+    private float safety = 1.80f;
     public Vector2 translational_velocity = new Vector2(0f,0f);
     public float TimeSpawned;
 
