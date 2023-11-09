@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1793437569651302989}
   - component: {fileID: 5578206819951940510}
   - component: {fileID: 9160992922753177402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   can_shoot: 1
-  bullet: {fileID: 4616834049647686514, guid: a6a80f28c0cbb8e4e8a6e37f4673037b, type: 3}
+  bullet: {fileID: 6553183766210095023, guid: 5c5d86fd0cacf4a48ad854e687eb4501, type: 3}
   bullet_speed: 1
   PointOfFireObject: {fileID: 6200854276260411674}
   anim: {fileID: 4473301696229217348}
@@ -207,6 +207,7 @@ MonoBehaviour:
   enemy_death: {fileID: 0}
   theta: 0
   translational_velocity: {x: 0, y: 0}
+  TimeSpawned: 0
   size_scale: 1.25
   movement_radius: 0.25
 --- !u!1 &6200854276260411674
@@ -218,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6606871078079255478}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PointofFirePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

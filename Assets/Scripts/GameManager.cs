@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Text HighScoreText;
     public GameObject StartGameScreen;
     public GameObject GameOverScreen;
+    public GameObject CreditsScreen;
     public GameObject GameMenu;
     public GameObject[] livesUICounter;
     public GameObject MultiShotPowerUpImage;
@@ -76,6 +77,15 @@ public class GameManager : MonoBehaviour
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
+        CreditsScreen.SetActive(false);
+    }
+
+    public void CreditsMenu()
+    {
+        StartGameScreen.SetActive(false);
+        GameMenu.SetActive(false);
+        GameOverScreen.SetActive(false);
+        CreditsScreen.SetActive(true);
     }
 
     public void PlayerHit()
