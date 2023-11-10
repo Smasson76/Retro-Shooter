@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Text HighScoreText;
     public GameObject StartGameScreen;
     public GameObject GameOverScreen;
+    public GameObject CreditsScreen;
     public GameObject GameMenu;
     public GameObject[] livesUICounter;
     public GameObject OverchargePowerUpImage;
@@ -39,14 +40,26 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D powerUpPrefabClone;
     public Rigidbody2D powerUpPrefabClone2;
     public Rigidbody2D powerUpPrefabClone3;
+	  public Parallax ParallaxBackgroundObject;
+	  public Parallax ParallaxBackgroundInstance;
 
     [Header("-- PLAYER PROPERTIES --")]
     public bool ocOn;
     public bool multishot;
     public bool xpl;
 
+	void Start()
+	{
+	}
+
     void Awake() 
     {
+        ParallaxBackgroundInstance = Instantiate(
+			ParallaxBackgroundObject,
+			new Vector2(0, 0),
+			Quaternion.identity
+		);
+
         if (instance == null) 
         {
             instance = this;
@@ -84,11 +97,21 @@ public class GameManager : MonoBehaviour
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
+        CreditsScreen.SetActive(false);
+		ParallaxBackgroundInstance.goSlow();
+    }
+
+    public void CreditsMenu()
+    {
+        StartGameScreen.SetActive(false);
+        GameMenu.SetActive(false);
+        GameOverScreen.SetActive(false);
+        CreditsScreen.SetActive(true);
     }
 
     public void PlayerHit()
     {
-        if (livesCount > 0)
+        if (livesCount > 1)
         {
 			musicManager.Instance.playSound("entity_hit");
             Destroy(PlayerInstance);
@@ -96,10 +119,13 @@ public class GameManager : MonoBehaviour
             UpdateLifeUI();
             SpawnPlayer();
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
-        }
-
-        if (livesCount <= 0)
+        } else if (livesCount <= 1){
+			ParallaxBackgroundInstance.stopMotion();
+            PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
+			PlayerInstance.GetComponentInChildren<Animator>().Play("Destruction");
+			PlayerInstance.GetComponent<SimpleMovement>().disableShip();
             StartCoroutine(PlayerDeath());
+		}
     }
 
     private void UpdateLifeUI()
@@ -119,12 +145,19 @@ public class GameManager : MonoBehaviour
         enemyCount = 0;
         musicManager.Instance.playSound("player_death");
         Destroy(EnemySpawnerInstance);
-        yield return new WaitForSeconds(4.5f);
         PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+		while (!PlayerInstance.GetComponent<SimpleMovement>().hasFinishedExploding()) {
+	        yield return null;
+    	}
+
         Destroy(PlayerInstance);
         Destroy(powerUpPrefabClone);
         Destroy(powerUpPrefabClone2);
         Destroy(powerUpPrefabClone3);
+
+        yield return new WaitForSeconds(1.5f);
+
         Application.LoadLevel(Application.loadedLevel);
         MultiShotPowerUpImage.SetActive(false);
         OverchargePowerUpImage.SetActive(false);
@@ -219,10 +252,12 @@ public class GameManager : MonoBehaviour
 
     public void StartOnePlayer()
     {
+		ParallaxBackgroundInstance.goFast();
+
 		if (musicManager.Instance.getCurrentTrack() != "GameTheme"){
 			musicManager.Instance.playMusic("GameTheme");
-		}else{
 		}
+
         Score = 0;
         livesCount = 3;
         ScoreText.text = "" + Score;
@@ -238,7 +273,6 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Calling Spawn Enemy with " + enemyCount + " remaining!");
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 2f), Quaternion.identity);
-        //EnemySpawnerInstance.GetComponent<EnemySpawner>().setIframes();
     }
 
     public void SpawnPlayer()
