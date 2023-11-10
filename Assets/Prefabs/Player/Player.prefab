@@ -171,8 +171,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc02df91753536549b0bd7d989a819bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Iframes: 0
   speed: 5
   firing_point_offset: {x: 0, y: 1, z: 0}
   bullet_speed: 1
   cooldownTime: 0.5
+  xplTime: 0
+  overchargeTime: 0
+  multishotTime: 0
+  ocStart: 0
   bulletPrefab: {fileID: 798899180036489932, guid: 8f6de56aa45c04f79a7a5e931fe1c2d0, type: 3}
+  mycol: {r: 0, g: 0, b: 0, a: 0}
+  original: {r: 0, g: 0, b: 0, a: 0}
+  IframeCD: 2.5
