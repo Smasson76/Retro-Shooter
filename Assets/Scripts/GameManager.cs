@@ -32,14 +32,26 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerInstance;
     public GameObject EnemySpawnerObject;
     public GameObject EnemySpawnerInstance;
+	public Parallax ParallaxBackgroundObject;
+	public Parallax ParallaxBackgroundInstance;
 
     [Header("-- PLAYER PROPERTIES --")]
     public bool ocOn;
     public bool multishot;
     public bool xpl;
 
+	void Start()
+	{
+	}
+
     void Awake() 
     {
+        ParallaxBackgroundInstance = Instantiate(
+			ParallaxBackgroundObject,
+			new Vector2(0, 0),
+			Quaternion.identity
+		);
+
         if (instance == null) 
         {
             instance = this;
@@ -78,6 +90,7 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
         CreditsScreen.SetActive(false);
+		ParallaxBackgroundInstance.goSlow();
     }
 
     public void CreditsMenu()
@@ -99,6 +112,7 @@ public class GameManager : MonoBehaviour
             SpawnPlayer();
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
         } else if (livesCount <= 1){
+			ParallaxBackgroundInstance.stopMotion();
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
 			PlayerInstance.GetComponentInChildren<Animator>().Play("Destruction");
 			PlayerInstance.GetComponent<SimpleMovement>().disableShip();
@@ -166,6 +180,8 @@ public class GameManager : MonoBehaviour
 
     public void StartOnePlayer()
     {
+		ParallaxBackgroundInstance.goFast();
+
 		if (musicManager.Instance.getCurrentTrack() != "GameTheme"){
 			musicManager.Instance.playMusic("GameTheme");
 		}
