@@ -26,8 +26,14 @@ public class SimpleMovement : MonoBehaviour
             if(GameManager.instance.multishot == true){
                 if(bulletPowerUpTime > 0f){
                     Bullet bullet1 = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
-                    Bullet bullet2 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(-1f, 0.5f, 0), Quaternion.identity);
-                    Bullet bullet3 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(1f, 0.5f, 0), Quaternion.identity);
+                    bullet1.transform.SetParent(this.transform);
+
+                    Bullet bullet2 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(-1.5f, 0.5f, 0), Quaternion.identity);
+                    bullet2.transform.SetParent(this.transform);
+
+                    Bullet bullet3 = Instantiate(this.bulletPrefab, this.transform.position + new Vector3(1.5f, 0.5f, 0), Quaternion.identity);
+                    bullet3.transform.SetParent(this.transform);
+
                     bullet1.send_off(Vector2.up, bullet_speed, false);
                     bullet2.send_off(Vector2.up, bullet_speed, false);
                     bullet3.send_off(Vector2.up, bullet_speed, false);
