@@ -82,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
     public Enemy selectType(string name){
         Foes s = Array.Find(foeList, x => x.type == name);
         if(s == null){
-            Debug.Log("Type not found!");
+            //Debug.Log("Type not found!");
         }
         else{
             enemy = s.Enemy_Variant;

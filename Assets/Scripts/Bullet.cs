@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb2D;
     private Vector2 velocity = Vector2.up;
     private bool explodes = false;
-    private float xplRange = 2.5f;
+    private float xplRange = 1.5f;
     AudioClip pewpew;
     private float hitTime=0;
     //private float IframeCD = 4f;
@@ -72,7 +72,7 @@ public class Bullet : MonoBehaviour
             GameManager.instance.PowerUpHit(1);
             musicManager.Instance.playSound("trip_laser");
             Destroy(other.gameObject);
-            Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             Destroy(this.gameObject);
             
         } else if (other.gameObject.CompareTag("OverchargePowerup"))
@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
             
             GameManager.instance.PowerUpHit(2);
             Destroy(other.gameObject);
-            Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             Destroy(this.gameObject);
             
         } else if (other.gameObject.CompareTag("ExplosivePowerup"))
@@ -88,7 +88,7 @@ public class Bullet : MonoBehaviour
             
             GameManager.instance.PowerUpHit(3);
             Destroy(other.gameObject);
-            Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             Destroy(this.gameObject);
             
         }
@@ -103,7 +103,7 @@ public class Bullet : MonoBehaviour
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
         Destroy(this.gameObject, exp.main.duration);
-        Debug.Log("exploded objects: "+hitColliders.Length);
+        //Debug.Log("exploded objects: "+hitColliders.Length);
         int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
@@ -112,7 +112,7 @@ public class Bullet : MonoBehaviour
             if(hit_Enemy != null && hit_Enemy != other){
                 //Debug.Log("xpl");
                 temphit++;
-                Debug.Log("exploded enemys: "+temphit);
+                //Debug.Log("exploded enemys: "+temphit);
                 hit_Enemy.Die();
             }
         }
@@ -122,7 +122,7 @@ public class Bullet : MonoBehaviour
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
         Destroy(this.gameObject, exp.main.duration);
-        Debug.Log("exploded objects: "+hitColliders.Length);
+        //Debug.Log("exploded objects: "+hitColliders.Length);
         int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
@@ -131,7 +131,7 @@ public class Bullet : MonoBehaviour
             if(hit_Enemy != null && hit_Enemy != other){
                 //Debug.Log("xpl");
                 temphit++;
-                Debug.Log("exploded enemys: "+temphit);
+                //Debug.Log("exploded enemys: "+temphit);
                 hit_Enemy.Die();
             }
         }

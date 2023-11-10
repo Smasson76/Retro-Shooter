@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject GameMenu;
     public GameObject[] livesUICounter;
-    public GameObject MultiShotPowerUpImage;
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
+    public GameObject MultiShotPowerUpImage;
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D OverChargePrefab;
     public Rigidbody2D ExplosivePrefab;
     public Rigidbody2D MultishotPrefab;
+    public Rigidbody2D powerUpPrefabClone;
+    public Rigidbody2D powerUpPrefabClone2;
+    public Rigidbody2D powerUpPrefabClone3;
 
     [Header("-- PLAYER PROPERTIES --")]
     public bool ocOn;
@@ -119,6 +122,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4.5f);
         PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         Destroy(PlayerInstance);
+        Destroy(powerUpPrefabClone);
+        Destroy(powerUpPrefabClone2);
+        Destroy(powerUpPrefabClone3);
         Application.LoadLevel(Application.loadedLevel);
         MultiShotPowerUpImage.SetActive(false);
         OverchargePowerUpImage.SetActive(false);
@@ -141,32 +147,31 @@ public class GameManager : MonoBehaviour
                     ocOn = false;
                     OverchargePowerUpImage.SetActive(false);
                     simpleMovementScript.cooldownTime = .5f;
-                    simpleMovementScript.overchargeTime = 0;
                 }
                 if(xpl == true){
                     xpl = false;
                     ExplosivePowerUpImage.SetActive(false);
-                    simpleMovementScript.xplTime = 0;
                 }
-                simpleMovementScript.multishotTime += 10;
+                simpleMovementScript.bulletPowerUpTime += 10;
                 MultiShotPowerUpImage.SetActive(true);
                 multishot = true;
+                Debug.Log("multishot on");
                 
                 break;
             case 2:
                 if(multishot == true){
                     multishot = false;
                     MultiShotPowerUpImage.SetActive(false);
-                    simpleMovementScript.multishotTime = 0;
                 }
                 if(xpl == true){
                     xpl = false;
                     ExplosivePowerUpImage.SetActive(false);
-                    simpleMovementScript.xplTime = 0;
+                    
                 }
-                simpleMovementScript.overchargeTime += 8;
+                simpleMovementScript.bulletPowerUpTime += 10;
                 OverchargePowerUpImage.SetActive(true);
                 ocOn=true;
+                Debug.Log("OverCharge on");
                 
                 break;
             case 3:
@@ -174,17 +179,16 @@ public class GameManager : MonoBehaviour
                     ocOn = false;
                     OverchargePowerUpImage.SetActive(false);
                     simpleMovementScript.cooldownTime = .5f;
-                    simpleMovementScript.overchargeTime = 0;
                 }
                 if(multishot == true){
                     multishot = false;
                     MultiShotPowerUpImage.SetActive(false);
-                    simpleMovementScript.multishotTime = 0;
                 }
                 
-                simpleMovementScript.xplTime += 10;
+                simpleMovementScript.bulletPowerUpTime += 10;
                 ExplosivePowerUpImage.SetActive(true);
                 xpl = true;
+                Debug.Log("xpl on");
                 
                 break;
             default:
@@ -196,15 +200,15 @@ public class GameManager : MonoBehaviour
     {
         float randomValue = Random.Range(1f,20f);
         if (randomValue < 3f && ocOn != true) {
-            Rigidbody2D powerUpPrefabClone;
+            //Rigidbody2D powerUpPrefabClone;
             powerUpPrefabClone = Instantiate(OverChargePrefab, transform.position, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 5f && xpl != true) {
-            Rigidbody2D powerUpPrefabClone2;
+            //Rigidbody2D powerUpPrefabClone2;
             powerUpPrefabClone2 = Instantiate(ExplosivePrefab, transform.position, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 8f && multishot != true) {
-            Rigidbody2D powerUpPrefabClone3;
+            //Rigidbody2D powerUpPrefabClone3;
             powerUpPrefabClone3 = Instantiate(MultishotPrefab, transform.position, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         }
@@ -232,7 +236,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Debug.Log("Calling Spawn Enemy with " + enemyCount + " remaining!");
+        //Debug.Log("Calling Spawn Enemy with " + enemyCount + " remaining!");
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 2f), Quaternion.identity);
         //EnemySpawnerInstance.GetComponent<EnemySpawner>().setIframes();
     }

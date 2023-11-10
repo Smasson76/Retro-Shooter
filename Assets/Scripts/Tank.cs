@@ -64,13 +64,13 @@ public class Tank : Enemy
         }
         if(obj.gameObject.CompareTag("Player")){
              if(obj.GetComponent<SimpleMovement>().getIframes()){
-                Debug.Log("Iframes active on " + obj.gameObject.tag);
+                //Debug.Log("Iframes active on " + obj.gameObject.tag);
                 /*if(Time.time - hitTime >= 4f){
                         other.GetComponent<SimpleMovement>().setIframes();
                     }*/
                 }
                 else{
-                    Debug.Log("Player hit!");
+                    //Debug.Log("Player hit!");
                     //hitTime = Time.time;
                     obj.GetComponent<SimpleMovement>().setIframes();
                     //StartCoroutine("Iframe_timer");
@@ -82,7 +82,7 @@ public class Tank : Enemy
                 }
         }
         if(obj.gameObject.CompareTag("ScreenDeath")){
-            Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
+            //Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
             GameManager.instance.enemyCount--;
             GameManager.instance.RewardPoint();
             Destroy(this.gameObject);
