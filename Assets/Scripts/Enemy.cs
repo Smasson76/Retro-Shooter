@@ -121,21 +121,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-<<<<<<< HEAD
-            float randomValue = Random.value;
-            if (GameManager.instance.multishot == false)
-            {
-                if (randomValue < chance) {
-                    Rigidbody2D powerUpPrefabClone;
-                    powerUpPrefabClone = Instantiate(powerUpPrefab, this.origin_position, transform.rotation) as Rigidbody2D;
-                    powerUpPrefabClone.name = "Power up " + powerUpPrefabClone.tag + cloneCount;
-                    powerUpPrefabClone.velocity = new Vector2(0f,-1f);
-                    powerUpPrefabClone.position = powerUpPrefabClone.transform.forward;
-                    powerUpPrefabClone.MovePosition(this.origin_position + powerUpPrefabClone.velocity*10);
-                }
-            }
-=======
->>>>>>> master
             Die();
         }
     }
