@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+>>>>>>> master
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -666,6 +670,10 @@ PrefabInstance:
       propertyPath: OverchargePowerUpImage
       value: 
       objectReference: {fileID: 42419628}
+    - target: {fileID: 5940426146639097070, guid: 720e233d75c1f354a90645317ca435ab, type: 3}
+      propertyPath: ParallaxBackgroundObject
+      value: 
+      objectReference: {fileID: 2144524354421991838, guid: 5a634bddd010946e3ac4392dd7f4f123, type: 3}
     - target: {fileID: 5940426146639097070, guid: 720e233d75c1f354a90645317ca435ab, type: 3}
       propertyPath: livesUICounter.Array.data[0]
       value: 
