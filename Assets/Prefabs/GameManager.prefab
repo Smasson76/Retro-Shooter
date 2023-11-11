@@ -48,6 +48,7 @@ MonoBehaviour:
   HighScoreText: {fileID: 0}
   StartGameScreen: {fileID: 0}
   GameOverScreen: {fileID: 0}
+  CreditsScreen: {fileID: 0}
   GameMenu: {fileID: 0}
   livesUICounter:
   - {fileID: 0}
@@ -64,6 +65,8 @@ MonoBehaviour:
   PlayerInstance: {fileID: 0}
   EnemySpawnerObject: {fileID: 8721913835373864959, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
   EnemySpawnerInstance: {fileID: 0}
+  ParallaxBackgroundObject: {fileID: 2144524354421991838, guid: 5a634bddd010946e3ac4392dd7f4f123, type: 3}
+  ParallaxBackgroundInstance: {fileID: 0}
   ocOn: 0
   multishot: 0
   xpl: 0
