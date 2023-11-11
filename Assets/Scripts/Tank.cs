@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Tank : Enemy
 {
-    public float size_scale = 1.25f;
+    public float size_scale = 1f;
+    public float alpha = 1f;
     public float movement_radius = 0.25f;
     private int Count=0;
     //private Vector2 velocity = new Vector2(0,-1);
@@ -103,7 +104,15 @@ public class Tank : Enemy
             trigger_flag = false;
             rb.velocity = new Vector2(0,-2*Time.deltaTime);
             transform.position = new Vector2(transform.position.x+rb.velocity.x,transform.position.y+rb.velocity.y);
+            StartCoroutine("Grow");
+            //transform.localScale= new Vector3(size_scale + alpha * Time.deltaTime,size_scale + alpha * Time.deltaTime,0f);
         }
+        yield return null;
+    }
+    IEnumerator Grow(){
+        size_scale += alpha/100;
+        transform.localScale = new Vector3(size_scale,size_scale ,0f);
+        Debug.Log("Size: " + transform.localScale.x);
         yield return null;
     }
 }
