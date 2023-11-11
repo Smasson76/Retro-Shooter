@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (GameManager.instance.enemyCount <= 0)
         {
+            GameManager.instance.enemyCount = 0;
             GameManager.instance.SpawnEnemy();
             Destroy(this.gameObject, 2f);
         }
@@ -73,6 +74,7 @@ public class EnemySpawner : MonoBehaviour
                 enemy_i.transform.SetParent(this.transform);
                 enemy_columns[col_idx].Insert(row_idx % swarm_row_num, enemy_i);
                 GameManager.instance.enemyCount++;
+                //Debug.Log("row: " + row_idx + "col: " + col_idx + "Enemy Count: "+GameManager.instance.enemyCount);
             }
         }
 
@@ -80,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
     public Enemy selectType(string name){
         Foes s = Array.Find(foeList, x => x.type == name);
         if(s == null){
-            Debug.Log("Type not found!");
+            //Debug.Log("Type not found!");
         }
         else{
             enemy = s.Enemy_Variant;

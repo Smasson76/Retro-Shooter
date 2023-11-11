@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb2D;
     private Vector2 velocity = Vector2.up;
     private bool explodes = false;
-    private float xplRange = 1;
+    private float xplRange = 1.5f;
     AudioClip pewpew;
     private float hitTime=0;
     //private float IframeCD = 4f;
@@ -34,71 +34,108 @@ public class Bullet : MonoBehaviour
         Destroy(this.gameObject, 3f);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(explodes == true){
-            //does explode
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
-            foreach (Collider2D hit in hitColliders)
-            {
-                Enemy hit_Enemy = hit.GetComponent<Enemy>();
-                if(hit_Enemy != null){
-                    ParticleSystem exp = GetComponent<ParticleSystem>();
-                    exp.Play();
-                    GameManager.instance.RewardPoint();
-                    Destroy(this.gameObject, exp.main.duration);
-                    Destroy(hit_Enemy.gameObject);
-                }
+    private void OnTriggerEnter2D(Collider2D other){
+        
+        if (other.gameObject.CompareTag("Enemy")){
+            if(explodes == true){
+                //does explode
+                //missileCircle();
+                missileCircle(other);
+            } else {
+                Destroy(this.gameObject);
             }
-        } else {
-            //does not explode
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                /*if(transform.parent.CompareTag("Enemy")){
-                    //do nothing
-                    Debug.Log(other.gameObject.tag + " hit by " + this.tag + " -> " + transform.parent.parent.name);
-                }
-                else{*/
-                    GameManager.instance.enemyCount--;
-                    GameManager.instance.RewardPoint();
-                //}
-            }
-            else if (other.gameObject.CompareTag("Player"))
-            {
-                if(other.GetComponent<SimpleMovement>().getIframes()){
-                Debug.Log("Iframes active on " + other.gameObject.tag);
+            //GameManager.instance.enemyCount -= 1;
+            //GameManager.instance.RewardPoint();
+            //Debug.Log("Enemy Count:" + GameManager.instance.enemyCount);
+            
+        } else if (other.gameObject.CompareTag("Player")){
+            if(other.GetComponent<SimpleMovement>().getIframes()){
+                //Debug.Log("Iframes active on " + other.gameObject.tag);
                 /*if(Time.time - hitTime >= 4f){
                         other.GetComponent<SimpleMovement>().setIframes();
                     }*/
-                }
-                else{
-                    Debug.Log("Player hit!");
-                    hitTime = Time.time;
-                    other.GetComponent<SimpleMovement>().setIframes();
-                    //StartCoroutine("Iframe_timer");
-                    Debug.Log("TimeStamp = " + hitTime);
-                    //other.GetComponent<SimpleMovement>().setIframes();
-                    GameManager.instance.PlayerHit();
-                }
             }
+            else{
+                //Debug.Log("Player hit!");
+                hitTime = Time.time;
+                other.GetComponent<SimpleMovement>().setIframes();
+                //StartCoroutine("Iframe_timer");
+                //Debug.Log("TimeStamp = " + hitTime);
+                //other.GetComponent<SimpleMovement>().setIframes();
+                GameManager.instance.PlayerHit();
+                Destroy(this.gameObject);
+            }
+        }
+        else if (other.gameObject.CompareTag("MultiShotPowerup"))
+        {
             
-            if (other.gameObject.CompareTag("MultiShotPowerup"))
-            {
-                GameManager.instance.PowerUpHit(1);
-                musicManager.Instance.playSound("trip_laser");
-                Destroy(other.gameObject);
-            } else if (other.gameObject.CompareTag("OverchargePowerup"))
-            {
-                GameManager.instance.PowerUpHit(2);
-                Destroy(other.gameObject);
-            } else if (other.gameObject.CompareTag("ExplosivePowerup"))
-            {
-                GameManager.instance.PowerUpHit(3);
-                Destroy(other.gameObject);
-            }
-
+            GameManager.instance.PowerUpHit(1);
+            musicManager.Instance.playSound("trip_laser");
+            Destroy(other.gameObject);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             Destroy(this.gameObject);
+            
+        } else if (other.gameObject.CompareTag("OverchargePowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(2);
+            Destroy(other.gameObject);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            Destroy(this.gameObject);
+            
+        } else if (other.gameObject.CompareTag("ExplosivePowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(3);
+            Destroy(other.gameObject);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            Destroy(this.gameObject);
+            
+        }
+
+        //Destroy(this.gameObject);
+
+        
+    }
+
+    private void missileCircle(Collider2D other){
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, xplRange);
+        ParticleSystem exp = GetComponent<ParticleSystem>();
+        exp.Play();
+        Destroy(this.gameObject, exp.main.duration);
+        //Debug.Log("exploded objects: "+hitColliders.Length);
+        int temphit = 0;
+        foreach (Collider2D hit in hitColliders)
+        {
+            Enemy hit_Enemy = hit.GetComponent<Enemy>();
+            
+            if(hit_Enemy != null && hit_Enemy != other){
+                //Debug.Log("xpl");
+                temphit++;
+                //Debug.Log("exploded enemys: "+temphit);
+                hit_Enemy.Die();
+            }
         }
     }
-   
-}
+    private void missileBox(Collider2D other){
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 12), 0);
+        ParticleSystem exp = GetComponent<ParticleSystem>();
+        exp.Play();
+        Destroy(this.gameObject, exp.main.duration);
+        //Debug.Log("exploded objects: "+hitColliders.Length);
+        int temphit = 0;
+        foreach (Collider2D hit in hitColliders)
+        {
+            Enemy hit_Enemy = hit.GetComponent<Enemy>();
+            
+            if(hit_Enemy != null && hit_Enemy != other){
+                //Debug.Log("xpl");
+                temphit++;
+                //Debug.Log("exploded enemys: "+temphit);
+                hit_Enemy.Die();
+            }
+        }
+        
+    }
+} 
+
