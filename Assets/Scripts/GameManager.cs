@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
             Destroy(PlayerInstance);
             livesCount--;
             UpdateLifeUI();
+            SpawnPlayer();
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
         } else if (livesCount <= 1){
             livesCount--;

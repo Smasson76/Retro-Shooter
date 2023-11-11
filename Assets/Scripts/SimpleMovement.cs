@@ -25,9 +25,9 @@ public class SimpleMovement : MonoBehaviour
 
     void Fire()
 	{
-        if((Time.time - lastShotTime) > cooldownTime){
-            if(GameManager.instance.multishot == true){
-                if(bulletPowerUpTime > 0f){
+        if((Time.time - lastShotTime) > cooldownTime) {
+            if(GameManager.instance.multishot == true) {
+                if(bulletPowerUpTime > 0f) {
                     Bullet bullet1 = Instantiate(this.bulletPrefab, this.transform.position + firing_point_offset, Quaternion.identity);
                     bullet1.transform.SetParent(this.transform);
 
@@ -103,7 +103,6 @@ public class SimpleMovement : MonoBehaviour
                     GameManager.instance.ExplosivePowerUpImage.SetActive(false);
                     bulletPowerUpTime = 0;
                 }
-                
             }
         }
 
@@ -137,14 +136,13 @@ public class SimpleMovement : MonoBehaviour
             StartCoroutine("Iframes_timer");
         }
         cooldownTime = 0.5f;
-    }
 		if (shipDisabled == false){
 			rb.velocity = new Vector2(Move * speed, rb.velocity.y);
 			if (Input.GetKey("space") == true)
 			{
 				if(!Iframes){
 					if(GameManager.instance.ocOn == true){
-						if(overchargeTime > 0.0f){
+						if(cooldownTime > 0.0f){
 							cooldownTime = .0005f;
 						} else {
 							cooldownTime = .5f;
@@ -158,7 +156,7 @@ public class SimpleMovement : MonoBehaviour
 				StartCoroutine("Iframes_timer");
 			}
 		}
-	}
+    }
 
 	public void disableShip(){
 		shipDisabled = true;
