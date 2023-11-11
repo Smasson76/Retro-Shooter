@@ -142,8 +142,8 @@ public class SimpleMovement : MonoBehaviour
 			{
 				if(!Iframes){
 					if(GameManager.instance.ocOn == true){
-						if(cooldownTime > 0.0f){
-							cooldownTime = .0005f;
+						if(bulletPowerUpTime > 0.0f){
+							cooldownTime = .25f;
 						} else {
 							cooldownTime = .5f;
 							GameManager.instance.ocOn = false;

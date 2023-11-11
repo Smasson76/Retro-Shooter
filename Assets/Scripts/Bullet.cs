@@ -107,10 +107,10 @@ public class Bullet : MonoBehaviour
         int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
-            Enemy hit_Enemy = hit.GetComponent<Enemy>();
             
-            if(hit_Enemy != null && hit_Enemy != other){
+            if(hit.gameObject.CompareTag("Enemy") != null && hit != other){
                 //Debug.Log("xpl");
+                Enemy hit_Enemy = hit.GetComponent<Enemy>();
                 temphit++;
                 //Debug.Log("exploded enemys: "+temphit);
                 hit_Enemy.Die();
@@ -126,10 +126,9 @@ public class Bullet : MonoBehaviour
         int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
-            Enemy hit_Enemy = hit.GetComponent<Enemy>();
-            
-            if(hit_Enemy != null && hit_Enemy != other){
+            if(hit.gameObject.CompareTag("Enemy") != null && hit != other){
                 //Debug.Log("xpl");
+                Enemy hit_Enemy = hit.GetComponent<Enemy>();
                 temphit++;
                 //Debug.Log("exploded enemys: "+temphit);
                 hit_Enemy.Die();
