@@ -14,7 +14,7 @@ public class Tank : Enemy
     private Rigidbody2D rb;
     private float cooldown = 2f;
     private bool trigger_flag;
-    private bool isDead = false;
+    //private bool isDead = false;
 
     void Start()
     {
@@ -72,19 +72,19 @@ public class Tank : Enemy
                     /*if(Time.time - hitTime >= 4f){
                             other.GetComponent<SimpleMovement>().setIframes();
                         }*/
-                    }
-                    else{
-                        //Debug.Log("Player hit!");
-                        //hitTime = Time.time;
-                        obj.GetComponent<SimpleMovement>().setIframes();
-                        //StartCoroutine("Iframe_timer");
-                        //Debug.Log("TimeStamp = " + hitTime);
-                        //other.GetComponent<SimpleMovement>().setIframes();
-                        GameManager.instance.PlayerHit();
-                        GameManager.instance.enemyCount--;
-                        GameManager.instance.RewardPoint();
-                        isDead = true;
-                    }
+                }
+                else{
+                    //Debug.Log("Player hit!");
+                    //hitTime = Time.time;
+                    obj.GetComponent<SimpleMovement>().setIframes();
+                    //StartCoroutine("Iframe_timer");
+                    //Debug.Log("TimeStamp = " + hitTime);
+                    //other.GetComponent<SimpleMovement>().setIframes();
+                    GameManager.instance.PlayerHit();
+                    GameManager.instance.enemyCount--;
+                    GameManager.instance.RewardPoint();
+                    isDead = true;
+                }
             }
             if(obj.gameObject.CompareTag("ScreenDeath")){
                 //Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
