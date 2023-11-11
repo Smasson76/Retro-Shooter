@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 315640155}
   - component: {fileID: 315640154}
   - component: {fileID: 315640158}
+  - component: {fileID: 315640159}
   m_Layer: 0
   m_Name: ShipSelect
   m_TagString: Untagged
@@ -426,7 +427,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315640153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a065a69fff06ed141845719a3d554c0e, type: 3}
   m_Name: 
@@ -440,7 +441,38 @@ MonoBehaviour:
     shipClip: {fileID: 7400000, guid: 7ef88cb6777b94f2faeda9fe7d2d3e1c, type: 2}
   Ship: {fileID: 8737890828014371074, guid: 49ff053fb92a2c24e982f19e56f5a07a, type: 3}
   instanceShip: {fileID: 0}
+  wantNext: 0
+  wantPrev: 0
+  wantPlay: 0
   shipAnim: {fileID: 0}
+--- !u!114 &315640159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315640153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d936878204ff96c4b9754058f4c1372d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ships:
+  - Name: BlueShip
+    shipClip: {fileID: 7400000, guid: 2ed3402fa5d984257a59c008b4e55a95, type: 2}
+  - Name: GoldShip
+    shipClip: {fileID: 7400000, guid: 98136b8d60b0e498584d381761a39510, type: 2}
+  - Name: GreenShip
+    shipClip: {fileID: 7400000, guid: 7ef88cb6777b94f2faeda9fe7d2d3e1c, type: 2}
+  PlayerObject: {fileID: 8737890828014371074, guid: 49ff053fb92a2c24e982f19e56f5a07a, type: 3}
+  PlayerInstance: {fileID: 0}
+  animator: {fileID: 0}
+  instancedAnimator: {fileID: 0}
+  RAC: {fileID: 9100000, guid: 9637038746a7c41ffab6340428b6fe77, type: 2}
+  clip: {fileID: 0}
+  click_Next: 0
+  click_Prev: 0
+  click_Play: 0
 --- !u!1 &741038471
 GameObject:
   m_ObjectHideFlags: 0
