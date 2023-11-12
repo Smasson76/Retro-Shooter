@@ -150,27 +150,4 @@ public class Enemy : MonoBehaviour
         var cirpos = radius * (new Vector2(Mathf.Cos(theta),Mathf.Sin(theta)));
         this.transform.position = cirpos + _vertex;
     }
-    IEnumerator powerUpDriftandFade(){
-        if(GameObject.FindWithTag("MultiShotPowerup")){
-        GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
-        Debug.Log("Powerup found! " + obj.tag);
-        Debug.Log("Time.time - timeStamp");
-            if(Time.time - timeStamp < 5f){
-            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            /*rb.velocity = new Vector2(0,-1f);
-            obj.transform.position = new Vector2(obj.transform.position.x+rb.velocity.x,obj.transform.position.y+rb.velocity.y);*/
-            drift(rb);
-            yield return new WaitForSeconds(5f);
-            }
-            Destroy(obj);
-            Debug.Log("Object : " + obj.tag + " destroyed at Timestamp: " + Time.time +"!");
-        }
-    }
-    public void drift(Rigidbody2D rb)
-    {
-        float del = Time.time - timeStamp;
-        Debug.Log("Change in time is : " + del);
-        rb.velocity = new Vector2(0f,-1f*del);//*Time.deltaTime);
-        rb.position = new Vector2(rb.position.x + rb.velocity.x, rb.position.y + rb.velocity.y); 
-    }
 }

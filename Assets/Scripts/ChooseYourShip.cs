@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ChooseYourShip : MonoBehaviour
 {
@@ -14,33 +15,37 @@ public class ChooseYourShip : MonoBehaviour
     private AnimatorOverrideController ORAC;
     public AnimationClip clip;
     public bool click_Next = false;
-    public bool click_Prev = false;
+    //public bool click_Prev = false;
     public bool click_Play = false;
+    private string current_state;
+    private string prev_state;
 
     protected int index = 0;
-
+    /**************************************************************************
+    UI ELEMENTS
+    **************************************************************************/
+    private UnityEvent myEvent1 = new UnityEvent();
+    private UnityEvent myEvent2 = new UnityEvent();
+    public UnityEngine.UI.Button _playButton;
+    public UnityEngine.UI.Button _nextButton;
     void Start(){
         GameManager.instance.SpawnPlayer();
         PlayerInstance = GameObject.FindWithTag("Player");
         animator = PlayerInstance.GetComponentInChildren<Animator>();
-        //animator.runtimeAnimatorController = Resources.Load("Assets/Art/PlayerSprites/Ship_Redo_blue_0") as RuntimeAnimatorController;
-        //RuntimeAnimatorController iRAC = Resources.Load("Assets/Art/PlayerSprites/Ship_Redo_blue_0") as RuntimeAnimatorController;
         PlayerInstance.transform.position = new Vector2(0f,0f);
-        
-        /*RAC = new AnimatorOverrideController(animator.runtimeAnimatorController);//PlayerInstance.GetComponentInChildren<RuntimeAnimatorController>();
-        animator.runtimeAnimatorController = new AnimatorOverrideController(RAC);
-        animator.runtimeAnimatorController = ORAC;*/
         animator.ResetTrigger(Ships[index].Name);
+        current_state = "stateBlue";
+        /*************************************************************
+        Button stuff
+        *************************************************************/
+        _playButton.onClick.AddListener(Play);
+        _nextButton.onClick.AddListener(Next);
     }
+
     void Update(){
-        animator = PlayerInstance.GetComponentInChildren<Animator>();
-        //animator.runtimeAnimatorController = Resources.Load("Assets/Art/PlayerSprites/Ship_Redo_blue_0") as RuntimeAnimatorController;
-        //instancedAnimator = animator;
-        //instancedAnimator = PlayerInstance.GetComponent<Animator>();
-        animator.ResetTrigger(Ships[index].Name);
+        prev_state = Ships[index].Name;
+        int temp=0;
         if(click_Next){
-            //toggleBool(click_Next);
-            //animator.ResetTrigger("clicked_next");
             Debug.Log("Next ship has been called");
             if(index < Ships.Length-1 && click_Next){
                 index++;
@@ -51,40 +56,22 @@ public class ChooseYourShip : MonoBehaviour
                 click_Next = false;
             }
             Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
-            //animator.Play(Ships[index].Name);
-            //Destroy(PlayerInstance);
-            //GameManager.instance.SpawnPlayer();
-            //animator.ResetTrigger("clicked_next");
         }
-        if(click_Prev){
-            //toggleBool(click_Prev);
-            //animator.ResetTrigger("clicked_prev");
-            //animator.ResetTrigger("clicked_next");
-            Debug.Log("Previous ship has been called");
-            //int counter = 0;
-            while(index != (index-1)){
-                Next();
-            }
-            click_Prev = false;
-            Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
-            //animator.clip = clip;
-            //PlayerInstance.GetComponentInChildren<Animator>().Play(Ships[index].Name);
-        }
+         animator.ResetTrigger(prev_state);
          animator.SetTrigger(Ships[index].Name);
+         if(click_Play){
+            Debug.Log("Play called!");
+            GameManager.instance.SelectionMade();
+            click_Play = false;
+         }
     }
     void toggleBool(bool arg){
         arg = !arg;
     }
     public void Next(){
         toggleBool(click_Next);
-        //animator.ResetTrigger(Ships[index].Name);
-    }
-    public void Prev(){
-        toggleBool(click_Prev);
-        //animator.ResetTrigger(Ships[index].Name);
     }
     public void Play(){
-        Debug.Log("Play has been called");
-        GameManager.instance.MainMenu();
+        toggleBool(click_Play);
     }
 }

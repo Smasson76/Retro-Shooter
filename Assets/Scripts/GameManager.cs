@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject CreditsScreen;
     public GameObject GameMenu;
+    public GameObject ShipSelection;
     public GameObject[] livesUICounter;
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
@@ -265,10 +266,25 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "" + Score;
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
+        //UpdateLifeUI();
+        SelectShip();
+        //SpawnPlayer();
+        //SpawnEnemy();
+        //Cursor.visible = false;
+    }
+    public void SelectShip()
+    {
+        GameMenu.SetActive(false);
+        ShipSelection.SetActive(true);
+    }
+    public void SelectionMade()
+    {
         UpdateLifeUI();
-        SpawnPlayer();
-        SpawnEnemy();
+        ShipSelection.SetActive(false);
+        PlayerInstance.transform.position = new Vector2(0f,-3f);
+        PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
         Cursor.visible = false;
+        SpawnEnemy();
     }
 
     public void SpawnEnemy()

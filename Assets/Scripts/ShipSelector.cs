@@ -60,6 +60,7 @@ public class ShipSelector : MonoBehaviour
         else{
             //skinIdx = (skinIdx--);//%selections.Length;
             acontrol["shot"] = selections[skinIdx].shipClip;
+            //animator.Play(selections);
             Prev();
         }
     }
