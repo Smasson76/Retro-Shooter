@@ -107,11 +107,13 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         if(isDead == false){
+            float randomValue = Random.Range(1f,20f);
+            
             collider.enabled = false;
             anim.SetTrigger("Death");
             musicManager.Instance.playSound("entity_hit");
             GameManager.instance.enemyCount -= 1;
-            GameManager.instance.RewardPoint();
+            GameManager.instance.RewardPoint(this.transform.position);
             musicManager.Instance.playSound("enemy_die");
             
             Destroy(this.gameObject, 0.8f);

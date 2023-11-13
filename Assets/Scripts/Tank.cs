@@ -60,9 +60,10 @@ public class Tank : Enemy
             if(obj.gameObject.CompareTag("Bullet")){
                 if (obj.gameObject.transform.parent is null) return;
                 if(obj.gameObject.transform.parent.CompareTag("Player")){
-                    GameManager.instance.enemyCount--;
-                    GameManager.instance.RewardPoint();
-                    Destroy(this.gameObject);
+                    Die();
+                    //GameManager.instance.enemyCount--;
+                    //GameManager.instance.RewardPoint();
+                    //Destroy(this.gameObject);
                     isDead = true;
                 }
             }
@@ -81,16 +82,18 @@ public class Tank : Enemy
                     //Debug.Log("TimeStamp = " + hitTime);
                     //other.GetComponent<SimpleMovement>().setIframes();
                     GameManager.instance.PlayerHit();
-                    GameManager.instance.enemyCount--;
-                    GameManager.instance.RewardPoint();
+                    Die();
+                    //GameManager.instance.enemyCount--;
+                    //GameManager.instance.RewardPoint();
                     isDead = true;
                 }
             }
             if(obj.gameObject.CompareTag("ScreenDeath")){
                 //Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
-                GameManager.instance.enemyCount--;
-                GameManager.instance.RewardPoint();
-                Destroy(this.gameObject);
+                Die();
+                //GameManager.instance.enemyCount--;
+                //GameManager.instance.RewardPoint();
+                //Destroy(this.gameObject);
             }
         }
         
