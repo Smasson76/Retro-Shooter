@@ -285,6 +285,8 @@ public class GameManager : MonoBehaviour
     }*/
     public void SelectionMade()
     {
+        Animator Panimator = PlayerObject.GetComponentInChildren<Animator>();
+        Panimator = PlayerInstance.GetComponentInChildren<Animator>();
         UpdateLifeUI();
         ShipSelection.SetActive(false);
         PlayerInstance.transform.position = new Vector2(0f,-4f);

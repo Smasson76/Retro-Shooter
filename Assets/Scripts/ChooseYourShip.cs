@@ -60,7 +60,6 @@ public class ChooseYourShip : MonoBehaviour
                 index = 0;
                 click_Next = false;
             }
-            Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
         }
          animator.ResetTrigger(prev_state);
          animator.SetTrigger(Ships[index].Name);
@@ -69,6 +68,8 @@ public class ChooseYourShip : MonoBehaviour
             GameManager.instance.SelectionMade();
             click_Play = false;
          }
+        Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
+        Debug.Log("Ship Color : " + PlayerInstance.GetComponentInChildren<SpriteRenderer>().sharedMaterial.GetColor("_Color"));
     }
     public void Next(){
         Debug.Log("called Next()");
