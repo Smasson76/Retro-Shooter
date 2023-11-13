@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
         CreditsScreen.SetActive(false);
+        ShipSelection.SetActive(false);
 		ParallaxBackgroundInstance.goSlow();
     }
 
@@ -108,6 +109,7 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
         CreditsScreen.SetActive(true);
+        ShipSelection.SetActive(false);
     }
 
     public void PlayerHit()
@@ -267,21 +269,25 @@ public class GameManager : MonoBehaviour
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
         //UpdateLifeUI();
-        SelectShip();
-        //SpawnPlayer();
+        GameMenu.SetActive(false);
+        ShipSelection.SetActive(true);
+        SpawnPlayer();
         //SpawnEnemy();
         //Cursor.visible = false;
+        //SelectionMade();
     }
-    public void SelectShip()
+    /*public void SelectShip()
     {
         GameMenu.SetActive(false);
         ShipSelection.SetActive(true);
-    }
+        //SpawnPlayer();
+        SelectionMade();
+    }*/
     public void SelectionMade()
     {
         UpdateLifeUI();
         ShipSelection.SetActive(false);
-        PlayerInstance.transform.position = new Vector2(0f,-3f);
+        PlayerInstance.transform.position = new Vector2(0f,-4f);
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
         Cursor.visible = false;
         SpawnEnemy();

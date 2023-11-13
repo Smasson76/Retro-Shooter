@@ -29,8 +29,13 @@ public class ChooseYourShip : MonoBehaviour
     public UnityEngine.UI.Button _playButton;
     public UnityEngine.UI.Button _nextButton;
     void Start(){
-        GameManager.instance.SpawnPlayer();
-        PlayerInstance = GameObject.FindWithTag("Player");
+        if(GameManager.instance.PlayerInstance == null){
+            GameManager.instance.SpawnPlayer();
+            PlayerInstance = GameObject.FindWithTag("Player");
+        }
+        else{
+            PlayerInstance = GameManager.instance.PlayerInstance;
+        }
         animator = PlayerInstance.GetComponentInChildren<Animator>();
         PlayerInstance.transform.position = new Vector2(0f,0f);
         animator.ResetTrigger(Ships[index].Name);
@@ -65,13 +70,13 @@ public class ChooseYourShip : MonoBehaviour
             click_Play = false;
          }
     }
-    void toggleBool(bool arg){
-        arg = !arg;
-    }
     public void Next(){
-        toggleBool(click_Next);
+        Debug.Log("called Next()");
+        click_Next = true;
+        Debug.Log("Bool field : click_Next = " + click_Next);
+
     }
     public void Play(){
-        toggleBool(click_Play);
+        click_Play = true;
     }
 }
