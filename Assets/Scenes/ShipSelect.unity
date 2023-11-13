@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: sfxSounds.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: sfxSounds.Array.data[0].clip
@@ -198,6 +198,22 @@ PrefabInstance:
     - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: sfxSounds.Array.data[5].name
       value: entity_hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a96bbbc6148993428e356f67fd98dc2, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[6].name
+      value: nextSkin
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 94c9cc42596ca1342b39b5028a674e44, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: sfxSounds.Array.data[7].name
+      value: selected
       objectReference: {fileID: 0}
     - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: musicSounds.Array.data[1].clip

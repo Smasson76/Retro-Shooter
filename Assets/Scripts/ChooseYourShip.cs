@@ -66,13 +66,17 @@ public class ChooseYourShip : MonoBehaviour
          if(click_Play){
             Debug.Log("Play called!");
             GameManager.instance.SelectionMade();
+            musicManager.Instance.playSound("selected");
             click_Play = false;
          }
+         clip = Ships[index].shipClip;
         Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
+        Debug.Log("Animation Clip : " + clip);
         Debug.Log("Ship Color : " + PlayerInstance.GetComponentInChildren<SpriteRenderer>().sharedMaterial.GetColor("_Color"));
     }
     public void Next(){
         Debug.Log("called Next()");
+        musicManager.Instance.playSound("nextSkin");
         click_Next = true;
         Debug.Log("Bool field : click_Next = " + click_Next);
 
