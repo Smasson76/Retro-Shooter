@@ -48,6 +48,7 @@ MonoBehaviour:
   HighScoreText: {fileID: 0}
   StartGameScreen: {fileID: 0}
   GameOverScreen: {fileID: 0}
+  CreditsScreen: {fileID: 0}
   GameMenu: {fileID: 0}
   livesUICounter:
   - {fileID: 0}

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject CreditsScreen;
     public GameObject GameMenu;
+    public GameObject ShipSelection;
     public GameObject[] livesUICounter;
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
         CreditsScreen.SetActive(false);
+        ShipSelection.SetActive(false);
 		ParallaxBackgroundInstance.goSlow();
     }
 
@@ -107,6 +109,7 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
         CreditsScreen.SetActive(true);
+        ShipSelection.SetActive(false);
     }
 
     public void PlayerHit()
@@ -265,10 +268,31 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "" + Score;
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
-        UpdateLifeUI();
+        //UpdateLifeUI();
+        GameMenu.SetActive(false);
+        ShipSelection.SetActive(true);
         SpawnPlayer();
-        SpawnEnemy();
+        //SpawnEnemy();
+        //Cursor.visible = false;
+        //SelectionMade();
+    }
+    /*public void SelectShip()
+    {
+        GameMenu.SetActive(false);
+        ShipSelection.SetActive(true);
+        //SpawnPlayer();
+        SelectionMade();
+    }*/
+    public void SelectionMade()
+    {
+        Animator Panimator = PlayerObject.GetComponentInChildren<Animator>();
+        Panimator = PlayerInstance.GetComponentInChildren<Animator>();
+        UpdateLifeUI();
+        ShipSelection.SetActive(false);
+        PlayerInstance.transform.position = new Vector2(0f,-4f);
+        PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
         Cursor.visible = false;
+        SpawnEnemy();
     }
 
     public void SpawnEnemy()
