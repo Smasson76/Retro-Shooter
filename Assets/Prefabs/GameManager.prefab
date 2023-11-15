@@ -48,22 +48,27 @@ MonoBehaviour:
   HighScoreText: {fileID: 0}
   StartGameScreen: {fileID: 0}
   GameOverScreen: {fileID: 0}
+  CreditsScreen: {fileID: 0}
   GameMenu: {fileID: 0}
   livesUICounter:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  MultiShotPowerUpImage: {fileID: 0}
-  OverchargePowerUpImage: {fileID: 0}
-  ExplosivePowerUpImage: {fileID: 0}
+  MultiShotPowerUpImage: {fileID: 7976165240241147638, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
+  OverchargePowerUpImage: {fileID: 179665084981582582, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
+  ExplosivePowerUpImage: {fileID: 5103344038969373788, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
   Score: 0
   HighScore: 0
   livesCount: 3
   enemyCount: 0
+  powerUpCount: 0
   PlayerObject: {fileID: 8737890828014371074, guid: 49ff053fb92a2c24e982f19e56f5a07a, type: 3}
   PlayerInstance: {fileID: 0}
   EnemySpawnerObject: {fileID: 8721913835373864959, guid: f84dd8baf447a4d4daa73b2dda879a9e, type: 3}
   EnemySpawnerInstance: {fileID: 0}
+  powerUpPrefab: {fileID: -5665676056533798616, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
+  powerUpPrefab2: {fileID: -3374542399750337538, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
+  powerUpPrefab3: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
   ocOn: 0
   multishot: 0
   xpl: 0

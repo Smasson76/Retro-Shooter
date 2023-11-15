@@ -14,6 +14,8 @@ public class Tank : Enemy
     private Rigidbody2D rb;
     private float cooldown = 2f;
     private bool trigger_flag;
+    //private bool isDead = false;
+
     void Start()
     {
         //maybe give a velocity to move toward player with
@@ -54,39 +56,47 @@ public class Tank : Enemy
     }
     private void OnTriggerEnter2D(Collider2D obj)
     {
-        if(obj.gameObject.CompareTag("Bullet")){
-            if (obj.gameObject.transform.parent is null) return;
-            if(obj.gameObject.transform.parent.CompareTag("Player")){
-                GameManager.instance.enemyCount--;
-                GameManager.instance.RewardPoint();
-                Destroy(this.gameObject);
+        if(isDead == false){
+            if(obj.gameObject.CompareTag("Bullet")){
+                if (obj.gameObject.transform.parent is null) return;
+                if(obj.gameObject.transform.parent.CompareTag("Player")){
+                    Die();
+                    //GameManager.instance.enemyCount--;
+                    //GameManager.instance.RewardPoint();
+                    //Destroy(this.gameObject);
+                    isDead = true;
+                }
             }
-        }
-        if(obj.gameObject.CompareTag("Player")){
-             if(obj.GetComponent<SimpleMovement>().getIframes()){
-                Debug.Log("Iframes active on " + obj.gameObject.tag);
-                /*if(Time.time - hitTime >= 4f){
-                        other.GetComponent<SimpleMovement>().setIframes();
-                    }*/
+            if(obj.gameObject.CompareTag("Player")){
+                if(obj.GetComponent<SimpleMovement>().getIframes()){
+                    //Debug.Log("Iframes active on " + obj.gameObject.tag);
+                    /*if(Time.time - hitTime >= 4f){
+                            other.GetComponent<SimpleMovement>().setIframes();
+                        }*/
                 }
                 else{
-                    Debug.Log("Player hit!");
+                    //Debug.Log("Player hit!");
                     //hitTime = Time.time;
                     obj.GetComponent<SimpleMovement>().setIframes();
                     //StartCoroutine("Iframe_timer");
                     //Debug.Log("TimeStamp = " + hitTime);
                     //other.GetComponent<SimpleMovement>().setIframes();
                     GameManager.instance.PlayerHit();
-                    GameManager.instance.enemyCount--;
-                    GameManager.instance.RewardPoint();
+                    Die();
+                    //GameManager.instance.enemyCount--;
+                    //GameManager.instance.RewardPoint();
+                    isDead = true;
                 }
+            }
+            if(obj.gameObject.CompareTag("ScreenDeath")){
+                //Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
+                Die();
+                //GameManager.instance.enemyCount--;
+                //GameManager.instance.RewardPoint();
+                //Destroy(this.gameObject);
+            }
         }
-        if(obj.gameObject.CompareTag("ScreenDeath")){
-            Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
-            GameManager.instance.enemyCount--;
-            GameManager.instance.RewardPoint();
-            Destroy(this.gameObject);
-        }
+        
     }
     public override float calculate_next_fire_time(){
         return base.calculate_next_fire_time();
