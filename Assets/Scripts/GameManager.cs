@@ -231,20 +231,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RewardPoint()
+    public void RewardPoint(Vector3 spot)
     {
         float randomValue = Random.Range(1f,20f);
         if (randomValue < 3f && ocOn != true) {
             //Rigidbody2D powerUpPrefabClone;
-            powerUpPrefabClone = Instantiate(OverChargePrefab, transform.position, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone = Instantiate(OverChargePrefab, spot, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 5f && xpl != true) {
             //Rigidbody2D powerUpPrefabClone2;
-            powerUpPrefabClone2 = Instantiate(ExplosivePrefab, transform.position, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone2 = Instantiate(ExplosivePrefab, spot, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 8f && multishot != true) {
             //Rigidbody2D powerUpPrefabClone3;
-            powerUpPrefabClone3 = Instantiate(MultishotPrefab, transform.position, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone3 = Instantiate(MultishotPrefab, spot, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         }
         Score++;
