@@ -18,6 +18,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         place_swarm(swarm_dim_x, swarm_dim_y, swarm_width);
+        enemy.GetComponent<SpriteRenderer>().sharedMaterial.SetColor("_Color",Color.white);
+        GameManager.instance.PlayerInstance.GetComponent<SpriteRenderer>().sharedMaterial.SetColor("_Color",Color.white);
         setSpawnTStamp();
     }
 
