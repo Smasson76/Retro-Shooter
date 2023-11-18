@@ -104,16 +104,18 @@ public class Bullet : MonoBehaviour
         exp.Play();
         Destroy(this.gameObject, exp.main.duration);
         //Debug.Log("exploded objects: "+hitColliders.Length);
-        int temphit = 0;
+        //int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
             
-            if(hit.gameObject.CompareTag("Enemy") != null && hit != other){
+            if(hit.gameObject.CompareTag("Enemy") == true && hit != other){
                 //Debug.Log("xpl");
-                Enemy hit_Enemy = hit.GetComponent<Enemy>();
-                temphit++;
+                hit.gameObject.GetComponent<Enemy>().Die();
+                //Enemy hit_Enemy = hit.GetComponent<Enemy>();
+                //temphit++;
                 //Debug.Log("exploded enemys: "+temphit);
-                hit_Enemy.Die();
+                //hit_Enemy.Die();
+
             }
         }
     }
@@ -123,15 +125,17 @@ public class Bullet : MonoBehaviour
         exp.Play();
         Destroy(this.gameObject, exp.main.duration);
         //Debug.Log("exploded objects: "+hitColliders.Length);
-        int temphit = 0;
+        //int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
-            if(hit.gameObject.CompareTag("Enemy") != null && hit != other){
+            if(hit.gameObject.CompareTag("Enemy") == true && hit != other){
                 //Debug.Log("xpl");
-                Enemy hit_Enemy = hit.GetComponent<Enemy>();
-                temphit++;
+                hit.gameObject.GetComponent<Enemy>().Die();
+                //Enemy hit_Enemy = hit.GetComponent<Enemy>();
+                //temphit++;
                 //Debug.Log("exploded enemys: "+temphit);
-                hit_Enemy.Die();
+                //hit_Enemy.Die();
+
             }
         }
         

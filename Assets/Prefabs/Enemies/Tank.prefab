@@ -200,14 +200,23 @@ MonoBehaviour:
   PointOfFireObject: {fileID: 6200854276260411674}
   anim: {fileID: 4473301696229217348}
   collider: {fileID: 2696305144319198435}
-  powerUpPrefab: {fileID: 1793437569651302989}
+  OverChargePrefab: {fileID: -5665676056533798616, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
+  ExplosivePrefab: {fileID: -3374542399750337538, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
+  MultishotPrefab: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
+  powerUpPrefabClone: {fileID: 0}
+  powerUpPrefabClone2: {fileID: 0}
+  powerUpPrefabClone3: {fileID: 0}
   chance: 0.4
+  chance2: 3
+  chance3: 5
+  chance4: 7
   firing_window: {x: 0, y: 0}
   bloodBurstEffect: {fileID: 910408324081832607, guid: 8892c1482cbbd4e71863b97b7feb246d, type: 3}
   enemy_death: {fileID: 0}
   theta: 0
   translational_velocity: {x: 0, y: 0}
   TimeSpawned: 0
+  isDead: 0
   size_scale: 1.25
   movement_radius: 0.25
 --- !u!1 &6200854276260411674

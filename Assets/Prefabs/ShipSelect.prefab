@@ -336,7 +336,6 @@ GameObject:
   - component: {fileID: 5320878914046396216}
   - component: {fileID: 2870269259715489174}
   - component: {fileID: 5101446043151930883}
-  - component: {fileID: 4957031309680611492}
   - component: {fileID: 7711101628836315646}
   m_Layer: 0
   m_Name: ShipSelect
@@ -428,31 +427,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4957031309680611492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012492475599642981}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a065a69fff06ed141845719a3d554c0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selections:
-  - Name: Blue
-    shipClip: {fileID: 7400000, guid: 2ed3402fa5d984257a59c008b4e55a95, type: 2}
-  - Name: Gold
-    shipClip: {fileID: 7400000, guid: 98136b8d60b0e498584d381761a39510, type: 2}
-  - Name: Green
-    shipClip: {fileID: 7400000, guid: 7ef88cb6777b94f2faeda9fe7d2d3e1c, type: 2}
-  Ship: {fileID: 8737890828014371074, guid: 49ff053fb92a2c24e982f19e56f5a07a, type: 3}
-  instanceShip: {fileID: 0}
-  wantNext: 0
-  wantPrev: 0
-  wantPlay: 0
-  shipAnim: {fileID: 0}
 --- !u!114 &7711101628836315646
 MonoBehaviour:
   m_ObjectHideFlags: 0

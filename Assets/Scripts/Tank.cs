@@ -90,7 +90,12 @@ public class Tank : Enemy
             }
             if(obj.gameObject.CompareTag("ScreenDeath")){
                 //Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
-                Die();
+                GameManager.instance.enemyCount -= 1;
+                GameManager.instance.RewardPoint();
+                musicManager.Instance.playSound("enemy_die");
+                
+                Destroy(this.gameObject, 0.8f);
+                isDead = true;
                 //GameManager.instance.enemyCount--;
                 //GameManager.instance.RewardPoint();
                 //Destroy(this.gameObject);

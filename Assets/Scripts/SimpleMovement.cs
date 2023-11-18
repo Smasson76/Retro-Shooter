@@ -69,7 +69,7 @@ public class SimpleMovement : MonoBehaviour
 
     void Start()
     {
-		    animator = GetComponentInChildren<Animator>();
+		animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         original = GameManager.instance.PlayerInstance.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;

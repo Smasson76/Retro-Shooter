@@ -157,9 +157,9 @@ public class GameManager : MonoBehaviour
     	}
 
         Destroy(PlayerInstance);
-        Destroy(powerUpPrefabClone);
-        Destroy(powerUpPrefabClone2);
-        Destroy(powerUpPrefabClone3);
+        //Destroy(powerUpPrefabClone);
+        //Destroy(powerUpPrefabClone2);
+        //Destroy(powerUpPrefabClone3);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -233,23 +233,26 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-    public void RewardPoint(Vector3 spot)
-    {
+    public void SpawnPowerUp(Vector2 spot){
         float randomValue = Random.Range(1f,20f);
-        if (randomValue < 3f && ocOn != true) {
+        if (randomValue < 3f && GameManager.instance.ocOn != true && powerUpPrefabClone == null) {
             //Rigidbody2D powerUpPrefabClone;
             powerUpPrefabClone = Instantiate(OverChargePrefab, spot, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
-        } else if (randomValue < 5f && xpl != true) {
+        } else if (randomValue < 5f && GameManager.instance.xpl != true && powerUpPrefabClone2 == null) {
             //Rigidbody2D powerUpPrefabClone2;
             powerUpPrefabClone2 = Instantiate(ExplosivePrefab, spot, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
-        } else if (randomValue < 8f && multishot != true) {
+        } else if (randomValue < 8f && GameManager.instance.multishot != true && powerUpPrefabClone3 == null) {
             //Rigidbody2D powerUpPrefabClone3;
             powerUpPrefabClone3 = Instantiate(MultishotPrefab, spot, transform.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         }
+    }
+
+    public void RewardPoint()
+    {
+        
         Score++;
         ScoreText.text = "" + Score;
         CameraShake.instance.shakeDuration = 0.04f;

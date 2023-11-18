@@ -12,10 +12,12 @@ public class Enemy : MonoBehaviour
     public GameObject PointOfFireObject;
     public Animator anim;
     public BoxCollider2D collider;
-    public Rigidbody2D powerUpPrefab;
-    public Rigidbody2D powerUpPrefab2;
-    public Rigidbody2D powerUpPrefab3;
-    public Rigidbody2D powerUpPrefab4;
+    public Rigidbody2D OverChargePrefab;
+    public Rigidbody2D ExplosivePrefab;
+    public Rigidbody2D MultishotPrefab;
+    public Rigidbody2D powerUpPrefabClone;
+    public Rigidbody2D powerUpPrefabClone2;
+    public Rigidbody2D powerUpPrefabClone3;
     public float chance = 1.5f;
     public float chance2 = 3f;
     public float chance3 = 5f;
@@ -128,13 +130,13 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         if(isDead == false){
-            float randomValue = Random.Range(1f,20f);
+            GameManager.instance.SpawnPowerUp(transform.position);
             
             collider.enabled = false;
             anim.SetTrigger("Death");
             musicManager.Instance.playSound("entity_hit");
             GameManager.instance.enemyCount -= 1;
-            GameManager.instance.RewardPoint(this.transform.position);
+            GameManager.instance.RewardPoint();
             musicManager.Instance.playSound("enemy_die");
             
             Destroy(this.gameObject, 0.8f);
