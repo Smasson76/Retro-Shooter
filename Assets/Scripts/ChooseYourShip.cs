@@ -6,20 +6,19 @@ using UnityEngine.Events;
 
 public class ChooseYourShip : MonoBehaviour
 {
+    public static ChooseYourShip instance;
     public Selection[] Ships;
     public GameObject PlayerObject;
     public GameObject PlayerInstance;
-    public Animator animator;
-    public Animator instancedAnimator;
-    public RuntimeAnimatorController RAC;
-    private AnimatorOverrideController ORAC;
-    public AnimationClip clip;
+    public Animator obj_animator;
+    public Animator inst_animator;
     public bool click_Next = false;
-    //public bool click_Prev = false;
+
     public bool click_Play = false;
     private string current_state;
     private string prev_state;
 
+    public string stateatDeath;
     protected int index = 0;
     /**************************************************************************
     UI ELEMENTS
@@ -28,6 +27,18 @@ public class ChooseYourShip : MonoBehaviour
     private UnityEvent myEvent2 = new UnityEvent();
     public UnityEngine.UI.Button _playButton;
     public UnityEngine.UI.Button _nextButton;
+
+    public void Awake()
+    {
+        if(instance == null){
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else{
+            stateatDeath = Ships[index].Name;
+            Destroy(gameObject);
+        }
+    }
     void Start(){
         if(GameManager.instance.PlayerInstance == null){
             GameManager.instance.SpawnPlayer();
@@ -36,9 +47,11 @@ public class ChooseYourShip : MonoBehaviour
         else{
             PlayerInstance = GameManager.instance.PlayerInstance;
         }
-        animator = PlayerInstance.GetComponentInChildren<Animator>();
+        inst_animator = PlayerInstance.GetComponentInChildren<Animator>();
+        obj_animator = GameManager.instance.PlayerObject.GetComponentInChildren<Animator>();
         PlayerInstance.transform.position = new Vector2(0f,0f);
-        animator.ResetTrigger(Ships[index].Name);
+        inst_animator.ResetTrigger(Ships[index].Name);
+        obj_animator.ResetTrigger(Ships[index].Name);
         current_state = "stateBlue";
         /*************************************************************
         Button stuff
@@ -49,7 +62,6 @@ public class ChooseYourShip : MonoBehaviour
 
     void Update(){
         prev_state = Ships[index].Name;
-        int temp=0;
         if(click_Next){
             Debug.Log("Next ship has been called");
             if(index < Ships.Length-1 && click_Next){
@@ -61,18 +73,16 @@ public class ChooseYourShip : MonoBehaviour
                 click_Next = false;
             }
         }
-         animator.ResetTrigger(prev_state);
-         animator.SetTrigger(Ships[index].Name);
+         inst_animator.ResetTrigger(prev_state);
+         inst_animator.SetTrigger(Ships[index].Name);
+         obj_animator.ResetTrigger(prev_state);
+         obj_animator.SetTrigger(Ships[index].Name);
          if(click_Play){
             Debug.Log("Play called!");
             GameManager.instance.SelectionMade();
             musicManager.Instance.playSound("selected");
             click_Play = false;
          }
-         clip = Ships[index].shipClip;
-        Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
-        Debug.Log("Animation Clip : " + clip);
-        Debug.Log("Ship Color : " + PlayerInstance.GetComponentInChildren<SpriteRenderer>().sharedMaterial.GetColor("_Color"));
     }
     public void Next(){
         Debug.Log("called Next()");
@@ -81,7 +91,24 @@ public class ChooseYourShip : MonoBehaviour
         Debug.Log("Bool field : click_Next = " + click_Next);
 
     }
+    public void Die(){
+        GameManager.instance.animation_string = current_state;
+        Destroy(GameManager.instance.PlayerInstance);
+    }
     public void Play(){
         click_Play = true;
+    }
+    public GameObject Respawn()
+    {
+        PlayerObject.GetComponentInChildren<Animator>().SetTrigger(Ships[index].Name);
+        return Instantiate(PlayerObject,new Vector2(0f,-5f),Quaternion.identity);
+    }
+    public string getState()
+    {
+        return Ships[index].Name;
+    }
+    public void TransferState(GameObject someShip){
+        Debug.Log("Trying to set skin to " + Ships[index].Name + " which correspondes to index " + index);
+        someShip.GetComponentInChildren<Animator>().SetTrigger(Ships[index].Name);
     }
 }

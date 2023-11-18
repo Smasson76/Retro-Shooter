@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8737890828014371074}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 540, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74,14 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc02df91753536549b0bd7d989a819bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Iframes: 0
+  Iframes: 1
   speed: 5
   firing_point_offset: {x: 0, y: 1.5, z: 0}
   bullet_speed: 1
   cooldownTime: 0.5
-  xplTime: 0
-  overchargeTime: 4
-  multishotTime: 6
+  bulletPowerUpTime: 730
   ocStart: 0
   bulletPrefab: {fileID: 4616834049647686514, guid: a6a80f28c0cbb8e4e8a6e37f4673037b, type: 3}
   mycol: {r: 0, g: 0, b: 0, a: 0}

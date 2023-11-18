@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimpleMovement : MonoBehaviour
 {
-    public bool Iframes= false;
+    public bool Iframes = false;
     public float speed;
     private float Move;
     public Vector3 firing_point_offset = new Vector3(0, 0.5f, 0);
@@ -18,7 +18,7 @@ public class SimpleMovement : MonoBehaviour
     public Bullet bulletPrefab;
     public Color mycol;
     public Color original;
-    public float IframeCD = 2.5f;
+    public float IframeCD = 4f;
 
 	private Animator animator;
 	private bool shipDisabled = false;
@@ -69,7 +69,7 @@ public class SimpleMovement : MonoBehaviour
 
     void Start()
     {
-		    animator = GetComponentInChildren<Animator>();
+	    //animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         original = GameManager.instance.PlayerInstance.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;
@@ -181,13 +181,13 @@ public class SimpleMovement : MonoBehaviour
     }
 
     IEnumerator flashChar(){
-        while(Iframes){
+            while(Iframes){
             this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
             yield return new WaitForSeconds(0.25f);
 
-            this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",original);
+            this.gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",Color.white);
             yield return new WaitForSeconds(0.25f);
-        }
+            }
     }
      IEnumerator Iframes_timer(){
         yield return new WaitForSeconds(IframeCD);

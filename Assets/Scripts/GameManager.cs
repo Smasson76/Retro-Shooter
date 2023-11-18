@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
     [Header("-- GAME OBJECTS --")]
     public GameObject PlayerObject;
     public GameObject PlayerInstance;
+    public Selection[] Skins;
+    public string animation_string;
     public GameObject EnemySpawnerObject;
     public GameObject EnemySpawnerInstance;
     public Rigidbody2D OverChargePrefab;
@@ -117,10 +120,15 @@ public class GameManager : MonoBehaviour
         if (livesCount > 1)
         {
 			musicManager.Instance.playSound("entity_hit");
+            //animation_string = ChooseYourShip.instance.getState();
+            Debug.Log("Current State: " + animation_string);
             Destroy(PlayerInstance);
+            //ChooseYourShip.instance.Die();
             livesCount--;
             UpdateLifeUI();
             SpawnPlayer();
+            //int index = Array.FindIndex(Skins,x=>x.Name == animation_string);
+            PlayerInstance.GetComponentInChildren<Animator>().SetTrigger(animation_string);
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
         } else if (livesCount <= 1){
             livesCount--;
@@ -236,7 +244,7 @@ public class GameManager : MonoBehaviour
 
     public void RewardPoint(Vector3 spot)
     {
-        float randomValue = Random.Range(1f,20f);
+        float randomValue = UnityEngine.Random.Range(1f,20f);
         if (randomValue < 3f && ocOn != true) {
             //Rigidbody2D powerUpPrefabClone;
             powerUpPrefabClone = Instantiate(OverChargePrefab, spot, transform.rotation) as Rigidbody2D;
@@ -272,23 +280,14 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(false);
         ShipSelection.SetActive(true);
         SpawnPlayer();
-        //SpawnEnemy();
-        //Cursor.visible = false;
-        //SelectionMade();
     }
-    /*public void SelectShip()
-    {
-        GameMenu.SetActive(false);
-        ShipSelection.SetActive(true);
-        //SpawnPlayer();
-        SelectionMade();
-    }*/
     public void SelectionMade()
     {
-        Animator Panimator = PlayerObject.GetComponentInChildren<Animator>();
-        Panimator = PlayerInstance.GetComponentInChildren<Animator>();
         UpdateLifeUI();
+        //PlayerObject.GetComponentInChildren<Animator>().SetTrigger(ChooseYourShip.instance.getState());
+        animation_string = ChooseYourShip.instance.getState();
         ShipSelection.SetActive(false);
+        //PlayerInstance = ChooseYourShip.instance.Respawn();
         PlayerInstance.transform.position = new Vector2(0f,-4f);
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
         Cursor.visible = false;
@@ -304,6 +303,8 @@ public class GameManager : MonoBehaviour
     public void SpawnPlayer()
     {
         PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -5f), Quaternion.identity);
+        Debug.Log("skin in instance of chooseyourship is " + ChooseYourShip.instance.getState());
+        PlayerInstance.GetComponent<SimpleMovement>().setIframes();
     }
 
     public void StartTwoPlayer()
