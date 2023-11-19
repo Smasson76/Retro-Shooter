@@ -69,7 +69,7 @@ public class SimpleMovement : MonoBehaviour
 
     void Start()
     {
-		    animator = GetComponentInChildren<Animator>();
+		animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         original = GameManager.instance.PlayerInstance.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;
@@ -193,6 +193,34 @@ public class SimpleMovement : MonoBehaviour
         yield return new WaitForSeconds(IframeCD);
         if(Iframes){
 			setIframes();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("MultiShotPowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(1);
+            musicManager.Instance.playSound("trip_laser");
+            Destroy(other.gameObject);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            //Destroy(this.gameObject);
+            
+        } else if (other.gameObject.CompareTag("OverchargePowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(2);
+            Destroy(other.gameObject);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            //Destroy(this.gameObject);
+            
+        } else if (other.gameObject.CompareTag("ExplosivePowerup"))
+        {
+            
+            GameManager.instance.PowerUpHit(3);
+            Destroy(other.gameObject);
+            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
+            //Destroy(this.gameObject);
+            
         }
     }
 }
