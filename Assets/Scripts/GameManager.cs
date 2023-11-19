@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using Unity.VisualScripting;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject CreditsScreen;
     public GameObject GameMenu;
     public GameObject ShipSelection;
+
+    public bool selection_has_been_made = false;
     public GameObject[] livesUICounter;
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
@@ -120,15 +124,14 @@ public class GameManager : MonoBehaviour
         if (livesCount > 1)
         {
 			musicManager.Instance.playSound("entity_hit");
-            //animation_string = ChooseYourShip.instance.getState();
-            Debug.Log("Current State: " + animation_string);
+            PlayerInstance.GetComponentInChildren<Animator>().ResetTrigger(animation_string);
             Destroy(PlayerInstance);
-            //ChooseYourShip.instance.Die();
             livesCount--;
             UpdateLifeUI();
             SpawnPlayer();
-            //int index = Array.FindIndex(Skins,x=>x.Name == animation_string);
             PlayerInstance.GetComponentInChildren<Animator>().SetTrigger(animation_string);
+            Debug.Log("animation_string = " + animation_string);
+            //PlayerInstance.GetComponentInChildren<Animator>().SetTrigger(animation_string);
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
         } else if (livesCount <= 1){
             livesCount--;
@@ -282,10 +285,13 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
     }
     public void SelectionMade()
-    {
+    {   
+        Animator big_animator = PlayerObject.GetComponentInChildren<Animator>();
+        big_animator.runtimeAnimatorController = Resources.Load("Assets/Art/PlayerSprites/Ship_Redo_blue_0") as RuntimeAnimatorController;
+        big_animator.SetTrigger(animation_string);
+        selection_has_been_made = true;
         UpdateLifeUI();
         //PlayerObject.GetComponentInChildren<Animator>().SetTrigger(ChooseYourShip.instance.getState());
-        animation_string = ChooseYourShip.instance.getState();
         ShipSelection.SetActive(false);
         //PlayerInstance = ChooseYourShip.instance.Respawn();
         PlayerInstance.transform.position = new Vector2(0f,-4f);
@@ -302,8 +308,11 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
+        if(selection_has_been_made){
+            Animator big_animator = this.PlayerObject.GetComponentInChildren<Animator>();
+            big_animator.runtimeAnimatorController = ChooseYourShip.instance.source_animator.runtimeAnimatorController;
+        }
         PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -5f), Quaternion.identity);
-        Debug.Log("skin in instance of chooseyourship is " + ChooseYourShip.instance.getState());
         PlayerInstance.GetComponent<SimpleMovement>().setIframes();
     }
 
@@ -315,5 +324,8 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void setAnim_string(string arg){
+        animation_string = arg;
     }
 }

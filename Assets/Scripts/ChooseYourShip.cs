@@ -10,7 +10,7 @@ public class ChooseYourShip : MonoBehaviour
     public Selection[] Ships;
     public GameObject PlayerObject;
     public GameObject PlayerInstance;
-    public Animator obj_animator;
+    public Animator source_animator;
     public Animator inst_animator;
     public bool click_Next = false;
 
@@ -28,14 +28,12 @@ public class ChooseYourShip : MonoBehaviour
     public UnityEngine.UI.Button _playButton;
     public UnityEngine.UI.Button _nextButton;
 
-    public void Awake()
-    {
+    void Awake(){
         if(instance == null){
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else{
-            stateatDeath = Ships[index].Name;
             Destroy(gameObject);
         }
     }
@@ -48,10 +46,9 @@ public class ChooseYourShip : MonoBehaviour
             PlayerInstance = GameManager.instance.PlayerInstance;
         }
         inst_animator = PlayerInstance.GetComponentInChildren<Animator>();
-        obj_animator = GameManager.instance.PlayerObject.GetComponentInChildren<Animator>();
+        source_animator = Instantiate(PlayerObject.GetComponentInChildren<Animator>());
+        source_animator.transform.position = new Vector2(-1000f,-1000f);
         PlayerInstance.transform.position = new Vector2(0f,0f);
-        inst_animator.ResetTrigger(Ships[index].Name);
-        obj_animator.ResetTrigger(Ships[index].Name);
         current_state = "stateBlue";
         /*************************************************************
         Button stuff
@@ -73,14 +70,14 @@ public class ChooseYourShip : MonoBehaviour
                 click_Next = false;
             }
         }
-         inst_animator.ResetTrigger(prev_state);
+         //inst_animator.ResetTrigger(prev_state);
          inst_animator.SetTrigger(Ships[index].Name);
-         obj_animator.ResetTrigger(prev_state);
-         obj_animator.SetTrigger(Ships[index].Name);
          if(click_Play){
             Debug.Log("Play called!");
             GameManager.instance.SelectionMade();
             musicManager.Instance.playSound("selected");
+            GameManager.instance.setAnim_string(Ships[index].Name);
+            source_animator.SetTrigger(Ships[index].Name);
             click_Play = false;
          }
     }
@@ -110,5 +107,9 @@ public class ChooseYourShip : MonoBehaviour
     public void TransferState(GameObject someShip){
         Debug.Log("Trying to set skin to " + Ships[index].Name + " which correspondes to index " + index);
         someShip.GetComponentInChildren<Animator>().SetTrigger(Ships[index].Name);
+    }
+    public void cloneanim(GameObject source){
+        Animator anim = source.GetComponentInChildren<Animator>();
+        anim.runtimeAnimatorController = source_animator.runtimeAnimatorController;
     }
 }
