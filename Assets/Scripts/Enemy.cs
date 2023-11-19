@@ -96,8 +96,8 @@ public class Enemy : MonoBehaviour
                 //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
                 Debug.Log("del = " + timeStamp);
                 if(timeStamp < 0f){
-                Debug.Log("Powerup destroyed!");
-                Destroy(obj);
+                    Debug.Log("Powerup destroyed!");
+                    Destroy(obj);
                 }
             }
     }
@@ -130,7 +130,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         if(isDead == false){
-            GameManager.instance.SpawnPowerUp(transform.position);
+            GameManager.instance.SpawnPowerUp(transform);
             
             collider.enabled = false;
             anim.SetTrigger("Death");

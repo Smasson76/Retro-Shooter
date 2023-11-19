@@ -233,19 +233,19 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    public void SpawnPowerUp(Vector2 spot){
+    public void SpawnPowerUp(Transform spot){
         float randomValue = Random.Range(1f,20f);
         if (randomValue < 3f && GameManager.instance.ocOn != true && powerUpPrefabClone == null) {
             //Rigidbody2D powerUpPrefabClone;
-            powerUpPrefabClone = Instantiate(OverChargePrefab, spot, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone = Instantiate(OverChargePrefab, spot.position, spot.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 5f && GameManager.instance.xpl != true && powerUpPrefabClone2 == null) {
             //Rigidbody2D powerUpPrefabClone2;
-            powerUpPrefabClone2 = Instantiate(ExplosivePrefab, spot, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone2 = Instantiate(ExplosivePrefab, spot.position, spot.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 8f && GameManager.instance.multishot != true && powerUpPrefabClone3 == null) {
             //Rigidbody2D powerUpPrefabClone3;
-            powerUpPrefabClone3 = Instantiate(MultishotPrefab, spot, transform.rotation) as Rigidbody2D;
+            powerUpPrefabClone3 = Instantiate(MultishotPrefab, spot.position, spot.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         }
     }
@@ -292,9 +292,10 @@ public class GameManager : MonoBehaviour
         Panimator = PlayerInstance.GetComponentInChildren<Animator>();
         UpdateLifeUI();
         ShipSelection.SetActive(false);
+        GameMenu.SetActive(true);
         PlayerInstance.transform.position = new Vector2(0f,-4f);
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
-        Cursor.visible = false;
+        //Cursor.visible = false;
         SpawnEnemy();
     }
 
