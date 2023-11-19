@@ -85,21 +85,6 @@ public class Enemy : MonoBehaviour
 			      //Debug.Log("Didnt get a hit");
 			      can_shoot = true;
 		    }
-            GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
-            if(obj){
-                Debug.Log("Powerup found! " + obj.tag);
-                timeStamp -= Time.deltaTime;
-                Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(0f,-10f);
-                rb.position = obj.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-                rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-                //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
-                Debug.Log("del = " + timeStamp);
-                if(timeStamp < 0f){
-                    Debug.Log("Powerup destroyed!");
-                    Destroy(obj);
-                }
-            }
     }
     
     public virtual void fire(){

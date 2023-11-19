@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     public int livesCount = 3;
     public int enemyCount = 0;
     public int powerUpCount = 0;
+    private float timeStamp=6f;
+    private float timeStamp2=6f;
+    private float timeStamp3=6f;
     
 
     [Header("-- GAME OBJECTS --")]
@@ -89,6 +92,55 @@ public class GameManager : MonoBehaviour
 			PlayerPrefs.SetInt("HighScore", Score);
 			PlayerPrefs.Save();
 			HighScoreText.text = "" + highScore;
+        }
+        GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
+        if(obj != null){
+            Debug.Log("Powerup found! " + obj.tag);
+            timeStamp -= Time.deltaTime;
+            //Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            //rb.velocity = new Vector2(0f,-10f);
+            //rb.position = obj.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
+            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
+            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
+            Debug.Log("del = " + timeStamp);
+            if(timeStamp < 0f){
+                Debug.Log("Powerup destroyed!");
+                Destroy(obj);
+                timeStamp=6f;
+            }
+        }
+        GameObject obj2 = GameObject.FindWithTag("OverchargePowerup");
+        if(obj2 != null){
+            Debug.Log("Powerup found! " + obj2.tag);
+            timeStamp2 -= Time.deltaTime;
+            //Rigidbody2D rb = obj2.GetComponent<Rigidbody2D>();
+            //rb.velocity = new Vector2(0f,-10f);
+            //rb.position = obj2.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
+            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
+            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
+            Debug.Log("del = " + timeStamp2);
+            if(timeStamp2 < 0f){
+                Debug.Log("Powerup destroyed!");
+                Destroy(obj2);
+                timeStamp2=6f;
+            }
+        }
+
+        GameObject obj3 = GameObject.FindWithTag("ExplosivePowerup");
+        if(obj3 != null){
+            Debug.Log("Powerup found! " + obj3.tag);
+            timeStamp3 -= Time.deltaTime;
+            //Rigidbody2D rb = obj3.GetComponent<Rigidbody2D>();
+            //rb.velocity = new Vector2(0f,-10f);
+            //rb.position = obj3.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
+            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
+            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
+            Debug.Log("del = " + timeStamp3);
+            if(timeStamp3 < 0f){
+                Debug.Log("Powerup destroyed!");
+                Destroy(obj3);
+                timeStamp3=6f;
+            }
         }
     }
 
