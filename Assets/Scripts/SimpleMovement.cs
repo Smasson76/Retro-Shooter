@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class SimpleMovement : MonoBehaviour
 
 	private Animator animator;
 	private bool shipDisabled = false;
+    public string Anim_state;
 
     void Fire()
 	{
@@ -69,6 +71,7 @@ public class SimpleMovement : MonoBehaviour
 
     void Start()
     {
+        Anim_state = "";
 		animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         original = GameManager.instance.PlayerInstance.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
@@ -178,6 +181,14 @@ public class SimpleMovement : MonoBehaviour
 
     public void setIframes(){
         Iframes = !Iframes;
+    }
+    public void set_state(string arg)
+    {
+        Anim_state = arg;
+    }
+    public string get_state()
+    {
+        return Anim_state;
     }
 
     IEnumerator flashChar(){
