@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject CreditsScreen;
     public GameObject GameMenu;
     public GameObject ShipSelection;
+    protected string animation_string;
+    public bool selection_has_been_made =false;
     public GameObject[] livesUICounter;
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
@@ -97,27 +100,36 @@ public class GameManager : MonoBehaviour
         }
         GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
         if(obj != null){
-            Debug.Log("Powerup found! " + obj.tag);
+            //Debug.Log("Powerup found! " + obj.tag);
             timeStamp -= Time.deltaTime;
             //Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             //rb.velocity = new Vector2(0f,-10f);
             //rb.position = obj.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
             //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
             //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
-            Debug.Log("del = " + timeStamp);
+            //Debug.Log("del = " + timeStamp);
             if(timeStamp < 0f){
-                Debug.Log("Powerup destroyed!");
+                //Debug.Log("Powerup destroyed!");
                 Destroy(obj);
                 timeStamp=6f;
             }
         }
         GameObject obj2 = GameObject.FindWithTag("OverchargePowerup");
         if(obj2 != null){
-            Debug.Log("Powerup found! " + obj2.tag);
+            //Debug.Log("Powerup found! " + obj2.tag);
             timeStamp2 -= Time.deltaTime;
+<<<<<<< HEAD
             Debug.Log("del = " + timeStamp2);
+=======
+            //Rigidbody2D rb = obj2.GetComponent<Rigidbody2D>();
+            //rb.velocity = new Vector2(0f,-10f);
+            //rb.position = obj2.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
+            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
+            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
+            //Debug.Log("del = " + timeStamp2);
+>>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
             if(timeStamp2 < 0f){
-                Debug.Log("Powerup destroyed!");
+                //Debug.Log("Powerup destroyed!");
                 Destroy(obj2);
                 timeStamp2=6f;
             }
@@ -125,20 +137,30 @@ public class GameManager : MonoBehaviour
 
         GameObject obj3 = GameObject.FindWithTag("ExplosivePowerup");
         if(obj3 != null){
-            Debug.Log("Powerup found! " + obj3.tag);
+            //Debug.Log("Powerup found! " + obj3.tag);
             timeStamp3 -= Time.deltaTime;
+<<<<<<< HEAD
             Debug.Log("del = " + timeStamp3);
+=======
+            //Rigidbody2D rb = obj3.GetComponent<Rigidbody2D>();
+            //rb.velocity = new Vector2(0f,-10f);
+            //rb.position = obj3.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
+            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
+            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
+            //Debug.Log("del = " + timeStamp3);
+>>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
             if(timeStamp3 < 0f){
-                Debug.Log("Powerup destroyed!");
+                //Debug.Log("Powerup destroyed!");
                 Destroy(obj3);
                 timeStamp3=6f;
             }
         }
+
     }
 
     public void MainMenu()
     {
-        Cursor.visible = true;
+        UnityEngine.Cursor.visible = true;
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
@@ -161,11 +183,17 @@ public class GameManager : MonoBehaviour
         if (livesCount > 1)
         {
 			musicManager.Instance.playSound("entity_hit");
+            string stateAtDeath = PlayerInstance.GetComponent<SimpleMovement>().get_state();
+            PlayerObject.GetComponent<SimpleMovement>().set_state(stateAtDeath);
             Destroy(PlayerInstance);
             livesCount--;
             UpdateLifeUI();
             SpawnPlayer();
-            PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
+            Debug.Log("animation_string " + animation_string);
+            PlayerInstance.GetComponent<SimpleMovement>().setIframes();
+            //ChooseYourShip.instance.ClearStates();
+            ChooseYourShip.instance.ResetSkin(animation_string);
+
         } else if (livesCount <= 1){
             livesCount--;
             UpdateLifeUI();
@@ -234,7 +262,7 @@ public class GameManager : MonoBehaviour
                 simpleMovementScript.bulletPowerUpTime += 10;
                 MultiShotPowerUpImage.SetActive(true);
                 multishot = true;
-                Debug.Log("multishot on");
+                //Debug.Log("multishot on");
                 
                 break;
             case 2:
@@ -250,7 +278,7 @@ public class GameManager : MonoBehaviour
                 simpleMovementScript.bulletPowerUpTime += 10;
                 OverchargePowerUpImage.SetActive(true);
                 ocOn=true;
-                Debug.Log("OverCharge on");
+                //Debug.Log("OverCharge on");
                 
                 break;
             case 3:
@@ -267,7 +295,7 @@ public class GameManager : MonoBehaviour
                 simpleMovementScript.bulletPowerUpTime += 10;
                 ExplosivePowerUpImage.SetActive(true);
                 xpl = true;
-                Debug.Log("xpl on");
+                //Debug.Log("xpl on");
                 
                 break;
             default:
@@ -316,8 +344,8 @@ public class GameManager : MonoBehaviour
 
     public void SelectionMade()
     {
-        Animator Panimator = PlayerObject.GetComponentInChildren<Animator>();
-        Panimator = PlayerInstance.GetComponentInChildren<Animator>();
+        selection_has_been_made = true;
+        PlayerObject.GetComponent<SimpleMovement>().set_state(animation_string);
         UpdateLifeUI();
         ShipSelection.SetActive(false);
         GameMenu.SetActive(true);
@@ -334,7 +362,16 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
+<<<<<<< HEAD
         PlayerInstance = Instantiate(PlayerObject, player_start_coords, Quaternion.identity);
+=======
+        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -5f), Quaternion.identity);
+        if(PlayerInstance != null)
+        {
+            Animator myanim = PlayerInstance.GetComponentInChildren<Animator>();
+            myanim.SetTrigger(PlayerObject.GetComponent<SimpleMovement>().get_state());
+        }
+>>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
     }
 
     public void StartTwoPlayer()
@@ -345,5 +382,13 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void setAnimation_string(string arg)
+    {
+        animation_string = arg;
+    }
+    public string getAnimation_string()
+    {
+        return animation_string;
     }
 }

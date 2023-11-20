@@ -6,11 +6,12 @@ using UnityEngine.Events;
 
 public class ChooseYourShip : MonoBehaviour
 {
+    public static ChooseYourShip instance;
     public Selection[] Ships;
     public GameObject PlayerObject;
     public GameObject PlayerInstance;
     public Animator animator;
-    public Animator instancedAnimator;
+    public Animator source_animator;
     public RuntimeAnimatorController RAC;
     private AnimatorOverrideController ORAC;
     public AnimationClip clip;
@@ -19,6 +20,7 @@ public class ChooseYourShip : MonoBehaviour
     public bool click_Play = false;
     private string current_state;
     private string prev_state;
+    public int death_index;
 
     protected int index = 0;
     /**************************************************************************
@@ -28,6 +30,19 @@ public class ChooseYourShip : MonoBehaviour
     private UnityEvent myEvent2 = new UnityEvent();
     public UnityEngine.UI.Button _playButton;
     public UnityEngine.UI.Button _nextButton;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start(){
         if(GameManager.instance.PlayerInstance == null){
             GameManager.instance.SpawnPlayer();
@@ -37,6 +52,7 @@ public class ChooseYourShip : MonoBehaviour
             PlayerInstance = GameManager.instance.PlayerInstance;
         }
         animator = PlayerInstance.GetComponentInChildren<Animator>();
+        source_animator = GameManager.instance.PlayerObject.GetComponentInChildren<Animator>();
         PlayerInstance.transform.position = new Vector2(0f,0f);
         animator.ResetTrigger(Ships[index].Name);
         current_state = "stateBlue";
@@ -48,8 +64,9 @@ public class ChooseYourShip : MonoBehaviour
     }
 
     void Update(){
+        //ClearStates();
+        if(!GameManager.instance.selection_has_been_made){
         prev_state = Ships[index].Name;
-        int temp=0;
         if(click_Next){
             Debug.Log("Next ship has been called");
             if(index < Ships.Length-1 && click_Next){
@@ -61,10 +78,13 @@ public class ChooseYourShip : MonoBehaviour
                 click_Next = false;
             }
         }
-         animator.ResetTrigger(prev_state);
+         Animator master_animator = GameManager.instance.PlayerObject.GetComponentInChildren<Animator>();
+         master_animator = this.source_animator;
          animator.SetTrigger(Ships[index].Name);
          if(click_Play){
             Debug.Log("Play called!");
+            GameManager.instance.setAnimation_string(Ships[index].Name);
+            //GameManager.instance.PlayerObject.GetComponent<SimpleMovement>().set_state(Ships[index].Name);
             GameManager.instance.SelectionMade();
             musicManager.Instance.playSound("selected");
             click_Play = false;
@@ -73,6 +93,9 @@ public class ChooseYourShip : MonoBehaviour
         Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
         Debug.Log("Animation Clip : " + clip);
         Debug.Log("Ship Color : " + PlayerInstance.GetComponentInChildren<SpriteRenderer>().sharedMaterial.GetColor("_Color"));
+        }
+        Debug.Log("attempting to set " + GameManager.instance.getAnimation_string());
+        animator.SetTrigger(GameManager.instance.PlayerObject.GetComponent<SimpleMovement>().get_state());
     }
     public void Next(){
         Debug.Log("called Next()");
@@ -83,5 +106,16 @@ public class ChooseYourShip : MonoBehaviour
     }
     public void Play(){
         click_Play = true;
+    }
+    public void ResetSkin(string skinname)
+    {
+        Animator respawn_anim = new Animator();
+        respawn_anim = GameManager.instance.PlayerInstance.GetComponentInChildren<Animator>();
+        respawn_anim.SetTrigger(skinname);
+    }
+    public void ClearStates(){
+        for(int i=0;i<Ships.Length -1;i++){
+            animator.ResetTrigger(Ships[i].Name);
+        }
     }
 }

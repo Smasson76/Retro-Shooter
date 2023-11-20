@@ -13,9 +13,15 @@ public class Tank : Enemy
     private Rigidbody2D rb;
     private float cooldown = 2f;
     private bool trigger_flag;
+<<<<<<< HEAD
+=======
+    public float Dive_timer;
+    //private bool isDead = false;
+>>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
 
     void Start()
     {
+        Dive_timer = UnityEngine.Random.Range(0f,10f);
         //maybe give a velocity to move toward player with
         this.gameObject.name = "Tank" + Count + 1;
         Count++;
@@ -91,7 +97,7 @@ public class Tank : Enemy
     }
     IEnumerator DiveBomb(){
         curr_time = gameObject.GetComponent<Enemy>().getSpawnTime();
-        if(Time.time - curr_time < 3f){
+        if(Time.time - curr_time < Dive_timer){
             moveCircles(original_position.x,original_position.y,movement_radius);
         }
         else{
