@@ -44,9 +44,6 @@ public class Bullet : MonoBehaviour
             } else {
                 Destroy(this.gameObject);
             }
-            //GameManager.instance.enemyCount -= 1;
-            //GameManager.instance.RewardPoint();
-            //Debug.Log("Enemy Count:" + GameManager.instance.enemyCount);
             
         } else if (other.gameObject.CompareTag("Player")){
             if(other.GetComponent<SimpleMovement>().getIframes()){
@@ -56,12 +53,8 @@ public class Bullet : MonoBehaviour
                     }*/
             }
             else{
-                //Debug.Log("Player hit!");
                 hitTime = Time.time;
                 other.GetComponent<SimpleMovement>().setIframes();
-                //StartCoroutine("Iframe_timer");
-                //Debug.Log("TimeStamp = " + hitTime);
-                //other.GetComponent<SimpleMovement>().setIframes();
                 GameManager.instance.PlayerHit();
                 Destroy(this.gameObject);
             }
@@ -72,7 +65,6 @@ public class Bullet : MonoBehaviour
             GameManager.instance.PowerUpHit(1);
             musicManager.Instance.playSound("trip_laser");
             Destroy(other.gameObject);
-            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             Destroy(this.gameObject);
             
         } else if (other.gameObject.CompareTag("OverchargePowerup"))
@@ -80,7 +72,6 @@ public class Bullet : MonoBehaviour
             
             GameManager.instance.PowerUpHit(2);
             Destroy(other.gameObject);
-            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             Destroy(this.gameObject);
             
         } else if (other.gameObject.CompareTag("ExplosivePowerup"))
@@ -88,14 +79,9 @@ public class Bullet : MonoBehaviour
             
             GameManager.instance.PowerUpHit(3);
             Destroy(other.gameObject);
-            //Debug.Log("PowerUp Count:" + GameManager.instance.powerUpCount);
             Destroy(this.gameObject);
             
-        }
-
-        //Destroy(this.gameObject);
-
-        
+        } 
     }
 
     private void missileCircle(Collider2D other){
@@ -103,19 +89,10 @@ public class Bullet : MonoBehaviour
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
         Destroy(this.gameObject, exp.main.duration);
-        //Debug.Log("exploded objects: "+hitColliders.Length);
-        //int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
-            
             if(hit.gameObject.CompareTag("Enemy") == true && hit != other){
-                //Debug.Log("xpl");
                 hit.gameObject.GetComponent<Enemy>().Die();
-                //Enemy hit_Enemy = hit.GetComponent<Enemy>();
-                //temphit++;
-                //Debug.Log("exploded enemys: "+temphit);
-                //hit_Enemy.Die();
-
             }
         }
     }
@@ -124,16 +101,11 @@ public class Bullet : MonoBehaviour
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
         Destroy(this.gameObject, exp.main.duration);
-        //Debug.Log("exploded objects: "+hitColliders.Length);
-        //int temphit = 0;
         foreach (Collider2D hit in hitColliders)
         {
             if(hit.gameObject.CompareTag("Enemy") == true && hit != other){
-                //Debug.Log("xpl");
                 hit.gameObject.GetComponent<Enemy>().Die();
                 //Enemy hit_Enemy = hit.GetComponent<Enemy>();
-                //temphit++;
-                //Debug.Log("exploded enemys: "+temphit);
                 //hit_Enemy.Die();
 
             }
