@@ -185,7 +185,6 @@ public class GameManager : MonoBehaviour
             livesCount--;
             UpdateLifeUI();
             SpawnPlayer();
-            Debug.Log("animation_string " + animation_string);
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();
             ChooseYourShip.instance.ResetSkin(animation_string); //doesn't work yet
 
