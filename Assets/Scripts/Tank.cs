@@ -8,13 +8,11 @@ public class Tank : Enemy
     public float size_scale = 1.25f;
     public float movement_radius = 0.25f;
     private int Count=0;
-    //private Vector2 velocity = new Vector2(0,-1);
     private Vector2 original_position;
     private float curr_time;
     private Rigidbody2D rb;
     private float cooldown = 2f;
     private bool trigger_flag;
-    //private bool isDead = false;
 
     void Start()
     {
@@ -27,15 +25,11 @@ public class Tank : Enemy
         translational_velocity = new Vector2(0f,-1f);
         rb = gameObject.GetComponent<Rigidbody2D>();
         cooldown = base.calculate_next_fire_time();
-        //curr_time = Time.time;
-        //theta = 2f;
     }
     void Update(){
         translational_velocity = new Vector2(translational_velocity.x * (Time.deltaTime),translational_velocity.y *(Time.deltaTime));
-        
-        //transform.position = new Vector2(transform.position.x + translational_velocity.x,transform.position.y + translational_velocity.y);
+
         rb.velocity = new Vector2(0f,0f);
-        //gameObject.GetComponent<Enemy>().fire();
         cooldown -= Time.deltaTime;
         if ((cooldown < 0) && trigger_flag)
         {
@@ -61,9 +55,6 @@ public class Tank : Enemy
                 if (obj.gameObject.transform.parent is null) return;
                 if(obj.gameObject.transform.parent.CompareTag("Player")){
                     Die();
-                    //GameManager.instance.enemyCount--;
-                    //GameManager.instance.RewardPoint();
-                    //Destroy(this.gameObject);
                     isDead = true;
                 }
             }
@@ -75,30 +66,19 @@ public class Tank : Enemy
                         }*/
                 }
                 else{
-                    //Debug.Log("Player hit!");
-                    //hitTime = Time.time;
                     obj.GetComponent<SimpleMovement>().setIframes();
-                    //StartCoroutine("Iframe_timer");
-                    //Debug.Log("TimeStamp = " + hitTime);
-                    //other.GetComponent<SimpleMovement>().setIframes();
                     GameManager.instance.PlayerHit();
                     Die();
-                    //GameManager.instance.enemyCount--;
-                    //GameManager.instance.RewardPoint();
                     isDead = true;
                 }
             }
             if(obj.gameObject.CompareTag("ScreenDeath")){
-                //Debug.Log("Enemy " + this + " collided with " + obj.gameObject.tag);
                 GameManager.instance.enemyCount -= 1;
                 GameManager.instance.RewardPoint();
                 musicManager.Instance.playSound("enemy_die");
                 
                 Destroy(this.gameObject, 0.8f);
                 isDead = true;
-                //GameManager.instance.enemyCount--;
-                //GameManager.instance.RewardPoint();
-                //Destroy(this.gameObject);
             }
         }
         

@@ -113,11 +113,6 @@ public class GameManager : MonoBehaviour
         if(obj2 != null){
             Debug.Log("Powerup found! " + obj2.tag);
             timeStamp2 -= Time.deltaTime;
-            //Rigidbody2D rb = obj2.GetComponent<Rigidbody2D>();
-            //rb.velocity = new Vector2(0f,-10f);
-            //rb.position = obj2.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
             Debug.Log("del = " + timeStamp2);
             if(timeStamp2 < 0f){
                 Debug.Log("Powerup destroyed!");
@@ -130,11 +125,6 @@ public class GameManager : MonoBehaviour
         if(obj3 != null){
             Debug.Log("Powerup found! " + obj3.tag);
             timeStamp3 -= Time.deltaTime;
-            //Rigidbody2D rb = obj3.GetComponent<Rigidbody2D>();
-            //rb.velocity = new Vector2(0f,-10f);
-            //rb.position = obj3.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
             Debug.Log("del = " + timeStamp3);
             if(timeStamp3 < 0f){
                 Debug.Log("Powerup destroyed!");
@@ -209,9 +199,6 @@ public class GameManager : MonoBehaviour
     	}
 
         Destroy(PlayerInstance);
-        //Destroy(powerUpPrefabClone);
-        //Destroy(powerUpPrefabClone2);
-        //Destroy(powerUpPrefabClone3);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -288,15 +275,12 @@ public class GameManager : MonoBehaviour
     public void SpawnPowerUp(Transform spot){
         float randomValue = Random.Range(1f,20f);
         if (randomValue < 3f && GameManager.instance.ocOn != true && powerUpPrefabClone == null) {
-            //Rigidbody2D powerUpPrefabClone;
             powerUpPrefabClone = Instantiate(OverChargePrefab, spot.position, spot.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 5f && GameManager.instance.xpl != true && powerUpPrefabClone2 == null) {
-            //Rigidbody2D powerUpPrefabClone2;
             powerUpPrefabClone2 = Instantiate(ExplosivePrefab, spot.position, spot.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         } else if (randomValue < 8f && GameManager.instance.multishot != true && powerUpPrefabClone3 == null) {
-            //Rigidbody2D powerUpPrefabClone3;
             powerUpPrefabClone3 = Instantiate(MultishotPrefab, spot.position, spot.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
         }
@@ -323,21 +307,11 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "" + Score;
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
-        //UpdateLifeUI();
         GameMenu.SetActive(false);
         ShipSelection.SetActive(true);
         SpawnPlayer();
-        //SpawnEnemy();
-        //Cursor.visible = false;
-        //SelectionMade();
     }
-    /*public void SelectShip()
-    {
-        GameMenu.SetActive(false);
-        ShipSelection.SetActive(true);
-        //SpawnPlayer();
-        SelectionMade();
-    }*/
+
     public void SelectionMade()
     {
         Animator Panimator = PlayerObject.GetComponentInChildren<Animator>();
@@ -353,7 +327,6 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        //Debug.Log("Calling Spawn Enemy with " + enemyCount + " remaining!");
         EnemySpawnerInstance = Instantiate(EnemySpawnerObject, new Vector2(0, 2f), Quaternion.identity);
     }
 

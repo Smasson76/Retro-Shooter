@@ -29,16 +29,9 @@ public class EnemySpawner : MonoBehaviour
             GameManager.instance.SpawnEnemy();
             Destroy(this.gameObject, 2f);
         }
-        /*if(!is_enemies()){
-            GameManager.instance.SpawnEnemy();
-            Destroy(this.gameObject,2f);
-        }*/
     }
 
     void place_swarm(int dim_x, int dim_y, int width){
-
-        // int screen_width = width;
-        // float swarm_width = (float) ((screen_width / 3f) * 2);
         
         float swarm_width = width; 
         
@@ -56,7 +49,6 @@ public class EnemySpawner : MonoBehaviour
             enemy_columns.Insert(col_idx, new List<Enemy>());
             for (int row_idx = 0; row_idx < swarm_row_num; row_idx++){
                 float key = (float) UnityEngine.Random.Range(1,10)/10;
-                //Debug.Log("Random key is : " + key);
                 if(key < 0.2f){
                     enemy = selectType("Tank");
                     myTanks++;
@@ -74,7 +66,6 @@ public class EnemySpawner : MonoBehaviour
                 enemy_i.transform.SetParent(this.transform);
                 enemy_columns[col_idx].Insert(row_idx % swarm_row_num, enemy_i);
                 GameManager.instance.enemyCount++;
-                //Debug.Log("row: " + row_idx + "col: " + col_idx + "Enemy Count: "+GameManager.instance.enemyCount);
             }
         }
 
@@ -96,17 +87,4 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
-    /*public bool is_enemies(){
-        int counter=0;
-        foreach(List<Enemy>sub in GameManager.instance.EnemySpawnerInstance.GetComponent<EnemySpawner>().enemy_columns){
-            foreach(Enemy enemy in sub){
-                counter++;
-            }
-        }
-        Debug.Log("There are " + counter + " enemies");
-        if(counter > myTanks){
-            return true;
-        }
-        else return false;
-    }*/
 }
