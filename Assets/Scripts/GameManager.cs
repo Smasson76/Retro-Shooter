@@ -367,12 +367,10 @@ public class GameManager : MonoBehaviour
 
 	public void on_player_entered(){
 		on_stage_one_complete();
-		Debug.Log("Stage one complete");
 	}
 
 	private void StartGame_stage2(){
 		// Enemy spawn sound plays
-		Debug.Log("Stage one started");
         SpawnEnemy();
 	}
 
@@ -381,7 +379,6 @@ public class GameManager : MonoBehaviour
 	}
 
 	private void on_stage_two_complete(){
-		Debug.Log("Stage 2 complete!!!");
 		// play soundtrack
 	}
 
