@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     public bool multishot;
     public bool xpl;
 
+	private Vector2 player_start_coords = new Vector2(0, -5f);
+
 	void Start()
 	{
 	}
@@ -319,7 +321,7 @@ public class GameManager : MonoBehaviour
         UpdateLifeUI();
         ShipSelection.SetActive(false);
         GameMenu.SetActive(true);
-        PlayerInstance.transform.position = new Vector2(0f,-4f);
+        PlayerInstance.transform.position = player_start_coords;
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
         //Cursor.visible = false;
         SpawnEnemy();
@@ -332,7 +334,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -5f), Quaternion.identity);
+        PlayerInstance = Instantiate(PlayerObject, player_start_coords, Quaternion.identity);
     }
 
     public void StartTwoPlayer()
