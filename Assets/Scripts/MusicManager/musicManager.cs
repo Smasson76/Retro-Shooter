@@ -46,7 +46,7 @@ public class musicManager : MonoBehaviour{
 		for (int i = 0; i < musicSounds.Length; i++){
 			Sound current_sound = musicSounds[i];	
 		    if (current_sound.clip.name == current_track_name){
-		    	Debug.Log("Track found! " + current_track_name);
+		    	//Debug.Log("Track found! " + current_track_name);
 				return current_sound.name;
 		    }
 		}	

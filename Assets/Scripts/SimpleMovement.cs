@@ -69,11 +69,10 @@ public class SimpleMovement : MonoBehaviour
 
     void Start()
     {
-		    animator = GetComponentInChildren<Animator>();
+		animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         original = GameManager.instance.PlayerInstance.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;
-        //Debug.Log("My original color is " + original + " on " + gameObject.GetComponentInChildren<SpriteRenderer>().name);
         StartCoroutine("flashChar");
     }
 
@@ -108,22 +107,9 @@ public class SimpleMovement : MonoBehaviour
 
 
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
-        /*if(Iframes){
-            StartCoroutine("flashChar");
-        }*/
         if (Input.GetKey("space") == true)
         {
             if(!Iframes){
-            //spr.material.SetColor("_Color", newCol);
-            //if(GameManager.instance.ocOn == true){
-                //bulletPowerUpTime -= Time.deltaTime;
-                //if(bulletPowerUpTime > 0.0f){
-                    //cooldownTime = .1f;
-                //} else {
-                    //cooldownTime = .5f;
-                    //GameManager.instance.ocOn = false;
-                //}
-            //}
                 Fire();
             }
             else{
@@ -193,6 +179,22 @@ public class SimpleMovement : MonoBehaviour
         yield return new WaitForSeconds(IframeCD);
         if(Iframes){
 			setIframes();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("MultiShotPowerup"))
+        {
+            GameManager.instance.PowerUpHit(1);
+            musicManager.Instance.playSound("trip_laser");
+            Destroy(other.gameObject);
+        } else if (other.gameObject.CompareTag("OverchargePowerup"))
+        {
+            GameManager.instance.PowerUpHit(2);
+            Destroy(other.gameObject);
+        } else if (other.gameObject.CompareTag("ExplosivePowerup"))
+        {
+            GameManager.instance.PowerUpHit(3);
+            Destroy(other.gameObject);
         }
     }
 }
