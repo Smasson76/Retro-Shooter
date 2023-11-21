@@ -41,9 +41,9 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D OverChargePrefab;
     public Rigidbody2D ExplosivePrefab;
     public Rigidbody2D MultishotPrefab;
-    public Rigidbody2D powerUpPrefabClone;
-    public Rigidbody2D powerUpPrefabClone2;
-    public Rigidbody2D powerUpPrefabClone3;
+    private Rigidbody2D powerUpPrefabClone;
+    private Rigidbody2D powerUpPrefabClone2;
+    private Rigidbody2D powerUpPrefabClone3;
 	  public Parallax ParallaxBackgroundObject;
 	  public Parallax ParallaxBackgroundInstance;
 
