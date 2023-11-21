@@ -213,4 +213,12 @@ public class SimpleMovement : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+	public void player_enter(){
+		animator.Play("Entrance");
+	}
+
+	public void on_player_entered(){
+		GameManager.instance.on_player_entered();
+	}
 }
