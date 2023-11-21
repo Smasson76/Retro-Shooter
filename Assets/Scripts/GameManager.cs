@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
     public GameObject MultiShotPowerUpImage;
+    public GameObject ShieldPowerUpImage;
 
     [Header("-- GAME PROPERTIES --")]
     public int Score = 0;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private float timeStamp=6f;
     private float timeStamp2=6f;
     private float timeStamp3=6f;
+    private float timeStamp4 = 10f;
     
 
     [Header("-- GAME OBJECTS --")]
@@ -41,9 +43,11 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D OverChargePrefab;
     public Rigidbody2D ExplosivePrefab;
     public Rigidbody2D MultishotPrefab;
+    public Rigidbody2D ShieldPrefab;
     private Rigidbody2D powerUpPrefabClone;
     private Rigidbody2D powerUpPrefabClone2;
     private Rigidbody2D powerUpPrefabClone3;
+    private Rigidbody2D powerUpPrefabClone4;
 	  public Parallax ParallaxBackgroundObject;
 	  public Parallax ParallaxBackgroundInstance;
 
@@ -51,6 +55,7 @@ public class GameManager : MonoBehaviour
     public bool ocOn;
     public bool multishot;
     public bool xpl;
+    public bool shield;
 
 	void Start()
 	{
@@ -80,9 +85,11 @@ public class GameManager : MonoBehaviour
         MultiShotPowerUpImage.SetActive(false);
         OverchargePowerUpImage.SetActive(false);
         ExplosivePowerUpImage.SetActive(false);
+        ShieldPowerUpImage.SetActive(false);
         ocOn = false;
         multishot = false;
         xpl = false;
+        shield = false;
     }
 
     void Update () 
@@ -132,6 +139,18 @@ public class GameManager : MonoBehaviour
                 timeStamp3=6f;
             }
         }
+
+        GameObject obj4 = GameObject.FindWithTag("ShieldPowerup");
+        if(obj4 != null)
+        {
+            Debug.Log("shield found");
+            if(timeStamp4 < 0f)
+            {
+                Debug.Log("Shield destroyed");
+                Destroy(obj4);
+                timeStamp4 = 10f;
+            }
+        }
     }
 
     public void MainMenu()
@@ -156,7 +175,12 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit()
     {
-        if (livesCount > 1)
+        if (shield)
+        {
+            shield = false;
+            ShieldPowerUpImage.SetActive(false);
+        }
+        else if (livesCount > 1)
         {
 			musicManager.Instance.playSound("entity_hit");
             Destroy(PlayerInstance);
@@ -268,6 +292,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("xpl on");
                 
                 break;
+            case 4:
+                shield = true;
+                ShieldPowerUpImage.SetActive(true);
+                break;
             default:
                 break;
         }
@@ -283,6 +311,13 @@ public class GameManager : MonoBehaviour
         } else if (randomValue < 8f && GameManager.instance.multishot != true && powerUpPrefabClone3 == null) {
             powerUpPrefabClone3 = Instantiate(MultishotPrefab, spot.position, spot.rotation) as Rigidbody2D;
             GameManager.instance.powerUpCount += 1;
+        }
+        else if (randomValue < 12f && shield != true && powerUpPrefabClone4 == null)
+        {
+            Debug.Log("Trying to spawn shield");
+            powerUpPrefabClone4 = Instantiate(ShieldPrefab, spot.position, spot.rotation) as Rigidbody2D;
+            powerUpCount += 1;
+            Debug.Log("Shield spawned");
         }
     }
 
