@@ -1,0 +1,9 @@
+{
+    "name": "AssemblyFolder",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}
