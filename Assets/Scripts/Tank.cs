@@ -13,16 +13,8 @@ public class Tank : Enemy
     private Rigidbody2D rb;
     private float cooldown = 2f;
     private bool trigger_flag;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     public float Dive_timer;
-    //private bool isDead = false;
->>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
-=======
-    public float Dive_timer;
-    //private bool isDead = false;
->>>>>>> d16dc14 (preparing final PR)
+
 
     void Start()
     {

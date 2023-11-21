@@ -109,20 +109,7 @@ public class GameManager : MonoBehaviour
         GameObject obj2 = GameObject.FindWithTag("OverchargePowerup");
         if(obj2 != null){
             timeStamp2 -= Time.deltaTime;
-<<<<<<< HEAD
-<<<<<<< HEAD
-            Debug.Log("del = " + timeStamp2);
-=======
-            //Rigidbody2D rb = obj2.GetComponent<Rigidbody2D>();
-            //rb.velocity = new Vector2(0f,-10f);
-            //rb.position = obj2.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
-            //Debug.Log("del = " + timeStamp2);
->>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
-=======
-            Debug.Log("del = " + timeStamp2);
->>>>>>> d16dc14 (preparing final PR)
+
             if(timeStamp2 < 0f){
                 Destroy(obj2);
                 timeStamp2=6f;
@@ -132,20 +119,8 @@ public class GameManager : MonoBehaviour
         GameObject obj3 = GameObject.FindWithTag("ExplosivePowerup");
         if(obj3 != null){
             timeStamp3 -= Time.deltaTime;
-<<<<<<< HEAD
-<<<<<<< HEAD
             Debug.Log("del = " + timeStamp3);
-=======
-            //Rigidbody2D rb = obj3.GetComponent<Rigidbody2D>();
-            //rb.velocity = new Vector2(0f,-10f);
-            //rb.position = obj3.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
-            //Debug.Log("del = " + timeStamp3);
->>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
-=======
-            Debug.Log("del = " + timeStamp3);
->>>>>>> d16dc14 (preparing final PR)
+
             if(timeStamp3 < 0f){
                 Destroy(obj3);
                 timeStamp3=6f;
@@ -352,16 +327,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-<<<<<<< HEAD
         PlayerInstance = Instantiate(PlayerObject, player_start_coords, Quaternion.identity);
-=======
-        PlayerInstance = Instantiate(PlayerObject, new Vector2(0, -5f), Quaternion.identity);
         if(PlayerInstance != null)
         {
             Animator myanim = PlayerInstance.GetComponentInChildren<Animator>();
             myanim.SetTrigger(PlayerObject.GetComponent<SimpleMovement>().get_state());
         }
->>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
     }
 
     public void StartTwoPlayer()
