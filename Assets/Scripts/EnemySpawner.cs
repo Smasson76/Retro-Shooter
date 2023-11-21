@@ -93,7 +93,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
 	public void spawn_enter(){
-		//animator.Play("EnemyEntrance");
+		animator.Play("EnemyEntrance");
 	}
 
 	public void on_spawn_entered(){
