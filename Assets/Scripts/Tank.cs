@@ -14,15 +14,20 @@ public class Tank : Enemy
     private float cooldown = 2f;
     private bool trigger_flag;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     public float Dive_timer;
     //private bool isDead = false;
 >>>>>>> 8ce42ec (Tried a bunch of solutions to fix skin bug -- didn't ;however, I did change tank divebomb to be random time intervals as opposed to uniform)
+=======
+    public float Dive_timer;
+    //private bool isDead = false;
+>>>>>>> d16dc14 (preparing final PR)
 
     void Start()
     {
         Dive_timer = UnityEngine.Random.Range(0f,10f);
-        //maybe give a velocity to move toward player with
+        //maybe give a velocity to move toward player with 
         this.gameObject.name = "Tank" + Count + 1;
         Count++;
         this.gameObject.tag = "Enemy";
@@ -66,10 +71,6 @@ public class Tank : Enemy
             }
             if(obj.gameObject.CompareTag("Player")){
                 if(obj.GetComponent<SimpleMovement>().getIframes()){
-                    //Debug.Log("Iframes active on " + obj.gameObject.tag);
-                    /*if(Time.time - hitTime >= 4f){
-                            other.GetComponent<SimpleMovement>().setIframes();
-                        }*/
                 }
                 else{
                     obj.GetComponent<SimpleMovement>().setIframes();
