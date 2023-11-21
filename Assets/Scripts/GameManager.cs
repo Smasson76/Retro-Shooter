@@ -98,36 +98,17 @@ public class GameManager : MonoBehaviour
         }
         GameObject obj = GameObject.FindWithTag("MultiShotPowerup");
         if(obj != null){
-            //Debug.Log("Powerup found! " + obj.tag);
             timeStamp -= Time.deltaTime;
-            //Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            //rb.velocity = new Vector2(0f,-10f);
-            //rb.position = obj.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
-            //Debug.Log("del = " + timeStamp);
             if(timeStamp < 0f){
-                //Debug.Log("Powerup destroyed!");
                 Destroy(obj);
                 timeStamp=6f;
             }
         }
         GameObject obj2 = GameObject.FindWithTag("OverchargePowerup");
         if(obj2 != null){
-            //Debug.Log("Powerup found! " + obj2.tag);
             timeStamp2 -= Time.deltaTime;
-<<<<<<< HEAD
-            //Rigidbody2D rb = obj2.GetComponent<Rigidbody2D>();
-            //rb.velocity = new Vector2(0f,-10f);
-            //rb.position = obj2.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
-            //Debug.Log("del = " + timeStamp2);
-=======
             Debug.Log("del = " + timeStamp2);
->>>>>>> master
             if(timeStamp2 < 0f){
-                //Debug.Log("Powerup destroyed!");
                 Destroy(obj2);
                 timeStamp2=6f;
             }
@@ -135,20 +116,9 @@ public class GameManager : MonoBehaviour
 
         GameObject obj3 = GameObject.FindWithTag("ExplosivePowerup");
         if(obj3 != null){
-            //Debug.Log("Powerup found! " + obj3.tag);
             timeStamp3 -= Time.deltaTime;
-<<<<<<< HEAD
-            //Rigidbody2D rb = obj3.GetComponent<Rigidbody2D>();
-            //rb.velocity = new Vector2(0f,-10f);
-            //rb.position = obj3.transform.forward * Time.deltaTime;//new Vector2(obj.transform.forward.x*rb.velocity.x,obj.transform.forward.y*rb.velocity.y);
-            //rb.MovePosition(rb.position + rb.velocity * Time.deltaTime);
-            //obj.transform.position = new Vector2(rb.position.x + rb.velocity.x * Time.deltaTime,rb.position.y+rb.velocity.y*Time.deltaTime);
-            //Debug.Log("del = " + timeStamp3);
-=======
             Debug.Log("del = " + timeStamp3);
->>>>>>> master
             if(timeStamp3 < 0f){
-                //Debug.Log("Powerup destroyed!");
                 Destroy(obj3);
                 timeStamp3=6f;
             }
@@ -189,8 +159,7 @@ public class GameManager : MonoBehaviour
             SpawnPlayer();
             Debug.Log("animation_string " + animation_string);
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();
-            //ChooseYourShip.instance.ClearStates();
-            ChooseYourShip.instance.ResetSkin(animation_string);
+            ChooseYourShip.instance.ResetSkin(animation_string); //doesn't work yet
 
         } else if (livesCount <= 1){
             livesCount--;
@@ -260,7 +229,6 @@ public class GameManager : MonoBehaviour
                 simpleMovementScript.bulletPowerUpTime += 10;
                 MultiShotPowerUpImage.SetActive(true);
                 multishot = true;
-                //Debug.Log("multishot on");
                 
                 break;
             case 2:
@@ -276,7 +244,6 @@ public class GameManager : MonoBehaviour
                 simpleMovementScript.bulletPowerUpTime += 10;
                 OverchargePowerUpImage.SetActive(true);
                 ocOn=true;
-                //Debug.Log("OverCharge on");
                 
                 break;
             case 3:
@@ -293,7 +260,6 @@ public class GameManager : MonoBehaviour
                 simpleMovementScript.bulletPowerUpTime += 10;
                 ExplosivePowerUpImage.SetActive(true);
                 xpl = true;
-                //Debug.Log("xpl on");
                 
                 break;
             default:
@@ -349,7 +315,6 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(true);
         PlayerInstance.transform.position = new Vector2(0f,-4f);
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
-        //Cursor.visible = false;
         SpawnEnemy();
     }
 

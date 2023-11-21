@@ -64,11 +64,9 @@ public class ChooseYourShip : MonoBehaviour
     }
 
     void Update(){
-        //ClearStates();
         if(!GameManager.instance.selection_has_been_made){
         prev_state = Ships[index].Name;
         if(click_Next){
-            Debug.Log("Next ship has been called");
             if(index < Ships.Length-1 && click_Next){
                 index++;
                 click_Next = false;
@@ -82,26 +80,18 @@ public class ChooseYourShip : MonoBehaviour
          master_animator = this.source_animator;
          animator.SetTrigger(Ships[index].Name);
          if(click_Play){
-            Debug.Log("Play called!");
             GameManager.instance.setAnimation_string(Ships[index].Name);
-            //GameManager.instance.PlayerObject.GetComponent<SimpleMovement>().set_state(Ships[index].Name);
             GameManager.instance.SelectionMade();
             musicManager.Instance.playSound("selected");
             click_Play = false;
          }
          clip = Ships[index].shipClip;
-        Debug.Log("Index : " + index + "\nName : " + Ships[index].Name + "\nClip : " + Ships[index].shipClip);
-        Debug.Log("Animation Clip : " + clip);
-        Debug.Log("Ship Color : " + PlayerInstance.GetComponentInChildren<SpriteRenderer>().sharedMaterial.GetColor("_Color"));
         }
-        Debug.Log("attempting to set " + GameManager.instance.getAnimation_string());
-        animator.SetTrigger(GameManager.instance.PlayerObject.GetComponent<SimpleMovement>().get_state());
+        //ClearStates();
     }
     public void Next(){
-        Debug.Log("called Next()");
         musicManager.Instance.playSound("nextSkin");
         click_Next = true;
-        Debug.Log("Bool field : click_Next = " + click_Next);
 
     }
     public void Play(){
