@@ -203,9 +203,11 @@ MonoBehaviour:
   OverChargePrefab: {fileID: -5665676056533798616, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
   ExplosivePrefab: {fileID: -3374542399750337538, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
   MultishotPrefab: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
+  ShieldPrefab: {fileID: 0}
   powerUpPrefabClone: {fileID: 0}
   powerUpPrefabClone2: {fileID: 0}
   powerUpPrefabClone3: {fileID: 0}
+  powerupPrefabClone4: {fileID: 0}
   chance: 0.4
   chance2: 3
   chance3: 5
@@ -219,6 +221,10 @@ MonoBehaviour:
   isDead: 0
   size_scale: 1.25
   movement_radius: 0.25
+  Dive_timer: 0
+  dive_vel_scalar: 4
+  super_rare: 0
+  special_check: 0
 --- !u!1 &6200854276260411674
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
             timeLeft = calculate_next_fire_time();
         }
 
-        moveCircles(origin_position.x,origin_position.y,0.25f);
+        moveCircles(origin_position.x,origin_position.y,0.5f);
 
 		    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
 		    if (hit.collider != null) {

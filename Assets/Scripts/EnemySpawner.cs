@@ -42,10 +42,11 @@ public class EnemySpawner : MonoBehaviour
         float swarm_half_width = (float) swarm_width / 2;
         int swarm_col_num =  dim_y;
         int swarm_row_num =  dim_x;
-        float swarm_step = (float) (swarm_width / swarm_row_num);
+        float lat_swarm_step = (float) (1.95f*swarm_width / swarm_row_num);
+        float vert_swarm_step = (float) (swarm_width / swarm_row_num);
 
-        float base_x_placement = (float) this.transform.position.x - swarm_half_width;
-        float base_y_placement = (float) this.transform.position.y;
+        float base_x_placement = (float) this.transform.position.x - (2f*swarm_half_width);
+        float base_y_placement = (float) this.transform.position.y + enemy.transform.localScale.y;
 
         Vector3 enemy_placement = new Vector3(base_x_placement, base_y_placement, 0);
 
@@ -61,8 +62,8 @@ public class EnemySpawner : MonoBehaviour
                     enemy = selectType("Monkey");
                 }
                 enemy_placement = new Vector3(
-                   base_x_placement + (swarm_step *  col_idx + enemy.transform.localScale.x),
-                   base_y_placement + (swarm_step * (row_idx % swarm_row_num)+enemy.transform.localScale.y),
+                   base_x_placement + (lat_swarm_step *  col_idx + enemy.transform.localScale.x),
+                   base_y_placement + (vert_swarm_step * (row_idx % swarm_row_num) + enemy.transform.localScale.y),
                    0
                 );
 

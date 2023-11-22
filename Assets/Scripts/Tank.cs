@@ -14,6 +14,9 @@ public class Tank : Enemy
     private float cooldown = 2f;
     private bool trigger_flag;
     public float Dive_timer;
+    public float dive_vel_scalar = 4f;
+    public bool super_rare = false;
+    public float special_check;
 
 
     void Start()
@@ -28,8 +31,10 @@ public class Tank : Enemy
         translational_velocity = new Vector2(0f,-1f);
         rb = gameObject.GetComponent<Rigidbody2D>();
         cooldown = base.calculate_next_fire_time();
+        StartCoroutine("specialAttack");
     }
     void Update(){
+        special_check = UnityEngine.Random.Range(1,10)/100;
         translational_velocity = new Vector2(translational_velocity.x * (Time.deltaTime),translational_velocity.y *(Time.deltaTime));
 
         rb.velocity = new Vector2(0f,0f);
@@ -95,9 +100,30 @@ public class Tank : Enemy
         }
         else{
             trigger_flag = false;
-            rb.velocity = new Vector2(0,-2*Time.deltaTime);
+            rb.velocity = new Vector2(0,-dive_vel_scalar*Time.deltaTime);
             transform.position = new Vector2(transform.position.x+rb.velocity.x,transform.position.y+rb.velocity.y);
+            if(super_rare){
+                //transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+                Quaternion Look2D = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - transform.position);
+                transform.rotation = Look2D;
+                rb.velocity = transform.forward*dive_vel_scalar*Time.deltaTime;
+                transform.position = new Vector2(transform.position.x + rb.velocity.x,transform.position.y + rb.velocity.y);
+            }
         }
         yield return null;
+    }
+    IEnumerator specialAttack(){
+    if(special_check < 0.05){
+        super_rare = true;
+        StartCoroutine("selfDestruct");
+    }
+    yield return new WaitForSeconds(3f);
+    super_rare = false;
+    yield return null;
+    }
+    IEnumerator selfDestruct(){
+    yield return new WaitForSeconds(8f);
+    Destroy(this.gameObject);
+    GameManager.instance.enemyCount--;
     }
 }
