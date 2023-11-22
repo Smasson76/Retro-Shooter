@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
             PlayerInstance.GetComponent<SimpleMovement>().setIframes();  
 			PlayerInstance.GetComponentInChildren<Animator>().Play("Destruction");
 			PlayerInstance.GetComponent<SimpleMovement>().disableShip();
-            StartCoroutine(PlayerDeath());
+			PlayerDeath();
 		}
     }
 
@@ -208,22 +208,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator PlayerDeath()
-    {
-        GameOverScreen.SetActive(true);
-        enemyCount = 0;
-        musicManager.Instance.playSound("player_death");
-        Destroy(EnemySpawnerInstance);
-        PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+	public void PlayerDeath(){
+			GameOverScreen.SetActive(true);
+			enemyCount = 0;
+			musicManager.Instance.playSound("player_death");
+			Destroy(EnemySpawnerInstance);
+			PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
-		while (!PlayerInstance.GetComponent<SimpleMovement>().hasFinishedExploding()) {
-	        yield return null;
-    	}
+	}
 
+	public void on_player_destroyed(){
         Destroy(PlayerInstance);
+		StartCoroutine(delayed_call());
 
-        yield return new WaitForSeconds(1.5f);
+	}
 
+	public void reset_main_menu(){
         Application.LoadLevel(Application.loadedLevel);
         MultiShotPowerUpImage.SetActive(false);
         OverchargePowerUpImage.SetActive(false);
@@ -233,6 +233,13 @@ public class GameManager : MonoBehaviour
         xpl = false;
         enemyCount = 0;
         MainMenu();
+
+	}
+
+	IEnumerator delayed_call()
+    {
+        yield return new WaitForSeconds(1);
+		reset_main_menu();
     }
 
     public void PowerUpHit(int powerUpIndex)

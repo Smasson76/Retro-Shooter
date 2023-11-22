@@ -21,4 +21,8 @@ public class ShipSprite : MonoBehaviour
 	public void on_player_entered(){
 		parent.GetComponent<SimpleMovement>().on_player_entered();
 	}
+
+	public void on_destruction_finished(){
+		parent.GetComponent<SimpleMovement>().on_destruction_finished();
+	}
 }

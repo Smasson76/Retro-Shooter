@@ -224,6 +224,10 @@ public class SimpleMovement : MonoBehaviour
 		GameManager.instance.on_player_entered();
 	}
 
+	public void on_destruction_finished(){
+		GameManager.instance.on_player_destroyed();
+	}
+
 	public void change_color(string color_str, string prev_color){
 		animator.ResetTrigger(prev_color);
         animator.SetTrigger(color_str);
