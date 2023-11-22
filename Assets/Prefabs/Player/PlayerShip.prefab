@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8737890828014371074}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 540, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79,9 +79,7 @@ MonoBehaviour:
   firing_point_offset: {x: 0, y: 1.5, z: 0}
   bullet_speed: 1
   cooldownTime: 0.5
-  xplTime: 0
-  overchargeTime: 4
-  multishotTime: 6
+  bulletPowerUpTime: 0
   ocStart: 0
   bulletPrefab: {fileID: 4616834049647686514, guid: a6a80f28c0cbb8e4e8a6e37f4673037b, type: 3}
   mycol: {r: 0, g: 0, b: 0, a: 0}
@@ -149,6 +147,7 @@ GameObject:
   - component: {fileID: 4167725090527863665}
   - component: {fileID: 5304277967754560179}
   - component: {fileID: 8280947515987451650}
+  - component: {fileID: 8186489252044722644}
   m_Layer: 0
   m_Name: ShipSprite
   m_TagString: Untagged
@@ -5039,3 +5038,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8186489252044722644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8899990383959109095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e62bba7e2344721b41e11fa86bc3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

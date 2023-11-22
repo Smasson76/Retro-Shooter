@@ -13,12 +13,16 @@ public class EnemySpawner : MonoBehaviour
     public Foes[] foeList;
     private int myTanks=0;
     public float SpawnTime;
+	public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+		animator = GetComponent<Animator>();
         place_swarm(swarm_dim_x, swarm_dim_y, swarm_width);
         setSpawnTStamp();
+
+		spawn_enter();
     }
 
     void Update()
@@ -87,4 +91,13 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
+
+	public void spawn_enter(){
+		animator.Play("EnemyEntrance");
+	}
+
+	public void on_spawn_entered(){
+		GameManager.instance.on_enemy_spawn_entered();
+	}
 }
+

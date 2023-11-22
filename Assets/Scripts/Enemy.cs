@@ -135,6 +135,6 @@ public class Enemy : MonoBehaviour
         float omega = 1f; //angular velocity
         theta += omega * Time.deltaTime;
         var cirpos = radius * (new Vector2(Mathf.Cos(theta),Mathf.Sin(theta)));
-        this.transform.position = cirpos + _vertex;
+        this.transform.localPosition = cirpos + _vertex;
     }
 }

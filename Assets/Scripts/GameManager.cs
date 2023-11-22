@@ -349,10 +349,38 @@ public class GameManager : MonoBehaviour
         UpdateLifeUI();
         ShipSelection.SetActive(false);
         GameMenu.SetActive(true);
+		StartGame_stage1();
+    }
+
+	private void StartGame_stage1(){
         PlayerInstance.transform.position = player_start_coords;
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
+		// music stops. only engine sounds.
+        PlayerInstance.GetComponent<SimpleMovement>().player_enter();  
+        //Cursor.visible = false;
+
+	}
+
+	private void on_stage_one_complete(){
+		StartGame_stage2();
+	}
+
+	public void on_player_entered(){
+		on_stage_one_complete();
+	}
+
+	private void StartGame_stage2(){
+		// Enemy spawn sound plays
         SpawnEnemy();
-    }
+	}
+
+	public void on_enemy_spawn_entered(){
+		on_stage_two_complete();
+	}
+
+	private void on_stage_two_complete(){
+		// play soundtrack
+	}
 
     public void SpawnEnemy()
     {

@@ -25,6 +25,8 @@ public class SimpleMovement : MonoBehaviour
 	private bool shipDisabled = false;
     public string Anim_state;
 
+	public string ship_color = "blue";
+
     void Fire()
 	{
         if((Time.time - lastShotTime) > cooldownTime) {
@@ -213,4 +215,18 @@ public class SimpleMovement : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+	public void player_enter(){
+		animator.Play("PlayerEntrance");
+	}
+
+	public void on_player_entered(){
+		GameManager.instance.on_player_entered();
+	}
+
+	public void change_color(string color_str, string prev_color){
+		animator.ResetTrigger(prev_color);
+        animator.SetTrigger(color_str);
+		animator.Play("ColorSelector");
+	}
 }
