@@ -13,10 +13,13 @@ public class Tank : Enemy
     private Rigidbody2D rb;
     private float cooldown = 2f;
     private bool trigger_flag;
+    public float Dive_timer;
+
 
     void Start()
     {
-        //maybe give a velocity to move toward player with
+        Dive_timer = UnityEngine.Random.Range(0f,10f);
+        //maybe give a velocity to move toward player with 
         this.gameObject.name = "Tank" + Count + 1;
         Count++;
         this.gameObject.tag = "Enemy";
@@ -60,10 +63,6 @@ public class Tank : Enemy
             }
             if(obj.gameObject.CompareTag("Player")){
                 if(obj.GetComponent<SimpleMovement>().getIframes()){
-                    //Debug.Log("Iframes active on " + obj.gameObject.tag);
-                    /*if(Time.time - hitTime >= 4f){
-                            other.GetComponent<SimpleMovement>().setIframes();
-                        }*/
                 }
                 else{
                     obj.GetComponent<SimpleMovement>().setIframes();
@@ -91,7 +90,7 @@ public class Tank : Enemy
     }
     IEnumerator DiveBomb(){
         curr_time = gameObject.GetComponent<Enemy>().getSpawnTime();
-        if(Time.time - curr_time < 3f){
+        if(Time.time - curr_time < Dive_timer){
             moveCircles(original_position.x,original_position.y,movement_radius);
         }
         else{

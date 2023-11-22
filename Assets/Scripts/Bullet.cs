@@ -11,19 +11,15 @@ public class Bullet : MonoBehaviour
     private float xplRange = 1.5f;
     AudioClip pewpew;
     private float hitTime=0;
-    //private float IframeCD = 4f;
-    //private IEnumerator coroutine;
     
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        //coroutine = Iframe_timer(gameObject.GetComponent<SimpleMovement>().getIframes());
     }
 
     void FixedUpdate()
     {
         rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
-        //StartCoroutine(coroutine);
     }
 
     public void send_off(Vector2 direction, float speed_multiplier, bool xpl)
@@ -38,19 +34,15 @@ public class Bullet : MonoBehaviour
         
         if (other.gameObject.CompareTag("Enemy")){
             if(explodes == true){
-                //does explode
-                //missileCircle();
                 missileCircle(other);
             } else {
                 Destroy(this.gameObject);
             }
+
             
         } else if (other.gameObject.CompareTag("Player")){
             if(other.GetComponent<SimpleMovement>().getIframes()){
-                //Debug.Log("Iframes active on " + other.gameObject.tag);
-                /*if(Time.time - hitTime >= 4f){
-                        other.GetComponent<SimpleMovement>().setIframes();
-                    }*/
+                //do nothing - invinsible
             }
             else{
                 hitTime = Time.time;
@@ -82,12 +74,14 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
             
         }
+
         else if (other.gameObject.CompareTag("ShieldPowerup"))
         {
             GameManager.instance.PowerUpHit(4);
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
+
     }
 
     private void missileCircle(Collider2D other){
@@ -97,6 +91,7 @@ public class Bullet : MonoBehaviour
         Destroy(this.gameObject, exp.main.duration);
         foreach (Collider2D hit in hitColliders)
         {
+            
             if(hit.gameObject.CompareTag("Enemy") == true && hit != other){
                 hit.gameObject.GetComponent<Enemy>().Die();
             }
@@ -111,9 +106,6 @@ public class Bullet : MonoBehaviour
         {
             if(hit.gameObject.CompareTag("Enemy") == true && hit != other){
                 hit.gameObject.GetComponent<Enemy>().Die();
-                //Enemy hit_Enemy = hit.GetComponent<Enemy>();
-                //hit_Enemy.Die();
-
             }
         }
         

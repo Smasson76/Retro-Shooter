@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     bool flag;
     private List<Rigidbody2D> powerUpPrefabClones = new List<Rigidbody2D>();
     private int cloneCount =0;
-    //public IEnumerator coroutine;
+
 
     public bool isDead = false;
     
@@ -77,21 +77,17 @@ public class Enemy : MonoBehaviour
 		    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
 		    if (hit.collider != null) {
 			    if (hit.collider.CompareTag("Enemy")){
-				    //Debug.Log("This is an enemy, I can't shoot");
 				    can_shoot = false;	
 			    } else {
-				    //Debug.Log("!!!" + hit.collider.tag);
 				    can_shoot = true;
 			    }
 		    } else if (hit.collider == null) {
-			      //Debug.Log("Didnt get a hit");
 			      can_shoot = true;
 		    }
     }
     
     public virtual void fire(){
         Bullet new_bullet = Instantiate(bullet, PointOfFireObject.transform.position, Quaternion.identity);
-        //new_bullet.transform.SetParent(this.transform);
         new_bullet.send_off(Vector2.down, bullet_speed, false);
         Destroy(new_bullet, 3f);
     }
