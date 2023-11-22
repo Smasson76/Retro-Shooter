@@ -15,9 +15,11 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D OverChargePrefab;
     public Rigidbody2D ExplosivePrefab;
     public Rigidbody2D MultishotPrefab;
+    public Rigidbody2D ShieldPrefab;
     public Rigidbody2D powerUpPrefabClone;
     public Rigidbody2D powerUpPrefabClone2;
     public Rigidbody2D powerUpPrefabClone3;
+    public Rigidbody2D powerupPrefabClone4;
     public float chance = 1.5f;
     public float chance2 = 3f;
     public float chance3 = 5f;

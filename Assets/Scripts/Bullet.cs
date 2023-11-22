@@ -75,8 +75,13 @@ public class Bullet : MonoBehaviour
             
         }
 
+        else if (other.gameObject.CompareTag("ShieldPowerup"))
+        {
+            GameManager.instance.PowerUpHit(4);
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
 
-        
     }
 
     private void missileCircle(Collider2D other){

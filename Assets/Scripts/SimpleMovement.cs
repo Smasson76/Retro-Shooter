@@ -207,5 +207,10 @@ public class SimpleMovement : MonoBehaviour
             GameManager.instance.PowerUpHit(3);
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.CompareTag("ShieldPowerup"))
+        {
+            GameManager.instance.PowerUpHit(4);
+            Destroy(other.gameObject);
+        }
     }
 }
