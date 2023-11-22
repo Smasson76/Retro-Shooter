@@ -51,6 +51,7 @@ MonoBehaviour:
   CreditsScreen: {fileID: 0}
   GameMenu: {fileID: 0}
   ShipSelection: {fileID: 0}
+  selection_has_been_made: 0
   livesUICounter:
   - {fileID: 0}
   - {fileID: 0}
@@ -58,6 +59,7 @@ MonoBehaviour:
   OverchargePowerUpImage: {fileID: 0}
   ExplosivePowerUpImage: {fileID: 0}
   MultiShotPowerUpImage: {fileID: 0}
+  ShieldPowerUpImage: {fileID: 7233013656138569327, guid: 0f1801b0f536288429d20ff63a009481, type: 3}
   Score: 0
   HighScore: 0
   livesCount: 3
@@ -70,11 +72,10 @@ MonoBehaviour:
   OverChargePrefab: {fileID: -5665676056533798616, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
   ExplosivePrefab: {fileID: -3374542399750337538, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
   MultishotPrefab: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
-  powerUpPrefabClone: {fileID: -3374542399750337538, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
-  powerUpPrefabClone2: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
-  powerUpPrefabClone3: {fileID: -5665676056533798616, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
+  ShieldPrefab: {fileID: -5975941025314268324, guid: 0f1801b0f536288429d20ff63a009481, type: 3}
   ParallaxBackgroundObject: {fileID: 2144524354421991838, guid: 5a634bddd010946e3ac4392dd7f4f123, type: 3}
   ParallaxBackgroundInstance: {fileID: 0}
   ocOn: 0
   multishot: 0
   xpl: 0
+  shield: 0
