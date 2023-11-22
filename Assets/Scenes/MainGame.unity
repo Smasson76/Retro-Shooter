@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1153,6 +1153,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: fe78546a76f254f84b6fda58ff35ac7c, type: 3}
+    - target: {fileID: 5615371813151034043, guid: 618aa754faf4da04ab0f37fe07ff4e21, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -38.026123
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824390277862075982, guid: 618aa754faf4da04ab0f37fe07ff4e21, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -52.181885
+      objectReference: {fileID: 0}
     - target: {fileID: 7372637148931415668, guid: 618aa754faf4da04ab0f37fe07ff4e21, type: 3}
       propertyPath: m_Name
       value: GameCanvas
