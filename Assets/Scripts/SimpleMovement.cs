@@ -109,8 +109,13 @@ public class SimpleMovement : MonoBehaviour
                 }
             }
         }
-
-
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Debug.Log("Escape was pressed -> call main menu");
+            GameManager.instance.ParallaxBackgroundInstance.stopMotion();
+            GameManager.instance.PlayerInstance.GetComponent<SimpleMovement>().disableShip();
+			GameManager.instance.PlayerDeath();
+            GameManager.instance.reset_main_menu();
+        }
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
         if (Input.GetKey("space") == true)
         {
