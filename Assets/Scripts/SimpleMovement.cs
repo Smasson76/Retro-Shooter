@@ -152,6 +152,15 @@ public class SimpleMovement : MonoBehaviour
 				StartCoroutine("Iframes_timer");
 			}
 		}
+        float l_edge = -12f;//(float)(960 - Screen.width/2);
+        float r_edge = 12f;//(float) (960 + Screen.width/2);
+        Debug.Log("Left edge : " + l_edge + " \nRight edge : " + r_edge);
+        if(rb.position.x < l_edge){
+            rb.position = new Vector2(r_edge,transform.position.y);
+        }
+        if(rb.position.x > r_edge){
+            rb.position = new Vector2(l_edge,rb.position.y);
+        }
     }
 
 	public void disableShip(){
