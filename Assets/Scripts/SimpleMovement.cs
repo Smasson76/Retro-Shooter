@@ -78,7 +78,6 @@ public class SimpleMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         original = GameManager.instance.PlayerInstance.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color");
         mycol = Color.red;
-        StartCoroutine("flashChar");
     }
 
     void Update()
@@ -122,14 +121,6 @@ public class SimpleMovement : MonoBehaviour
             if(!Iframes){
                 Fire();
             }
-            else{
-                //StartCoroutine("flashChar");
-                //gameObject.GetComponentInChildren<SpriteRenderer>().material.SetColor("_Color",mycol);
-                //Debug.Log("Cannot shoot while invulnerable! \nColor is " + gameObject.GetComponentInChildren<SpriteRenderer>().material.GetColor("_Color"));
-            }
-        }
-        if(Iframes){
-            StartCoroutine("Iframes_timer");
         }
         cooldownTime = 0.5f;
 		if (shipDisabled == false){
@@ -147,9 +138,6 @@ public class SimpleMovement : MonoBehaviour
 					}
 					Fire();
 				}
-			}
-			if(Iframes){
-				StartCoroutine("Iframes_timer");
 			}
 		}
         float l_edge = -12f;//(float)(960 - Screen.width/2);
@@ -183,6 +171,10 @@ public class SimpleMovement : MonoBehaviour
 
     public void setIframes(){
         Iframes = !Iframes;
+        if(Iframes){
+            StartCoroutine("flashChar");
+            StartCoroutine("Iframes_timer");
+        }
     }
     public void set_state(string arg)
     {

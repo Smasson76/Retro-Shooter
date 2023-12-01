@@ -179,11 +179,8 @@ public class GameManager : MonoBehaviour
 			musicManager.Instance.playSound("entity_hit");
             string stateAtDeath = PlayerInstance.GetComponent<SimpleMovement>().get_state();
             PlayerObject.GetComponent<SimpleMovement>().set_state(stateAtDeath);
-            Destroy(PlayerInstance);
             livesCount--;
             UpdateLifeUI();
-            SpawnPlayer();
-            PlayerInstance.GetComponent<SimpleMovement>().setIframes();
             ChooseYourShip.instance.ResetSkin(animation_string); //doesn't work yet
 
         } else if (livesCount <= 1){
