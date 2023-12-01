@@ -91,11 +91,11 @@ public class Tank : Enemy
     IEnumerator DiveBomb(){
         curr_time = gameObject.GetComponent<Enemy>().getSpawnTime();
         if(Time.time - curr_time < Dive_timer){
-            moveCircles(original_position.x,original_position.y,movement_radius);
+            moveCircles(original_position.x,original_position.y,1.3f*transform.localScale.x);
         }
         else{
             trigger_flag = false;
-            rb.velocity = new Vector2(0,-2*Time.deltaTime);
+            rb.velocity = new Vector2(0,-4*Time.deltaTime);
             transform.position = new Vector2(transform.position.x+rb.velocity.x,transform.position.y+rb.velocity.y);
         }
         yield return null;
