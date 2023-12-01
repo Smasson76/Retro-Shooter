@@ -38,7 +38,8 @@ public class Enemy : MonoBehaviour
     bool flag;
     private List<Rigidbody2D> powerUpPrefabClones = new List<Rigidbody2D>();
     private int cloneCount =0;
-
+    private float alpha;
+    
 
     public bool isDead = false;
     
@@ -53,8 +54,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         origin_position = transform.position;
-		timeLeft = calculate_next_fire_time();
-        
+		timeLeft = calculate_next_fire_time();        
     }
     public void setSpawnTime(float arg){
         TimeSpawned = arg;
@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        alpha = UnityEngine.Random.Range(1,2)+UnityEngine.Random.Range(0,1)/10;
         timeLeft -= Time.deltaTime;
         if ((timeLeft < 0) && can_shoot)
         {
@@ -72,7 +73,7 @@ public class Enemy : MonoBehaviour
             timeLeft = calculate_next_fire_time();
         }
 
-        moveCircles(origin_position.x,origin_position.y,0.25f);
+        moveCircles(origin_position.x,origin_position.y,alpha*transform.localScale.x);
 
 		    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
 		    if (hit.collider != null) {
@@ -125,7 +126,7 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject, 0.8f);
             isDead = true; 
             BloodBurstParticleEffect bloodBurst = Instantiate(bloodBurstEffect, transform.position, Quaternion.identity);
-        }
+        }   
 		
     }
     public virtual void moveCircles(float x, float y, float radius){
