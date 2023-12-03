@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject CreditsScreen;
     public GameObject GameMenu;
     public GameObject ShipSelection;
+    public bool TouchScreenControls = false;
     protected string animation_string;
     public bool selection_has_been_made =false;
     public GameObject[] livesUICounter;
@@ -82,7 +84,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
         MainMenu();
         ScoreText.text = "" + Score;
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -331,6 +332,9 @@ public class GameManager : MonoBehaviour
     public void StartOnePlayer()
     {
 		ParallaxBackgroundInstance.goFast();
+        if(Input.touchCount > 0){
+            TouchScreenControls = true;
+        }
 
 		if (musicManager.Instance.getCurrentTrack() != "GameTheme"){
 			musicManager.Instance.playMusic("GameTheme");
@@ -361,7 +365,7 @@ public class GameManager : MonoBehaviour
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
 		// music stops. only engine sounds.
         PlayerInstance.GetComponent<SimpleMovement>().player_enter();  
-        //Cursor.visible = false;
+                //Cursor.visible = false;
 
 	}
 

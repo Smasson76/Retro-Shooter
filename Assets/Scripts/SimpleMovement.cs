@@ -1,6 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+
+//using System.Numerics;
+using UnityEditor;
 using UnityEngine;
 
 public class SimpleMovement : MonoBehaviour
@@ -80,9 +84,50 @@ public class SimpleMovement : MonoBehaviour
         mycol = Color.red;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        Move = Input.GetAxis("Horizontal");
+        if(GameManager.instance.TouchScreenControls){
+            if(Input.touchCount > 0){
+                Touch touch = Input.GetTouch(0);
+                if(touch.phase == TouchPhase.Began){
+                    //keep adjusting based on touch location
+                   if(touch.position.x - Screen.width/2 > 0){{
+                    Move = 1;
+                   }}
+                   if(touch.position.x - Screen.width/2 < 0){
+                    Move = -1;
+                   }
+                }
+                else if(touch.phase == TouchPhase.Stationary){
+                    Move = 0;
+                }
+                else if(touch.phase == TouchPhase.Moved){
+                    if(Mathf.Abs(touch.deltaPosition.x) > 0){
+                        Move = -touch.deltaPosition.x/Mathf.Abs(touch.deltaPosition.x);
+                    }
+                    /*if(touch.deltaPosition.x> 0){
+                        Move = 1;
+                    }
+                    else if(touch.deltaPosition.x < 0){
+                        Move = -1;
+                    }
+                    else{
+                        Move = 0;
+                    }*/
+                }
+                if(Move == float.NaN){
+                    Move = 0;
+                }
+                Debug.Log(Move);
+            
+                if(!Iframes){
+                    Fire();
+                }
+            }
+        }
+        else{
+            Move = Input.GetAxis("Horizontal");
+        }
         if(GameManager.instance.multishot == true || GameManager.instance.ocOn == true || GameManager.instance.xpl == true){
             bulletPowerUpTime -= Time.deltaTime;
             if(GameManager.instance.ocOn == true){
@@ -115,16 +160,16 @@ public class SimpleMovement : MonoBehaviour
 			GameManager.instance.PlayerDeath();
             GameManager.instance.reset_main_menu();
         }
-        rb.velocity = new Vector2(Move * speed, rb.velocity.y);
-        if (Input.GetKey("space") == true)
+        rb.velocity = new Vector2(Move * speed, 0f);
+        /*if (Input.GetKey("space") == true)
         {
             if(!Iframes){
                 Fire();
             }
-        }
+        }*/
         cooldownTime = 0.5f;
 		if (shipDisabled == false){
-			rb.velocity = new Vector2(Move * speed, rb.velocity.y);
+			rb.velocity = new Vector2(Move * speed, 0f);
 			if (Input.GetKey("space") == true)
 			{
 				if(!Iframes){
