@@ -37,6 +37,7 @@ public class musicManager : MonoBehaviour{
    	        Debug.Log("Sound not found!");
    	    } else {
    	        _musicSrc.clip = s.clip;
+			_musicSrc.loop = true;
    	        _musicSrc.Play();
    	    }
     }

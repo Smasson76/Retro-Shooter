@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,9 +205,13 @@ PrefabInstance:
       value: entity_hit
       objectReference: {fileID: 0}
     - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
+      propertyPath: musicSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d75d0b58578d422592a6f06988737b4, type: 3}
+    - target: {fileID: 5797055638710017487, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: musicSounds.Array.data[1].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 5762b44da1bb7684790288a7741e55a9, type: 3}
+      objectReference: {fileID: 8300000, guid: e23eef29d898b499aa965a1471b6c3ba, type: 3}
     - target: {fileID: 8721855562770740401, guid: 1b8e239ba3f356949958043ba5ce523d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
