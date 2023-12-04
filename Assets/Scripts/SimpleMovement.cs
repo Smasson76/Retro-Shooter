@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 //using System.Numerics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SimpleMovement : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class SimpleMovement : MonoBehaviour
     public string Anim_state;
 
 	public string ship_color = "blue";
+    public bool blood_on = true;
+    private int tapCount;
+    private float doubleTapthreshold = 0.3f;
+    
 
     void Fire()
 	{
@@ -119,7 +124,6 @@ public class SimpleMovement : MonoBehaviour
                     Move = 0;
                 }
                 Debug.Log(Move);
-            
                 if(!Iframes){
                     Fire();
                 }
@@ -159,6 +163,10 @@ public class SimpleMovement : MonoBehaviour
             GameManager.instance.PlayerInstance.GetComponent<SimpleMovement>().disableShip();
 			GameManager.instance.PlayerDeath();
             GameManager.instance.reset_main_menu();
+        }
+        if(Input.GetKey("t")){
+            Debug.Log("t pressed -> toggle blood particle effect");
+            blood_on = !blood_on;
         }
         rb.velocity = new Vector2(Move * speed, 0f);
         /*if (Input.GetKey("space") == true)
@@ -284,4 +292,7 @@ public class SimpleMovement : MonoBehaviour
         animator.SetTrigger(color_str);
 		animator.Play("ColorSelector");
 	}
+    public void toggle_blood(){
+        blood_on = !blood_on;
+    }
 }
