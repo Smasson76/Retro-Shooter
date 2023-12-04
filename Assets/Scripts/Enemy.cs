@@ -125,7 +125,9 @@ public class Enemy : MonoBehaviour
             
             Destroy(this.gameObject, 0.8f);
             isDead = true; 
+            if(GameManager.instance.PlayerInstance.GetComponent<SimpleMovement>().blood_on){
             BloodBurstParticleEffect bloodBurst = Instantiate(bloodBurstEffect, transform.position, Quaternion.identity);
+            }
         }   
 		
     }

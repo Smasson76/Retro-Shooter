@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainGame.unity
     guid: 56a76d3ae09ff28488ab837f34ffdcc7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TouchScreenControl_test.unity
     guid: 2f98ee9a748095f458a12ebc3a677e51
+  - enabled: 1
+    path: Assets/Scenes/toggle_blood.unity
+    guid: cceb98ed35e0c934aa724e842d56a136
   m_configObjects: {}
