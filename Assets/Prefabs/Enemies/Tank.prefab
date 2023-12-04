@@ -47,7 +47,7 @@ Animator:
   m_GameObject: {fileID: 1659577533520910487}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 756bbe63edcef26479a54152ee8326f5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2405e99b5d5484158b1ff74ce7f4caab, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.7, y: 0.9}
+    oldSize: {x: 1.0666667, y: 1.0666667}
     newSize: {x: 0.7, y: 0.9}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -171,8 +171,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1671100711, guid: 01f2fd0c12dd21c408a385f813529270, type: 3}
-  m_Color: {r: 0.8495093, g: 0.9433962, b: 0.15574935, a: 1}
+  m_Sprite: {fileID: -271444872, guid: 636469c1136303a4882a491114df54d8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -203,9 +203,11 @@ MonoBehaviour:
   OverChargePrefab: {fileID: -5665676056533798616, guid: 7a6f9acc0540f9d46bc70a79e63f2f51, type: 3}
   ExplosivePrefab: {fileID: -3374542399750337538, guid: 09a0b404d2dd23049955f776826f9e01, type: 3}
   MultishotPrefab: {fileID: 5669701164159179544, guid: d796b5cf1048b484891d07913aff3ef3, type: 3}
+  ShieldPrefab: {fileID: 0}
   powerUpPrefabClone: {fileID: 0}
   powerUpPrefabClone2: {fileID: 0}
   powerUpPrefabClone3: {fileID: 0}
+  powerupPrefabClone4: {fileID: 0}
   chance: 0.4
   chance2: 3
   chance3: 5
@@ -219,6 +221,7 @@ MonoBehaviour:
   isDead: 0
   size_scale: 1.25
   movement_radius: 0.25
+  Dive_timer: 0
 --- !u!1 &6200854276260411674
 GameObject:
   m_ObjectHideFlags: 0
