@@ -155,22 +155,25 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainMenu()
-    {
+    {  
         UnityEngine.Cursor.visible = true;
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
         CreditsScreen.SetActive(false);
         ShipSelection.SetActive(false);
-		ParallaxBackgroundInstance.goSlow();
-        Debug.Log("Main Menu was called and reached the bottom \nhas_been_selected = " + selection_has_been_made + "\nrestart = " + restart);
+        ParallaxBackgroundInstance.goSlow();
+    
         if(restart){
             if(instance == null){
                 Debug.Log("GameManager instance was destoryed");
                 Awake();
+                ParallaxBackgroundInstance.restartMotion();
                 MainMenu();
             }
         }
+        Debug.Log("Main Menu was called and reached the bottom \nhas_been_selected = " + selection_has_been_made + "\nrestart = " + restart);
+        
     }
 
     public void CreditsMenu()
@@ -354,6 +357,13 @@ public class GameManager : MonoBehaviour
     {
         if(ParallaxBackgroundInstance != null){
 		    ParallaxBackgroundInstance.goFast();
+        }
+        else{
+            ParallaxBackgroundInstance = Instantiate(
+			ParallaxBackgroundObject,
+			new Vector2(0, 0),
+			Quaternion.identity
+		);
         }
         if(Input.touchCount > 0){
             TouchScreenControls = true;

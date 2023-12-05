@@ -107,4 +107,7 @@ public class Parallax : MonoBehaviour
 	public void stopMotion(){
 		stopped = true;
 	}
+	public void restartMotion(){
+		stopped = false;
+	}
 }
