@@ -162,6 +162,8 @@ public class SimpleMovement : MonoBehaviour
             GameManager.instance.ParallaxBackgroundInstance.stopMotion();
             GameManager.instance.PlayerInstance.GetComponent<SimpleMovement>().disableShip();
 			GameManager.instance.PlayerDeath();
+            GameManager.instance.selection_has_been_made=false;
+            GameManager.instance.restart = true;
             GameManager.instance.reset_main_menu();
         }
         if(Input.GetKey("t")){
@@ -207,6 +209,9 @@ public class SimpleMovement : MonoBehaviour
 	public void disableShip(){
 		shipDisabled = true;
 	}
+    public void enableShip(){
+        shipDisabled = false;
+    }
 
 	public bool hasFinishedExploding(){
 		animator = GetComponentInChildren<Animator>();

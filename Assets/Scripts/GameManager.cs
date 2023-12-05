@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using System.ComponentModel;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public bool TouchScreenControls = false;
     protected string animation_string;
     public bool selection_has_been_made =false;
+    public bool restart = false;
     public GameObject[] livesUICounter;
     public GameObject OverchargePowerUpImage;
     public GameObject ExplosivePowerUpImage;
@@ -79,12 +81,16 @@ public class GameManager : MonoBehaviour
         if (instance == null) 
         {
             instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else 
         {
             Destroy(this.gameObject);
         }
         MainMenu();
+        initialize_UI();
+    }
+    public void initialize_UI(){
         ScoreText.text = "" + Score;
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
         HighScoreText.text = "" + highScore;
@@ -149,14 +155,25 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainMenu()
-    {
+    {  
         UnityEngine.Cursor.visible = true;
         StartGameScreen.SetActive(true);
         GameMenu.SetActive(false);
         GameOverScreen.SetActive(false);
         CreditsScreen.SetActive(false);
         ShipSelection.SetActive(false);
-		ParallaxBackgroundInstance.goSlow();
+        ParallaxBackgroundInstance.goSlow();
+    
+        if(restart){
+            if(instance == null){
+                Debug.Log("GameManager instance was destoryed");
+                Awake();
+                ParallaxBackgroundInstance.restartMotion();
+                MainMenu();
+            }
+        }
+        Debug.Log("Main Menu was called and reached the bottom \nhas_been_selected = " + selection_has_been_made + "\nrestart = " + restart);
+        
     }
 
     public void CreditsMenu()
@@ -217,12 +234,14 @@ public class GameManager : MonoBehaviour
 
 	public void on_player_destroyed(){
         Destroy(PlayerInstance);
+        //PlayerInstance.SetActive(false);
 		StartCoroutine(delayed_call());
 
 	}
 
 	public void reset_main_menu(){
-        Application.LoadLevel(Application.loadedLevel);
+        //Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         MultiShotPowerUpImage.SetActive(false);
         OverchargePowerUpImage.SetActive(false);
         ExplosivePowerUpImage.SetActive(false);
@@ -231,8 +250,13 @@ public class GameManager : MonoBehaviour
         xpl = false;
         enemyCount = 0;
         MainMenu();
-
+        reset();
 	}
+    public void reset(){
+        selection_has_been_made = false;
+        restart = true;
+        initialize_UI();
+    }
 
 	IEnumerator delayed_call()
     {
@@ -331,7 +355,16 @@ public class GameManager : MonoBehaviour
 
     public void StartOnePlayer()
     {
-		ParallaxBackgroundInstance.goFast();
+        if(ParallaxBackgroundInstance != null){
+		    ParallaxBackgroundInstance.goFast();
+        }
+        else{
+            ParallaxBackgroundInstance = Instantiate(
+			ParallaxBackgroundObject,
+			new Vector2(0, 0),
+			Quaternion.identity
+		);
+        }
         if(Input.touchCount > 0){
             TouchScreenControls = true;
         }
@@ -345,9 +378,20 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "" + Score;
         StartGameScreen.SetActive(false);
         GameMenu.SetActive(true);
-        GameMenu.SetActive(false);
-        ShipSelection.SetActive(true);
-        SpawnPlayer();
+        if(restart){
+            Debug.Log("Called StartGame_stage2");
+            SpawnPlayer();
+            initialize_UI();
+            StartGame_stage2();
+        }
+        else{
+            GameMenu.SetActive(false);
+            ShipSelection.SetActive(true);
+            SpawnPlayer();
+            if(PlayerInstance.GetComponentInChildren<Animator>()== null){
+                Debug.Log("Figure out why animator is destroyed");
+            }
+        }
     }
 
     public void SelectionMade()
