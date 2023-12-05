@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameCanvas : MonoBehaviour
 {
     public static GameCanvas instance;
+
     void Awake(){
         if(instance == null){
             instance = this;
@@ -16,4 +18,5 @@ public class GameCanvas : MonoBehaviour
             Destroy(gameObject);
         }
     }
+ 
 }

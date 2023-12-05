@@ -64,29 +64,29 @@ public class ChooseYourShip : MonoBehaviour
     }
 
     void Update(){
-        if(!GameManager.instance.selection_has_been_made){
-        prev_state = Ships[index].Name;
-        if(click_Next){
-            if(index < Ships.Length-1 && click_Next){
-                index++;
-                click_Next = false;
+            if(!GameManager.instance.selection_has_been_made){
+            prev_state = Ships[index].Name;
+            if(click_Next){
+                if(index < Ships.Length-1 && click_Next){
+                    index++;
+                    click_Next = false;
+                }
+                else{
+                    index = 0;
+                    click_Next = false;
+                }
             }
-            else{
-                index = 0;
-                click_Next = false;
+            Animator master_animator = GameManager.instance.PlayerObject.GetComponentInChildren<Animator>();
+            master_animator = this.source_animator;
+            animator.SetTrigger(Ships[index].Name);
+            if(click_Play){
+                GameManager.instance.setAnimation_string(Ships[index].Name);
+                GameManager.instance.SelectionMade();
+                musicManager.Instance.playSound("selected");
+                click_Play = false;
             }
-        }
-         Animator master_animator = GameManager.instance.PlayerObject.GetComponentInChildren<Animator>();
-         master_animator = this.source_animator;
-         animator.SetTrigger(Ships[index].Name);
-         if(click_Play){
-            GameManager.instance.setAnimation_string(Ships[index].Name);
-            GameManager.instance.SelectionMade();
-            musicManager.Instance.playSound("selected");
-            click_Play = false;
-         }
-         clip = Ships[index].shipClip;
-        }
+            clip = Ships[index].shipClip;
+            }
         //ClearStates();
     }
     public void Next(){
