@@ -408,7 +408,7 @@ public class GameManager : MonoBehaviour
         PlayerInstance.transform.position = player_start_coords;
         PlayerInstance.transform.localScale = new Vector3(2f,2f,0);
 		// music stops. only engine sounds.
-        PlayerInstance.GetComponent<SimpleMovement>().player_enter();  
+        PlayerInstance.GetComponent<SimpleMovement>().player_enter(); 
                 //Cursor.visible = false;
 
 	}

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 
 //using System.Numerics;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -34,6 +35,7 @@ public class SimpleMovement : MonoBehaviour
     public bool blood_on = true;
     private int tapCount;
     private float doubleTapthreshold = 0.3f;
+
     
 
     void Fire()
@@ -214,7 +216,7 @@ public class SimpleMovement : MonoBehaviour
     }
 
 	public bool hasFinishedExploding(){
-		animator = GetComponentInChildren<Animator>();
+		//animator = GetComponentInChildren<Animator>();
 		if (animator.GetCurrentAnimatorStateInfo(0).IsName("Empty")){
 			Destroy(GetComponentInChildren<ParticleSystem>());
 			return true;
@@ -281,7 +283,7 @@ public class SimpleMovement : MonoBehaviour
     }
 
 	public void player_enter(){
-		animator.Play("PlayerEntrance");
+        animator.Play("PlayerEntrance");
 	}
 
 	public void on_player_entered(){

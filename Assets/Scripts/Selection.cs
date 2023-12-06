@@ -8,4 +8,5 @@ public class Selection
 {
     public string Name;
     public AnimationClip shipClip;
+    public Sprite skin;
 }

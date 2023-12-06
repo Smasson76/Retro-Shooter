@@ -78,11 +78,14 @@ public class ChooseYourShip : MonoBehaviour
             }
             Animator master_animator = GameManager.instance.PlayerObject.GetComponentInChildren<Animator>();
             master_animator = this.source_animator;
+            Debug.Log("Index = " + index);
             animator.SetTrigger(Ships[index].Name);
+            GameManager.instance.PlayerInstance.GetComponentInChildren<SpriteRenderer>().sprite = Ships[index].skin;
             if(click_Play){
                 GameManager.instance.setAnimation_string(Ships[index].Name);
                 GameManager.instance.SelectionMade();
                 musicManager.Instance.playSound("selected");
+                current_state = Ships[index].Name;
                 click_Play = false;
             }
             clip = Ships[index].shipClip;
@@ -107,5 +110,8 @@ public class ChooseYourShip : MonoBehaviour
         for(int i=0;i<Ships.Length -1;i++){
             animator.ResetTrigger(Ships[i].Name);
         }
+    }
+    public string getCurr_state(){
+        return Ships[index].Name;
     }
 }
